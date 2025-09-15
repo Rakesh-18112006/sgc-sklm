@@ -15,7 +15,7 @@
 }
 
 .navbar {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #001a33 100%);
+  background: rgb(233, 128, 8);
   height: var(--nav-height);
   position: fixed;
   width: 100%;
@@ -108,7 +108,7 @@
 }
 
 .nav-links a:hover {
-  color: var(--accent-color);
+  color: var(--color-cyan-200)
 }
 
 .nav-links a::after {
@@ -118,7 +118,7 @@
   left: 0;
   width: 0;
   height: 3px;
-  background: var(--accent-color);
+  background: var(--color-cyan-200);
   transition: var(--transition);
   border-radius: 3px;
 }

@@ -1,4 +1,3 @@
-
 import './Members.css';
 import competative from "../../assets/clubimgs/competative.webp"
 import coding from "../../assets/clubimgs/coding.webp"
@@ -17,10 +16,17 @@ import eco from "../../assets/clubimgs/competative.webp"
 import yoga from "../../assets/clubimgs/competative.webp"
 import he from "../../assets/clubimgs/competative.webp"
 
+// Import the JSON data
+import clubMembersData from '../../assets/clubmembers.json';
+
 interface Member {
   id: number;
   name: string;
   position: string;
+  imageUrl: string;
+  studentId: string;
+  branch: string;
+  email: string | null;
 }
 
 interface Club {
@@ -30,120 +36,26 @@ interface Club {
   members: Member[];
 }
 
-// Club name mappings to match Excel data with our clubNames
+// Club name mappings to match JSON data with our clubNames
 const clubNameMappings: Record<string, string> = {
-  "COMPETATIVE CLUB": "Competitive Club",
-  "CODING CLUB": "Coding Club",
-  "DESIGNING CLUB": "Studio Club",
-  "STARTUP CLUB": "Startup Club",
-  "ROBOTICS CLUB": "Robotics Club",
-  "LECTURE SERIES CLUB": "Lecture Series Club",
-  "INTERNSHIP & CARRER OPPURTUNITIES": "Internship & Career Opportunities Club",
-  "LINGUSTIC & PERSONAL DEVELOPMENT CLUB": "Linguistic & Personality Development Club",
-  "FINANCE CLUB": "Finance Club",
-  "SPORTS & GAMES CLUB": "Sports & Games Club",
-  "CULTURAL & CHOREOGRAPHY CLUB": "Cultural & Choreography Club",
-  "ARTS & CRAFTS CLUB": "Arts & Crafts Club",
-  "ELECTRONICS CLUB": "Electronics Club",
-  "ECO CLUB": "Eco club",
-  "YOGA CLUB": "Yoga Club",
-  "HIGHER EDUCATION CLUB": "Higher Education Club"
+  "Competitive Club": "COMPETATIVE CLUB",
+  "Coding Club": "CODING CLUB",
+  "Studio Club": "DESIGNING CLUB",
+  "Startup Club": "STARTUP CLUB",
+  "Robotics Club": "ROBOTICS CLUB",
+  "Lecture Series Club": "LECTURE SERIES CLUB",
+  "Internship & Career Opportunities Club": "INTERNSHIP & CARRER OPPURTUNITIES",
+  "Linguistic & Personality Development Club": "LINGUSTIC & PERSONAL DEVELOPMENT CLUB",
+  "Finance Club": "FINANCE CLUB",
+  "Sports and Games Club": "SPORTS & GAMES CLUB",
+  "Cultural & Choreography Club": "CULTURAL & CHOREOGRAPHY CLUB",
+  "Arts & Crafts Club": "ARTS & CRAFTS CLUB",
+  "Electronics Club": "ELECTRONICS CLUB",
+  "Eco Club": "ECO CLUB",
+  "Yoga Club": "YOGA CLUB",
+  "Higher Education Club": "HIGHER EDUCATION CLUB",
+  "Research Club": "RESEARCH CLUB"
 };
-
-// Actual member data from Excel sheet
-const excelData = [
-  // Startup Club
-  { clubName: "Startup Club", position: "GS", name: "Satyaveni Tatiparthi" },
-  { clubName: "Startup Club", position: "GS", name: "GANGASANI REDDY KARTHEEK" },
-  { clubName: "Startup Club", position: "MEMBER", name: "Balaga.Jaswanth Naidu" },
-  { clubName: "Startup Club", position: "MEMBER", name: "Medaboinasandeep" },
-  { clubName: "Startup Club", position: "MEMBER", name: "Chekka.Lakshmi priya" },
-  { clubName: "Startup Club", position: "MEMBER", name: "SURA AJAY" },
-  { clubName: "Startup Club", position: "MEMBER", name: "R.Reshma" },
-  { clubName: "Startup Club", position: "Volunteer", name: "G.punyavathi" },
-  { clubName: "Startup Club", position: "Volunteer", name: "S.AMRUTHA VARSHINI" },
-
-  // Eco club
-  { clubName: "Eco club", position: "MEMBER", name: "Poluru sowjanya" },
-
-  // Studio Club
-  { clubName: "Studio Club", position: "GS", name: "Rushitha" },
-  { clubName: "Studio Club", position: "GS", name: "KORRA LOVA RAJU" },
-  { clubName: "Studio Club", position: "MEMBER", name: "CHINTALAPUDI AMRUTHA VARSHINI" },
-  { clubName: "Studio Club", position: "MEMBER", name: "S.Meghana" },
-  { clubName: "Studio Club", position: "MEMBER", name: "Lokesh" },
-
-  // Competitive Club
-  { clubName: "Competitive Club", position: "GS", name: "M.Sai sneha" },
-  { clubName: "Competitive Club", position: "MEMBER", name: "Dhanush B" },
-  { clubName: "Competitive Club", position: "MEMBER", name: "Ch.Akshitha" },
-  { clubName: "Competitive Club", position: "MEMBER", name: "Bandi Navya" },
-  { clubName: "Competitive Club", position: "MEMBER", name: "Mamatha dora" },
-  { clubName: "Competitive Club", position: "MEMBER", name: "KANCHIPATI NITHIN" },
-  { clubName: "Competitive Club", position: "MEMBER", name: "S.Durga Anjali" },
-  { clubName: "Competitive Club", position: "MEMBER", name: "B Sahithi Meghana" },
-
-  // Cultural & Choreography Club
-  { clubName: "Cultural & Choreography Club", position: "GS", name: "Duvvada kalyani" },
-  { clubName: "Cultural & Choreography Club", position: "MEMBER", name: "Ch chandra moulika" },
-  { clubName: "Cultural & Choreography Club", position: "MEMBER", name: "O Jeevitha" },
-  { clubName: "Cultural & Choreography Club", position: "MEMBER", name: "Susreya" },
-  { clubName: "Cultural & Choreography Club", position: "MEMBER", name: "Kanithi Jahnavi" },
-  { clubName: "Cultural & Choreography Club", position: "MEMBER", name: "Shivani" },
-  { clubName: "Cultural & Choreography Club", position: "Volunteer", name: "S.Durga Anjali" },
-  { clubName: "Cultural & Choreography Club", position: "Volunteer", name: "Mandru Akshaya" },
-
-  // Lecture Series Club
-  { clubName: "Lecture Series Club", position: "GS", name: "Podalakuru Prasad" },
-  { clubName: "Lecture Series Club", position: "MEMBER", name: "Dola urmila" },
-  { clubName: "Lecture Series Club", position: "MEMBER", name: "Gadhireddy Pavithra" },
-  { clubName: "Lecture Series Club", position: "MEMBER", name: "Sree Varshitha Ramisetti" },
-  { clubName: "Lecture Series Club", position: "MEMBER", name: "Kuruva Tulasi" },
-  { clubName: "Lecture Series Club", position: "MEMBER", name: "Katikireddy sindhu" },
-
-  // Internship & Career Opportunities Club
-  { clubName: "Internship & Career Opportunities Club", position: "GS", name: "Shaik Ishak" },
-  { clubName: "Internship & Career Opportunities Club", position: "GS", name: "Madhira Ramya" },
-  { clubName: "Internship & Career Opportunities Club", position: "MEMBER", name: "S. P. S. ROYAL" },
-
-  // Finance Club
-  { clubName: "Finance Club", position: "MEMBER", name: "M.Jahnavi" },
-  { clubName: "Finance Club", position: "MEMBER", name: "Boddeti Mythri" },
-  { clubName: "Finance Club", position: "Volunteer", name: "Patnam naga siri" },
-  { clubName: "Finance Club", position: "Volunteer", name: "Sheaik Rizwana" },
-  { clubName: "Finance Club", position: "Volunteer", name: "S.Vijayadurga" },
-
-  // Linguistic & Personality Development Club
-  { clubName: "Linguistic & Personality Development Club", position: "GS", name: "Madiki Rajasri" },
-  { clubName: "Linguistic & Personality Development Club", position: "MEMBER", name: "Aswini" },
-  { clubName: "Linguistic & Personality Development Club", position: "MEMBER", name: "TEJASWI" },
-  { clubName: "Linguistic & Personality Development Club", position: "MEMBER", name: "Mandela Lavanya" },
-  { clubName: "Linguistic & Personality Development Club", position: "MEMBER", name: "K.jahnavi" },
-  { clubName: "Linguistic & Personality Development Club", position: "MEMBER", name: "Tamarapalli SuryaKala" },
-  { clubName: "Linguistic & Personality Development Club", position: "Volunteer", name: "Patruni Rajeswari" },
-  { clubName: "Linguistic & Personality Development Club", position: "Volunteer", name: "B.mary jones" },
-
-  // Robotics Club
-  { clubName: "Robotics Club", position: "GS", name: "Shaik.Kashifa" },
-  { clubName: "Robotics Club", position: "MEMBER", name: "V. Pushpanjali" },
-  { clubName: "Robotics Club", position: "MEMBER", name: "R.Divakar" },
-  { clubName: "Robotics Club", position: "Volunteer", name: "Avala Durga" },
-  { clubName: "Robotics Club", position: "Volunteer", name: "Vavilapalli Rupavathi" },
-  { clubName: "Robotics Club", position: "Volunteer", name: "V. Durga" },
-
-  // Arts & Crafts Club
-  { clubName: "Arts & Crafts Club", position: "Volunteer", name: "Jinka pavani" },
-  { clubName: "Arts & Crafts Club", position: "Volunteer", name: "Ch. Sravani" },
-
-  // Electronics Club
-  { clubName: "Electronics Club", position: "MEMBER", name: "S.sai malathi" },
-  { clubName: "Electronics Club", position: "MEMBER", name: "Renuka" },
-  { clubName: "Electronics Club", position: "MEMBER", name: "Kallepalli Vishalakshi" },
-  { clubName: "Electronics Club", position: "Volunteer", name: "ALUGOLU ROHINI" },
-
-  // Coding Club
-  { clubName: "Coding Club", position: "JS", name: "Nithyanand Ganugula" },
-];
 
 const clubNames = [
   {name:"COMPETATIVE CLUB",logo:competative },
@@ -165,25 +77,30 @@ const clubNames = [
 ];
 
 function Members() {
-  // Create actual clubs with members from Excel data
+  // Process the JSON data to create clubs with members
   const clubs: Club[] = clubNames.map((club, clubIndex) => {
-    // Find the mapped name for this club
-    const mappedName = clubNameMappings[club.name] || club.name;
+    // Find the reverse mapping for this club
+    const reverseMappedName = Object.entries(clubNameMappings)
+      .find(([key, value]) => value === club.name)?.[0] || club.name;
     
     // Filter members for this club
-    const clubMembers = excelData.filter(member => 
-      member.clubName.toUpperCase() === mappedName.toUpperCase()
-    );
+    const clubMembers = clubMembersData
+      .filter(member => member["Select Club "] === reverseMappedName)
+      .map((member, memberIndex) => ({
+        id: memberIndex + 1,
+        name: member["Student Name"],
+        position: member.Position,
+        imageUrl: member["Upload your image(Make sure image size is less than 1MB)"],
+        studentId: member["Student ID Number"],
+        branch: member.Branch,
+        email: member["Student Email"]
+      }));
 
     // Sort members by position (GS first, then JS, then Member, then Volunteer)
     const sortedMembers = clubMembers.sort((a, b) => {
-      const positionOrder = ["GS", "JS", "MEMBER", "Volunteer"];
+      const positionOrder = ["GS", "JS", "Member", "Volunteer"];
       return positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position);
-    }).map((member, memberIndex) => ({
-      id: memberIndex + 1,
-      name: member.name,
-      position: member.position
-    }));
+    });
 
     return {
       id: clubIndex + 1,
@@ -191,35 +108,57 @@ function Members() {
       logo: club.logo,
       members: sortedMembers.length > 0 ? sortedMembers : 
         // Fallback to mock data if no members found for the club
-        Array.from({ length: 5 }, (_, memberIndex) => ({
+        Array.from({ length: 3 }, (_, memberIndex) => ({
           id: memberIndex + 1,
           name: `Member ${memberIndex + 1}`,
-          position: "MEMBER"
+          position: "MEMBER",
+          imageUrl: "",
+          studentId: "",
+          branch: "",
+          email: null
         }))
     };
   });
 
+  // Function to convert Google Drive link to direct image URL
+  const convertDriveLink = (url: string) => {
+    if (!url) return "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg";
+    
+    const match = url.match(/\/file\/d\/([^/]+)/);
+    if (match && match[1]) {
+      return `https://drive.google.com/uc?id=${match[1]}`;
+    }
+    return url;
+  };
+
   return (
     <div className="members-page">
-      <h1 className="page-title">MEMBERS</h1>
+      <h1 className="page-title">CLUB MEMBERS</h1>
       <div className="clubs-container">
         {clubs.map((club) => (
           <div key={club.id} className="club-card">
             <div className="club-header">
-              <h2 className="club-name">{club.name}</h2>
               <img src={club.logo} alt={`${club.name} logo`} className="club-logo" />
+              <h2 className="club-name">{club.name}</h2>
             </div>
             <div className="members-grid">
               {club.members.map((member) => (
                 <div key={member.id} className="member-item">
                   <div className="member-content">
                     <img 
-                      src="https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg" 
-                      alt="Member icon" 
-                      className="member-icon"
+                      src={convertDriveLink(member.imageUrl)} 
+                      alt={member.name} 
+                      className="member-image"
+                      onError={(e) => {
+                        e.currentTarget.src = "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg";
+                      }}
                     />
-                    <span className="member-name">{member.name}</span>
-                    <span className="member-position">{member.position}</span>
+                    <div className="member-info">
+                      <span className="member-name">{member.name}</span>
+                      <span className="member-position">{member.position}</span>
+                      <span className="member-id">{member.studentId}</span>
+                      <span className="member-branch">{member.branch}</span>
+                    </div>
                   </div>
                 </div>
               ))}
