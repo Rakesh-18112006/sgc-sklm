@@ -1,15 +1,15 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
-import './ExecutiveBoard.css';
+import React from "react";
+import { motion } from "framer-motion";
+import { FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
+import "./ExecutiveBoard.css";
 
 //members images
-import chairman from "../../assets/advisoryBoardimgs/chairman.webp"
-import vc1 from "../../assets/advisoryBoardimgs/vc1.webp"
-import vc2 from "../../assets/advisoryBoardimgs/vc2.webp"
-import vc3 from "../../assets/advisoryBoardimgs/vc3.webp"
+import chairman from "../../assets/advisoryBoardimgs/chairman.webp";
+import vc1 from "../../assets/advisoryBoardimgs/vc1.webp";
+import vc2 from "../../assets/advisoryBoardimgs/vc2.webp";
+import vc3 from "../../assets/advisoryBoardimgs/vc3.webp";
 import president from "../../assets/executiveimgs/president.webp";
-import cseVp from  "../../assets/executiveimgs/cseVp.webp";
+import cseVp from "../../assets/executiveimgs/cseVp.webp";
 import pucVp1 from "../../assets/executiveimgs/pucVp1.webp";
 import pucvp2 from "../../assets/executiveimgs/pucvp2.webp";
 import civilvp from "../../assets/executiveimgs/civilvp.webp";
@@ -40,208 +40,220 @@ const ExecutiveBoard: React.FC = () => {
   const boardMembers: BoardMember[] = [
     {
       id: 1,
-      name: 'Mr. Ravi Gedela',
-      position: 'Chairman',
+      name: "Mr. Ravi Gedela",
+      position: "Chairman",
       image: chairman,
       social: {
-        linkedin: 'https://www.linkedin.com/in/ravi-gedela'
-      }
+        linkedin: "https://www.linkedin.com/in/ravi-gedela",
+      },
     },
     {
       id: 2,
-      name: 'Mr. P.Kutti',
-      position: 'Vice Chairman',
+      name: "Mr. P.Kutti",
+      position: "Vice Chairman",
       image: vc1,
-      department: 'IT',
+      department: "IT",
       social: {
-        linkedin: 'https://www.linkedin.com/in/p-kutti-123456789/'
-      }
+        linkedin: "https://www.linkedin.com/in/p-kutti-123456789/",
+      },
     },
     {
       id: 3,
-      name: 'Mrs. R.Deepa',
-      position: 'Vice Chairman',
+      name: "Mrs. R.Deepa",
+      position: "Vice Chairman",
       image: vc2,
-      department: 'IT',
+      department: "IT",
       social: {
-        linkedin: 'https://www.linkedin.com/in/r-deepa-123456789/'
-      }
+        linkedin: "https://www.linkedin.com/in/r-deepa-123456789/",
+      },
     },
     {
       id: 4,
-      name: 'Mr. T.Narashimaappadu',
-      position: 'Vice Chairman',
+      name: "Mr. T.Narashimaappadu",
+      position: "Vice Chairman",
       image: vc3,
-      department: 'CSE',
+      department: "CSE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/t-narashimaappadu-123456789/'
-      }
+        linkedin: "https://www.linkedin.com/in/t-narashimaappadu-123456789/",
+      },
     },
     {
       id: 5,
-      name: 'K. Guna Sri',
-      position: 'President',
+      name: "K. Guna Sri",
+      position: "President",
       image: president,
-      department:'CSE',
+      department: "CSE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/kimidi-gunasri-38151931a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/kimidi-gunasri-38151931a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 6,
-      name: 'K. Jai Sheel',
-      position: 'Vice President (CSE)',
+      name: "K. Jai Sheel",
+      position: "Vice President (CSE)",
       image: cseVp,
-      department:'CSE',
+      department: "CSE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/jaisheel-karlapudi-b5a558325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/jaisheel-karlapudi-b5a558325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 7,
-      name: 'K. Pavan Kumar',
-      position: 'Vice President (ECE)',
-      image: 'https://randomuser.me/api/portraits/men/4.jpg',
-      department:'ECE',
+      name: "K. Pavan Kumar",
+      position: "Vice President (ECE)",
+      image: "https://randomuser.me/api/portraits/men/4.jpg",
+      department: "ECE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/kyvpkr/'
-      }
+        linkedin: "https://www.linkedin.com/in/kyvpkr/",
+      },
     },
     {
       id: 8,
-      name: 'Vyshnavi',
-      position: 'Vice President (CIVIL)',
+      name: "Vyshnavi",
+      position: "Vice President (CIVIL)",
       image: civilvp,
-      department:'CIVIL',
+      department: "CIVIL",
       social: {
-        linkedin: 'https://www.linkedin.com/in/vyeshnavi-kandapu-5a3033322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/vyeshnavi-kandapu-5a3033322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 9,
-      name: 'G. Rakesh',
-      position: 'Vice President (MECH)',
-      image: 'https://randomuser.me/api/portraits/men/5.jpg',
-      department:'MECH',
+      name: "G. Rakesh",
+      position: "Vice President (MECH)",
+      image: "https://randomuser.me/api/portraits/men/5.jpg",
+      department: "MECH",
       social: {
-        linkedin: 'https://www.linkedin.com/in/g-rakesh-123456789/'
-      }
+        linkedin: "https://www.linkedin.com/in/g-rakesh-123456789/",
+      },
     },
     {
       id: 10,
-      name: 'G. Nishanth Reddy',
-      position: 'Vice President (EEE)',
+      name: "G. Nishanth Reddy",
+      position: "Vice President (EEE)",
       image: eeeVp,
-      department:'EEE',
+      department: "EEE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/nishanth-reddy-1174a735b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/nishanth-reddy-1174a735b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 11,
-      name: 'K. Smily Grace',
-      position: 'Vice President (PUC)',
+      name: "K. Smily Grace",
+      position: "Vice President (PUC)",
       image: pucvp2,
-      department:'CSE',
+      department: "CSE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/smily-grace-kommala-1b6552325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/smily-grace-kommala-1b6552325?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 12,
-      name: 'D. Sandhya',
-      position: 'Vice President (PUC)',
+      name: "D. Sandhya",
+      position: "Vice President (PUC)",
       image: pucVp1,
-      department:'ECE',
+      department: "ECE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/sandhya-desetti-b04686297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/sandhya-desetti-b04686297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 13,
-      name: 'Y. Srinivas',
-      position: 'Public Relations Manager',
+      name: "Y. Srinivas",
+      position: "Public Relations Manager",
       image: pr,
-      department:'ECE',
+      department: "ECE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/srinivas262?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/srinivas262?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 14,
-      name: 'P. Gangadhar',
-      position: 'Associate Public Relations Manager',
+      name: "P. Gangadhar",
+      position: "Associate Public Relations Manager",
       image: apr1,
-      department:'CSE',
+      department: "CSE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/gangadhar-pamisetty-3ba74131b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/gangadhar-pamisetty-3ba74131b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 15,
-      name: 'N. Govardhan',
-      position: 'Associate Public Realtions Manager',
+      name: "N. Govardhan",
+      position: "Associate Public Realtions Manager",
       image: apr2,
-      department:'ECE',
+      department: "ECE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/neelanti-govardhan-5548aa320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/neelanti-govardhan-5548aa320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 16,
-      name: 'K. Gayathri',
-      position: 'Social Media Manager',
+      name: "K. Gayathri",
+      position: "Social Media Manager",
       image: sm,
-      department:'ECE',
+      department: "ECE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/gayathri-killada-6461b4267?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/gayathri-killada-6461b4267?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 17,
-      name: 'P. Gireesh Satya',
-      position: 'Associate Social Media Manager',
-      image: 'https://randomuser.me/api/portraits/men/9.jpg',
-      department:'EEE',
+      name: "P. Gireesh Satya",
+      position: "Associate Social Media Manager",
+      image: "https://randomuser.me/api/portraits/men/9.jpg",
+      department: "EEE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/gireesh-satya-170358370?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/gireesh-satya-170358370?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 18,
-      name: 'Ch. Jeevan Sai',
-      position: 'Associate Social Media Manager',
+      name: "Ch. Jeevan Sai",
+      position: "Associate Social Media Manager",
       image: asm1,
-      department:'CSE',
+      department: "CSE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/chukka-jeevan-sai-530400335?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-      }
+        linkedin:
+          "https://www.linkedin.com/in/chukka-jeevan-sai-530400335?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
     },
     {
       id: 19,
-      name: 'Harish',
-      position: 'Associate Web Operations Manager',
+      name: "Harish",
+      position: "Associate Web Operations Manager",
       image: awom,
-      department: 'CSE',
+      department: "CSE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/harish-123456789/'
-      }
+        linkedin: "https://www.linkedin.com/in/harish-123456789/",
+      },
     },
     {
       id: 20,
-      name: 'Raviteja',
-      position: 'Web operations Manager',
+      name: "Raviteja",
+      position: "Web operations Manager",
       image: wom,
-      department: 'CSE',
+      department: "CSE",
       social: {
-        linkedin: 'https://www.linkedin.com/in/raviteja-123456789/'
-      }
+        linkedin: "https://www.linkedin.com/in/raviteja-123456789/",
+      },
     },
   ];
 
   const FloatingElements = () => (
     <>
-      <motion.div 
+      <motion.div
         className="floating-element floating-circle"
         initial={{ x: -100, y: -50 }}
         animate={{
@@ -252,12 +264,12 @@ const ExecutiveBoard: React.FC = () => {
         transition={{
           duration: 30,
           repeat: Infinity,
-          repeatType: 'loop',
-          ease: 'easeInOut'
+          repeatType: "loop",
+          ease: "easeInOut",
         }}
       />
-      
-      <motion.div 
+
+      <motion.div
         className="floating-element floating-triangle"
         initial={{ x: 100, y: 100 }}
         animate={{
@@ -268,12 +280,12 @@ const ExecutiveBoard: React.FC = () => {
         transition={{
           duration: 25,
           repeat: Infinity,
-          repeatType: 'loop',
-          ease: 'easeInOut'
+          repeatType: "loop",
+          ease: "easeInOut",
         }}
       />
-      
-      <motion.div 
+
+      <motion.div
         className="floating-element floating-square"
         initial={{ x: -150, y: 150 }}
         animate={{
@@ -284,8 +296,8 @@ const ExecutiveBoard: React.FC = () => {
         transition={{
           duration: 35,
           repeat: Infinity,
-          repeatType: 'loop',
-          ease: 'easeInOut'
+          repeatType: "loop",
+          ease: "easeInOut",
         }}
       />
     </>
@@ -335,25 +347,27 @@ const ExecutiveBoard: React.FC = () => {
 
   const getCardClass = (position: string) => {
     switch (position.toLowerCase()) {
-      case 'chairman':
-        return 'card-chairman';
-      case 'vice chairman':
-        return 'card-vice-chairman';
-      case 'president':
-        return 'card-president';
+      case "chairman":
+        return "card-chairman";
+      case "vice chairman":
+        return "card-vice-chairman";
+      case "president":
+        return "card-president";
       default:
-        return 'card-member';
+        return "card-member";
     }
   };
 
   return (
     <div className="executive-board">
       <FloatingElements />
-      <div className="board-header">
+      <div className="board-header ">
         <h1 className="board-title">Executive Board</h1>
-        <p className="board-subtitle">Leadership that drives our vision forward</p>
+        <p className="board-subtitle">
+          Leadership that drives our vision forward
+        </p>
       </div>
-      
+
       <motion.div
         className="board-container"
         variants={containerVariants}
@@ -365,12 +379,18 @@ const ExecutiveBoard: React.FC = () => {
           {boardMembers.slice(0, 1).map((member) => (
             <motion.div
               key={member.id}
-              className={`board-card ${getCardClass(member.position)} first-row-card`}
+              className={`board-card ${getCardClass(
+                member.position
+              )} first-row-card`}
               variants={cardVariants}
               whileHover="hover"
             >
               <div className="card-image-container">
-                <img src={member.image || 'https://via.placeholder.com/150'} alt={member.name} className="card-image" />
+                <img
+                  src={member.image || "https://via.placeholder.com/150"}
+                  alt={member.name}
+                  className="card-image"
+                />
               </div>
               <div className="card-content">
                 <h3 className="card-name">{member.name}</h3>
@@ -378,13 +398,13 @@ const ExecutiveBoard: React.FC = () => {
                 {member.department && (
                   <p className="card-department">{member.department}</p>
                 )}
-                
+
                 {member.social && (
                   <div className="social-icons">
                     {member.social.linkedin && (
-                      <motion.a 
-                        href={member.social.linkedin} 
-                        target="_blank" 
+                      <motion.a
+                        href={member.social.linkedin}
+                        target="_blank"
                         rel="noopener noreferrer"
                         variants={iconVariants}
                         whileHover="hover"
@@ -394,9 +414,9 @@ const ExecutiveBoard: React.FC = () => {
                       </motion.a>
                     )}
                     {member.social.twitter && (
-                      <motion.a 
-                        href={member.social.twitter} 
-                        target="_blank" 
+                      <motion.a
+                        href={member.social.twitter}
+                        target="_blank"
                         rel="noopener noreferrer"
                         variants={iconVariants}
                         whileHover="hover"
@@ -406,9 +426,9 @@ const ExecutiveBoard: React.FC = () => {
                       </motion.a>
                     )}
                     {member.social.facebook && (
-                      <motion.a 
-                        href={member.social.facebook} 
-                        target="_blank" 
+                      <motion.a
+                        href={member.social.facebook}
+                        target="_blank"
                         rel="noopener noreferrer"
                         variants={iconVariants}
                         whileHover="hover"
@@ -418,9 +438,9 @@ const ExecutiveBoard: React.FC = () => {
                       </motion.a>
                     )}
                     {member.social.instagram && (
-                      <motion.a 
-                        href={member.social.instagram} 
-                        target="_blank" 
+                      <motion.a
+                        href={member.social.instagram}
+                        target="_blank"
                         rel="noopener noreferrer"
                         variants={iconVariants}
                         whileHover="hover"
@@ -447,7 +467,11 @@ const ExecutiveBoard: React.FC = () => {
               custom={index}
             >
               <div className="card-image-container">
-                <img src={member.image || 'https://via.placeholder.com/150'} alt={member.name} className="card-image" />
+                <img
+                  src={member.image || "https://via.placeholder.com/150"}
+                  alt={member.name}
+                  className="card-image"
+                />
               </div>
               <div className="card-content">
                 <h3 className="card-name">{member.name}</h3>
@@ -455,13 +479,13 @@ const ExecutiveBoard: React.FC = () => {
                 {member.department && (
                   <p className="card-department">{member.department}</p>
                 )}
-                
+
                 {member.social && (
                   <div className="social-icons">
                     {member.social.linkedin && (
-                      <motion.a 
-                        href={member.social.linkedin} 
-                        target="_blank" 
+                      <motion.a
+                        href={member.social.linkedin}
+                        target="_blank"
                         rel="noopener noreferrer"
                         variants={iconVariants}
                         whileHover="hover"
@@ -471,9 +495,9 @@ const ExecutiveBoard: React.FC = () => {
                       </motion.a>
                     )}
                     {member.social.twitter && (
-                      <motion.a 
-                        href={member.social.twitter} 
-                        target="_blank" 
+                      <motion.a
+                        href={member.social.twitter}
+                        target="_blank"
                         rel="noopener noreferrer"
                         variants={iconVariants}
                         whileHover="hover"
@@ -483,9 +507,9 @@ const ExecutiveBoard: React.FC = () => {
                       </motion.a>
                     )}
                     {member.social.facebook && (
-                      <motion.a 
-                        href={member.social.facebook} 
-                        target="_blank" 
+                      <motion.a
+                        href={member.social.facebook}
+                        target="_blank"
                         rel="noopener noreferrer"
                         variants={iconVariants}
                         whileHover="hover"
@@ -495,9 +519,9 @@ const ExecutiveBoard: React.FC = () => {
                       </motion.a>
                     )}
                     {member.social.instagram && (
-                      <motion.a 
-                        href={member.social.instagram} 
-                        target="_blank" 
+                      <motion.a
+                        href={member.social.instagram}
+                        target="_blank"
                         rel="noopener noreferrer"
                         variants={iconVariants}
                         whileHover="hover"

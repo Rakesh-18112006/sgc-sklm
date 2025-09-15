@@ -1,13 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Parisienne&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Parisienne&display=swap");
 
 .members-page {
-  padding: 100px;
+  padding: 46px;
   width: 100vw;
   overflow-x: hidden;
-  background:url('https://st.depositphotos.com/1008887/4085/i/450/depositphotos_40859639-stock-photo-background.jpg');
+  background: url("https://st.depositphotos.com/1008887/4085/i/450/depositphotos_40859639-stock-photo-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  
 }
 
 .page-title {
@@ -18,14 +17,12 @@
   position: relative;
   padding: 20px;
   z-index: 1;
-   background: rgba(255, 255, 255, 0.7); 
-  backdrop-filter: blur(8px); 
- font-family: 'Playfair Display', serif;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  font-family: "Playfair Display", serif;
   font-size: 3.5rem;
   font-weight: 700;
- 
 }
-
 
 .clubs-container {
   display: flex;
@@ -44,13 +41,13 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   transition: transform 0.3s ease;
-   width: 100%;
+  width: 100%;
   max-width: none;
   position: relative;
   overflow: hidden;
 }
 .club-card::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -69,7 +66,7 @@
   justify-content: space-between;
   margin-bottom: 15px;
   padding-bottom: 10px;
-   border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
 
@@ -82,7 +79,7 @@
 
 .club-name {
   font-size: 1.2rem;
-  color:white;
+  color: white;
   margin: 0;
   text-shadow: 0 1px 3px red;
 }
@@ -107,7 +104,7 @@
   background-color: #f0f0f0;
   transform: scale(1.02);
 }
-.member-item:nth-child(n+21) .member-position {
+.member-item:nth-child(n + 21) .member-position {
   color: #999;
   font-style: italic;
 }
@@ -144,7 +141,7 @@
   opacity: 1;
   max-height: 20px;
   margin-top: 4px;
-}/* Mobile Responsiveness */
+} /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .members-page {
     padding: 40px 20px;
@@ -153,6 +150,7 @@
   .page-title {
     font-size: 2.2rem;
     padding: 15px;
+    margin-top: 70px;
   }
 
   .club-card {

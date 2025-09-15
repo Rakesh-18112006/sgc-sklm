@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import type { ClubEventType } from '../Clubs/ClubsData';
-import { clubsData } from '../Clubs/ClubsData';
-import EventCard from './EventCard';
-import Pagination from './Pagination';
-import styles from './EventsNews.module.css';
-import type { Event as EventCardEvent } from './eventTypes';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { clubsData } from "../Clubs/ClubsData";
+import EventCard from "./EventCard";
+import Pagination from "./Pagination";
+import styles from "./EventNews.module.css";
+import type { Event as EventCardEvent } from "./eventTypes";
 
 // Define the complete Club type based on eventTypes requirements
 interface ClubData {
@@ -22,39 +21,43 @@ type ApiEvent = EventCardEvent & {
 
 // Default club data fallback
 const getDefaultClub = (): ClubData => ({
-  name: 'Unknown Club',
-  icon: '/default-club-icon.png',
-  id: 'unknown'
+  name: "Unknown Club",
+  icon: "/default-club-icon.png",
+  id: "unknown",
 });
 
 const EventsNews: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [events, setEvents] = useState<ApiEvent[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<ApiEvent[]>([]);
-  const [selectedClub, setSelectedClub] = useState<string>('all');
+  const [selectedClub, setSelectedClub] = useState<string>("all");
   const [isLoading, setIsLoading] = useState(true);
   const eventsPerPage = 6;
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get<ApiEvent[]>(`http://localhost:5000/api/events`);
-        
-        const processedEvents = response.data.map(event => {
-          const clubData = event.club ? {
-            name: event.club.name || 'Unknown Club',
-            icon: event.club.icon || '/default-club-icon.png',
-            id: event.club.id || 'unknown'
-          } : getDefaultClub();
+        const response = await axios.get<ApiEvent[]>(
+          `http://localhost:5000/api/events`
+        );
+
+        const processedEvents = response.data.map((event) => {
+          const clubData = event.club
+            ? {
+                name: event.club.name || "Unknown Club",
+                icon: event.club.icon || "/default-club-icon.png",
+                id: event.club.id || "unknown",
+              }
+            : getDefaultClub();
 
           return {
             ...event,
-            _id: event._id || '',
-            time: event.time || '00:00',
+            _id: event._id || "",
+            time: event.time || "00:00",
             views: event.views || 0,
-            imageUrl: event.imageUrl || '',
+            imageUrl: event.imageUrl || "",
             club: clubData,
-            clubId: event.clubId || clubData.id
+            clubId: event.clubId || clubData.id,
           };
         });
 
@@ -62,24 +65,24 @@ const EventsNews: React.FC = () => {
         setFilteredEvents(processedEvents);
       } catch (error) {
         console.error("Error fetching events:", error);
-        
-        const allStaticEvents: ApiEvent[] = clubsData.flatMap(club => {
+
+        const allStaticEvents: ApiEvent[] = clubsData.flatMap((club) => {
           const clubData: ClubData = {
-            name: club.name1 + (club.name2 ? ` ${club.name2}` : ''),
-            icon: club.heroImage || '/default-club-icon.png',
-            id: club.id
+            name: club.name1 + (club.name2 ? ` ${club.name2}` : ""),
+            icon: club.heroImage || "/default-club-icon.png",
+            id: club.id,
           };
 
-          return club.events.map(event => ({
+          return club.events.map((event) => ({
             _id: event.id,
             title: event.title,
             date: event.date,
             description: event.description,
-            time: '00:00',
+            time: "00:00",
             views: 0,
-            imageUrl: '',
+            imageUrl: "",
             club: clubData,
-            clubId: club.id
+            clubId: club.id,
           }));
         });
 
@@ -94,20 +97,25 @@ const EventsNews: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (selectedClub === 'all') {
+    if (selectedClub === "all") {
       setFilteredEvents(events);
     } else {
-      setFilteredEvents(events.filter(event => event.clubId === selectedClub));
+      setFilteredEvents(
+        events.filter((event) => event.clubId === selectedClub)
+      );
     }
     setCurrentPage(1);
   }, [selectedClub, events]);
 
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
-  const currentEvents = filteredEvents.slice(indexOfFirstEvent, indexOfLastEvent);
+  const currentEvents = filteredEvents.slice(
+    indexOfFirstEvent,
+    indexOfLastEvent
+  );
 
   const paginate = (pageNumber: number) => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setCurrentPage(pageNumber);
   };
 
@@ -125,7 +133,9 @@ const EventsNews: React.FC = () => {
       <div className={styles.eventsHero}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>Upcoming Events & News</h1>
-          <p className={styles.heroSubtitle}>Stay updated with the latest happenings in our community</p>
+          <p className={styles.heroSubtitle}>
+            Stay updated with the latest happenings in our community
+          </p>
           <div className={styles.scrollDownIndicator}>
             <div className={styles.mouse}>
               <div className={styles.scroller}></div>
@@ -134,16 +144,16 @@ const EventsNews: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.clubFilter}>
+      <div className={styles.clubFilter} >
         <select
           value={selectedClub}
           onChange={(e) => setSelectedClub(e.target.value)}
           className={styles.filterSelect}
         >
           <option value="all">All Clubs</option>
-          {clubsData.map(club => (
+          {clubsData.map((club) => (
             <option key={club.id} value={club.id}>
-              {club.name1} {club.name2 || ''}
+              {club.name1} {club.name2 || ""}
             </option>
           ))}
         </select>
@@ -152,12 +162,12 @@ const EventsNews: React.FC = () => {
       <div className={styles.eventsGrid}>
         {currentEvents.length > 0 ? (
           currentEvents.map((event, index) => (
-            <div 
-              key={event._id} 
+            <div
+              key={event._id}
               className={styles.eventCardWrapper}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <EventCard event={event} />
+              <EventCard event={event} index={index} />
             </div>
           ))
         ) : (

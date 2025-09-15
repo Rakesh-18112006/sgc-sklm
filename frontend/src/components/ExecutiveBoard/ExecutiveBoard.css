@@ -3,8 +3,8 @@
   width: 100%;
   min-height: 100vh;
   margin: 0;
-  padding: 7rem 0 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem 0 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
@@ -63,19 +63,25 @@
   margin: 0 0 1rem;
   position: relative;
   z-index: 2;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .board-title::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -4px;
   left: -4px;
   right: -4px;
   bottom: -4px;
-  background: linear-gradient(90deg, 
-    #3498db, #2ecc71, #e74c3c, #f39c12, #9b59b6, 
-    #3498db);
+  background: linear-gradient(
+    90deg,
+    #3498db,
+    #2ecc71,
+    #e74c3c,
+    #f39c12,
+    #9b59b6,
+    #3498db
+  );
   background-size: 300% 100%;
   animation: gradientFlow 6s linear infinite;
   z-index: -1;
@@ -94,15 +100,14 @@
 }
 
 .board-subtitle::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
   height: 3px;
-  background: linear-gradient(90deg, 
-    #3498db, #2ecc71, #e74c3c);
+  background: linear-gradient(90deg, #3498db, #2ecc71, #e74c3c);
   background-size: 200% 100%;
   animation: gradientFlow 4s linear infinite;
   border-radius: 3px;
@@ -233,10 +238,18 @@
 }
 
 /* Role-specific Styles */
-.card-chairman { border-top: 4px solid #e74c3c; }
-.card-vice-chairman { border-top: 4px solid #f39c12; }
-.card-president { border-top: 4px solid #2ecc71; }
-.card-member { border-top: 4px solid #3498db; }
+.card-chairman {
+  border-top: 4px solid #e74c3c;
+}
+.card-vice-chairman {
+  border-top: 4px solid #f39c12;
+}
+.card-president {
+  border-top: 4px solid #2ecc71;
+}
+.card-member {
+  border-top: 4px solid #3498db;
+}
 
 /* Social Icons */
 .social-icons {
@@ -269,25 +282,53 @@
   transform: translateY(-3px);
 }
 
-.linkedin:hover { background-color: #0077b5; color: white; }
-.twitter:hover { background-color: #1da1f2; color: white; }
-.facebook:hover { background-color: #3b5998; color: white; }
-.instagram:hover { 
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-  color: white; 
+.linkedin:hover {
+  background-color: #0077b5;
+  color: white;
+}
+.twitter:hover {
+  background-color: #1da1f2;
+  color: white;
+}
+.facebook:hover {
+  background-color: #3b5998;
+  color: white;
+}
+.instagram:hover {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+  color: white;
 }
 
 /* Animations */
 @keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes borderPulse {
-  0% { border-image-source: linear-gradient(45deg, #3498db, #2ecc71, #f39c12); }
-  50% { border-image-source: linear-gradient(45deg, #f39c12, #3498db, #2ecc71); }
-  100% { border-image-source: linear-gradient(45deg, #2ecc71, #f39c12, #3498db); }
+  0% {
+    border-image-source: linear-gradient(45deg, #3498db, #2ecc71, #f39c12);
+  }
+  50% {
+    border-image-source: linear-gradient(45deg, #f39c12, #3498db, #2ecc71);
+  }
+  100% {
+    border-image-source: linear-gradient(45deg, #2ecc71, #f39c12, #3498db);
+  }
 }
 
 /* Responsive Breakpoints */
@@ -341,6 +382,9 @@
     padding-top: 5rem;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .board-header{
+    margin-top: 2rem;
   }
   .board-title {
     font-size: 1.6rem;

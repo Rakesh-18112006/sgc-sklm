@@ -1,7 +1,7 @@
 // components/Pagination.tsx
 import React from 'react';
 import type { PaginationTypes } from './eventTypes';
-import styles from './EventsNews.module.css';
+import styles from './pagination.module.css';
 
 const Pagination: React.FC<PaginationTypes> = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];

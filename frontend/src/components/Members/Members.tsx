@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './Members.css';
 import competative from "../../assets/clubimgs/competative.webp"
 import coding from "../../assets/clubimgs/coding.webp"

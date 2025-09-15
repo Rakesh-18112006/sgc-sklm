@@ -11,13 +11,13 @@
 }
 
 .advisory-board {
-  padding: 7rem 1.5rem 5rem;
   background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
   width: 100%;
+  margin-top: 20px;
 }
 
 .container {
@@ -40,7 +40,11 @@
 .bg-circle {
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.05),
+    rgba(124, 58, 237, 0.05)
+  );
   filter: blur(40px);
 }
 
@@ -79,6 +83,7 @@
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
+  margin-left: 390px;
 }
 
 .section-title {
@@ -135,14 +140,15 @@
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
 }
 
 .member-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -153,7 +159,8 @@
 }
 
 .member-card.active {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   transform: translateY(-5px);
 }
 
@@ -196,7 +203,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(124, 58, 237, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.3),
+    rgba(124, 58, 237, 0.3)
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 50%;
@@ -328,28 +339,28 @@
   .advisory-board {
     padding: 6rem 1rem 3rem;
   }
-  
+
   .section-title {
     font-size: 2.2rem;
   }
-  
+
   .section-subtitle {
     font-size: 1rem;
   }
-  
+
   .board-members-container {
     gap: 1.5rem;
   }
-  
+
   .second-row {
     grid-template-columns: 1fr;
   }
-  
+
   .first-row .member-card,
   .second-row .member-card {
     max-width: 100%;
   }
-  
+
   .expanded-bio {
     position: fixed;
     top: 0;
@@ -363,7 +374,7 @@
     justify-content: center;
     padding: 2rem;
   }
-  
+
   .bio-content {
     max-width: 500px;
     background: white;
@@ -377,32 +388,35 @@
   .advisory-board {
     padding: 5rem 1rem 2rem;
   }
-  
+
   .section-title {
     font-size: 1.8rem;
   }
-  
+  .section-header {
+    margin-left: 0px;
+  }
   .image-wrapper {
     width: 120px;
     height: 120px;
   }
-  
+
   .decorative-shape {
     width: 140px;
     height: 140px;
   }
-  
+
   .member-name {
     font-size: 1.1rem;
   }
-  
+
   .bg-circle {
     display: none;
   }
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg);
   }
   25% {
