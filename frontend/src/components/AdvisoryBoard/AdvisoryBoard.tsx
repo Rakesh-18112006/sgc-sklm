@@ -25,6 +25,7 @@ interface BoardMember {
 const AdvisoryBoard: React.FC = () => {
   const [activeMember, setActiveMember] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,6 +36,10 @@ const AdvisoryBoard: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const handleImageError = (id: number) => {
+    setImageErrors(prev => ({ ...prev, [id]: true }));
+  };
+
   const boardMembers: BoardMember[] = [
     {
       id: 1,
@@ -42,7 +47,7 @@ const AdvisoryBoard: React.FC = () => {
       position: "Director",
       department: "University Leadership",
       image: director,
-      bio: "Distinguished professor with 25 years of academic leadership experience. Spearheading our strategic initiatives and global partnerships. Authored several influential papers on educational reform.",
+      bio: "Distinguished professor with 25 years of academic leadership experience. Spearheading our strategic initiatives and global partnerships. Authored several influential papers on educational reform. Committed to fostering innovation and excellence in higher education through transformative leadership and strategic vision.",
       linkedin: "#",
       email: "#",
       website: "#",
@@ -53,7 +58,7 @@ const AdvisoryBoard: React.FC = () => {
       position: "Dean of Student Welfare",
       department: "Computer Science",
       image: chairman,
-      bio: "PhD in Computer Engineering with 15 years of industry experience. Specializes in AI research and has led multiple successful tech startups. Currently heading the AI ethics committee.",
+      bio: "PhD in Computer Engineering with 15 years of industry experience. Specializes in AI research and has led multiple successful tech startups. Currently heading the AI ethics committee. Passionate about mentoring students and bridging the gap between academia and industry.",
       linkedin: "#",
       email: "#",
       website: "#",
@@ -64,7 +69,7 @@ const AdvisoryBoard: React.FC = () => {
       position: "Administrative Officer",
       department: "Business Administration",
       image: ao,
-      bio: "Former CEO of TechCorp with expertise in business strategy and innovation management. Advisor to Fortune 500 companies and government think tanks on digital transformation.",
+      bio: "Former CEO of TechCorp with expertise in business strategy and innovation management. Advisor to Fortune 500 companies and government think tanks on digital transformation. Brings extensive corporate experience to academic administration.",
       linkedin: "#",
       email: "#",
       website: "#",
@@ -75,7 +80,7 @@ const AdvisoryBoard: React.FC = () => {
       position: "Research Director",
       department: "Electrical Engineering",
       image: "https://randomuser.me/api/portraits/women/44.jpg",
-      bio: "Published researcher in renewable energy systems with multiple patent awards. Leads the university's green energy initiative and international research collaborations.",
+      bio: "Published researcher in renewable energy systems with multiple patent awards. Leads the university's green energy initiative and international research collaborations. Recognized globally for contributions to sustainable energy solutions.",
       linkedin: "#",
       email: "#",
       website: "#",
@@ -86,7 +91,7 @@ const AdvisoryBoard: React.FC = () => {
       position: "Industry Liaison",
       department: "Mechanical Engineering",
       image: "https://randomuser.me/api/portraits/men/22.jpg",
-      bio: "Industrial designer with 20+ years of experience in automotive engineering. Bridges academia and industry through innovative partnership programs and student internships.",
+      bio: "Industrial designer with 20+ years of experience in automotive engineering. Bridges academia and industry through innovative partnership programs and student internships. Instrumental in securing industry collaborations and research funding.",
       linkedin: "#",
       email: "#",
       website: "#",
@@ -103,6 +108,15 @@ const AdvisoryBoard: React.FC = () => {
 
   const closeBio = () => {
     setActiveMember(null);
+  };
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   return (
@@ -125,7 +139,7 @@ const AdvisoryBoard: React.FC = () => {
             Meet Our Advisory Board
           </h2>
           <p className="section-subtitle">
-            Visionary leaders guiding our institution's future
+            Visionary leaders guiding our institution's future with expertise, innovation, and dedication
           </p>
           <div className="divider"></div>
         </motion.div>
@@ -147,14 +161,23 @@ const AdvisoryBoard: React.FC = () => {
               <div className="card-inner">
                 <div className="card-image-container">
                   <div className="image-wrapper">
-                    <img
-                      src={boardMembers[0].image}
-                      alt={boardMembers[0].name}
-                      className="member-image"
-                    />
+                    {!imageErrors[boardMembers[0].id] ? (
+                      <img
+                        src={boardMembers[0].image}
+                        alt={boardMembers[0].name}
+                        className="member-image"
+                        onError={() => handleImageError(boardMembers[0].id)}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="member-image-fallback">
+                        {getInitials(boardMembers[0].name)}
+                      </div>
+                    )}
                     <div className="image-hover-effect"></div>
                   </div>
-                  <div className="decorative-shape"></div>
+                  <div className="decorative-shape decorative-shape-1"></div>
+                  <div className="decorative-shape decorative-shape-2"></div>
                 </div>
 
                 <div className="card-content">
@@ -171,6 +194,7 @@ const AdvisoryBoard: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
+                        aria-label={`Connect with ${boardMembers[0].name} on LinkedIn`}
                       >
                         <FaLinkedin className="social-icon" />
                       </a>
@@ -179,6 +203,7 @@ const AdvisoryBoard: React.FC = () => {
                       <a
                         href={`mailto:${boardMembers[0].email}`}
                         onClick={(e) => e.stopPropagation()}
+                        aria-label={`Email ${boardMembers[0].name}`}
                       >
                         <FaEnvelope className="social-icon" />
                       </a>
@@ -189,6 +214,7 @@ const AdvisoryBoard: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
+                        aria-label={`Visit ${boardMembers[0].name}'s website`}
                       >
                         <FaGlobe className="social-icon" />
                       </a>
@@ -214,6 +240,7 @@ const AdvisoryBoard: React.FC = () => {
                           e.stopPropagation();
                           closeBio();
                         }}
+                        aria-label="Close biography"
                       >
                         <IoMdClose />
                       </button>
@@ -241,14 +268,23 @@ const AdvisoryBoard: React.FC = () => {
                 <div className="card-inner">
                   <div className="card-image-container">
                     <div className="image-wrapper">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="member-image"
-                      />
+                      {!imageErrors[member.id] ? (
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="member-image"
+                          onError={() => handleImageError(member.id)}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="member-image-fallback">
+                          {getInitials(member.name)}
+                        </div>
+                      )}
                       <div className="image-hover-effect"></div>
                     </div>
-                    <div className="decorative-shape"></div>
+                    <div className="decorative-shape decorative-shape-1"></div>
+                    <div className="decorative-shape decorative-shape-2"></div>
                   </div>
 
                   <div className="card-content">
@@ -263,6 +299,7 @@ const AdvisoryBoard: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
+                          aria-label={`Connect with ${member.name} on LinkedIn`}
                         >
                           <FaLinkedin className="social-icon" />
                         </a>
@@ -271,6 +308,7 @@ const AdvisoryBoard: React.FC = () => {
                         <a
                           href={`mailto:${member.email}`}
                           onClick={(e) => e.stopPropagation()}
+                          aria-label={`Email ${member.name}`}
                         >
                           <FaEnvelope className="social-icon" />
                         </a>
@@ -281,6 +319,7 @@ const AdvisoryBoard: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
+                          aria-label={`Visit ${member.name}'s website`}
                         >
                           <FaGlobe className="social-icon" />
                         </a>
@@ -306,6 +345,7 @@ const AdvisoryBoard: React.FC = () => {
                             e.stopPropagation();
                             closeBio();
                           }}
+                          aria-label="Close biography"
                         >
                           <IoMdClose />
                         </button>

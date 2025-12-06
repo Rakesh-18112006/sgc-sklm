@@ -13,7 +13,7 @@ import {
   
 } from 'react-icons/fa';
 import './Navbar.css';
-
+import sgc from '../../assets/sgc.webp'
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -77,7 +77,7 @@ const Navbar = () => {
               className="college-logo" 
             />
            <img 
-               src="https://sgcrguktsklm.org.in/assets/img/logo/logo1.png" 
+               src={sgc} 
                 alt="Organization Logo"
                 className="h-7 w-auto" 
             />

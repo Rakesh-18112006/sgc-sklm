@@ -216,7 +216,7 @@ const Club: React.FC = () => {
       </motion.section>
 
       {/* Members Section */}
-      <motion.section 
+      {/* <motion.section 
         className={styles.membersSection}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -257,7 +257,7 @@ const Club: React.FC = () => {
             ))}
           </div>
         </div>
-      </motion.section>
+      </motion.section> */}
     </div>
   );
 };
