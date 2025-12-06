@@ -19,6 +19,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+   const [messages, setMessages] = useState<string[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +37,30 @@ const Navbar = () => {
   const toggleDropdown = (dropdown : any ) => {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   };
+  /*  ---------------------------------------------------
+        Fetch marquee messages from backend
+       --------------------------------------------------- */
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/marquee/all");
+        const data = await res.json();
+
+        if (Array.isArray(data.marquee)) {
+          setMessages(data.marquee.map((item: any) => item.message));
+        } else {
+          console.error("Invalid API response:", data);
+        }
+      } catch (err) {
+        console.error("Error loading marquee:", err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  
 
   const navLinks = [
     { name: 'Home', icon: <FaHome />, path: '/', dropdown: null },
@@ -66,15 +91,14 @@ const Navbar = () => {
 
   return (
     <>
-      
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}` }>
+      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="navbar-container">
           {/* Logo Section */}
           <div className="navbar-logo">
-            <img 
-              src="/rgukt_logo.png" 
-              alt="College Logo" 
-              className="college-logo" 
+            <img
+              src="/rgukt_logo.png"
+              alt="College Logo"
+              className="college-logo"
             />
            <img 
                src={sgc} 
@@ -86,19 +110,23 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <ul className="nav-links">
             {navLinks.map((link, index) => (
-              <li 
-                key={index} 
-                className={activeDropdown === link.name ? 'active' : ''}
+              <li
+                key={index}
+                className={activeDropdown === link.name ? "active" : ""}
                 onMouseEnter={() => link.dropdown && toggleDropdown(link.name)}
                 onMouseLeave={() => link.dropdown && toggleDropdown(null)}
               >
                 <a href={link.path}>
-                  {link.icon} {link.name} 
+                  {link.icon} {link.name}
                   {link.dropdown && <FaChevronDown className="dropdown-icon" />}
                 </a>
-                
+
                 {link.dropdown && (
-                  <div className={`dropdown-content ${activeDropdown === link.name ? 'show' : ''}`}>
+                  <div
+                    className={`dropdown-content ${
+                      activeDropdown === link.name ? "show" : ""
+                    }`}
+                  >
                     {link.dropdown.map((item, i) => (
                       <a key={i} href={item.path}>
                         {item.icon} {item.name}
@@ -110,8 +138,6 @@ const Navbar = () => {
             ))}
           </ul>
 
-         
-
           {/* Mobile Menu Toggle */}
           <button className="hamburger" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
@@ -119,23 +145,28 @@ const Navbar = () => {
         </div>
       </nav>
       <div className="news-ticker">
-  <div className="ticker-content">
-    <span>Latest Updates: </span>
-    <span>Admissions open for 2024-25 | </span>
-    <span>Annual sports day on May 15th | </span>
-    <span>New courses announced for engineering | </span>
-    <span>Campus placement drive starting June 1st</span>
-  </div>
-</div>
-      
+        <div className="ticker-content">
+          <span className="font-semibold">Latest Updates: </span>
+
+          {messages.length === 0 ? (
+            <span>No updates available</span>
+          ) : (
+            messages.map((msg, index) => (
+              <span key={index}>
+                {msg} {index !== messages.length - 1 && " | "}
+              </span>
+            ))
+          )}
+        </div>
+      </div>
 
       {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+      <div className={`mobile-menu ${isMobileMenuOpen ? "active" : ""}`}>
         <ul className="mobile-links">
           {navLinks.map((link, index) => (
             <li key={index}>
-              <a 
-                href={link.path} 
+              <a
+                href={link.path}
                 onClick={() => {
                   if (link.dropdown) {
                     toggleDropdown(link.name);
@@ -145,14 +176,24 @@ const Navbar = () => {
                 }}
               >
                 {link.icon} {link.name}
-                {link.dropdown && <FaChevronDown className={`dropdown-icon ${activeDropdown === link.name ? 'rotate' : ''}`} />}
+                {link.dropdown && (
+                  <FaChevronDown
+                    className={`dropdown-icon ${
+                      activeDropdown === link.name ? "rotate" : ""
+                    }`}
+                  />
+                )}
               </a>
-              
+
               {link.dropdown && (
-                <div className={`mobile-dropdown ${activeDropdown === link.name ? 'show' : ''}`}>
+                <div
+                  className={`mobile-dropdown ${
+                    activeDropdown === link.name ? "show" : ""
+                  }`}
+                >
                   {link.dropdown.map((item, i) => (
-                    <a 
-                      key={i} 
+                    <a
+                      key={i}
                       href={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -164,11 +205,8 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-       
-       
       </div>
       {/* <Headline /> */}
-      
     </>
   );
 };

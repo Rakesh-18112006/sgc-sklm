@@ -7,6 +7,9 @@ export interface Event {
   time: string;
   views: number;
   imageUrl: string;
+  status: "upcoming" | "completed";
+  interestedCount: number;
+  summary?: string;
   club: {
     name: string;
     icon: string;

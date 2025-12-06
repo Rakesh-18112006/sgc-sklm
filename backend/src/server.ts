@@ -6,6 +6,7 @@ import connectDB from './config/db';
 import authRoutes from './routes/authRoutes';
 import { authMiddleware } from './middleware/authMiddleware';
 import eventRoutes from "./routes/eventRoutes";
+import marqueeRoutes from './routes/marqueeRoutes';
 
 
 
@@ -25,5 +26,7 @@ app.get('/api/admin/dashboard', authMiddleware as any, (req, res) => {
     res.json({ message: 'Welcome Admin!' });
 });
 
+app.use('/api/marquee', marqueeRoutes);
+  
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

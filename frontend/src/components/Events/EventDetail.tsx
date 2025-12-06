@@ -9,6 +9,10 @@ const EventDetail: React.FC = () => {
   const { id } = useParams();
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
+  const [hasRegistered, setHasRegistered] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [registerMsg, setRegisterMsg] = useState("");
+
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -161,6 +165,19 @@ const EventDetail: React.FC = () => {
                 </motion.div>
               </div>
             </div>
+
+            {event.summary && (
+              <div className={styles.eventDescription}>
+                <h2>Event Summary</h2>
+                <p>{event?.summary}</p>
+                <p>
+                  Join us for an unforgettable experience filled with learning,
+                  networking, and fun. This event is designed to bring together
+                  like-minded individuals who share a passion for innovation and
+                  creativity.
+                </p>
+              </div>
+            )}
           </motion.div>
 
           {/* Sidebar */}
@@ -215,21 +232,59 @@ const EventDetail: React.FC = () => {
                 </div>
               </div>
 
-              <motion.div
-                className={styles.registerCard}
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.2 }}
-              >
-                <h3>Register Now</h3>
-                <p>Secure your spot before it's too late!</p>
-                <motion.button
-                  className={styles.registerButton}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+              {event.status === "upcoming" && (
+                <motion.div
+                  className={styles.registerCard}
+                  whileHover={{ y: -3 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  Register for Event
-                </motion.button>
-              </motion.div>
+                  <h3>Register Now</h3>
+                  <p>Secure your spot before it's too late!</p>
+                  <motion.button
+                    className={styles.registerButton}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={async () => {
+                      if (hasRegistered) return; // prevent multiple clicks
+
+                      setIsRegistering(true);
+                      setRegisterMsg(""); // clear previous messages
+
+                      try {
+                        const response = await axios.patch(
+                          `http://localhost:5000/api/events/${id}/interested`,
+                          {
+                            // optional: send studentId if backend requires it
+                            studentId: localStorage.getItem("studentId") || "",
+                          }
+                        );
+
+                        setRegisterMsg(
+                          `Successfully registered! Total interested: ${response.data.interestedCount}`
+                        );
+                        setHasRegistered(true); // mark as registered
+                      } catch (error: any) {
+                        setRegisterMsg(
+                          error.response?.data?.error ||
+                            "Failed to register. Try again."
+                        );
+                      } finally {
+                        setIsRegistering(false);
+                      }
+                    }}
+                    disabled={hasRegistered || isRegistering}
+                  >
+                    {hasRegistered
+                      ? "Registered ✅"
+                      : isRegistering
+                      ? "Registering..."
+                      : "Register for Event"}
+                  </motion.button>
+                  {registerMsg && (
+                    <p className={styles.registerMsg}>{registerMsg}</p>
+                  )}
+                </motion.div>
+              )}
 
               <div className={styles.socialShare}>
                 <h4>Share This Event</h4>

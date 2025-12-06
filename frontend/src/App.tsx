@@ -17,6 +17,8 @@ import EventDetail from "./components/Events/EventDetail";
 import Members from "./components/Members/Members";
 import AdminEventForm from "./Admin/Events/AdminEventForm";
 import WebTeam from "./components/webTeam/WebTeam";
+import AdminEditEventForm from "./Admin/Events/AdminEditEventForm";
+import AdminMarqueePage from "./Admin/marquee/AdminMarqueePage";
 // import Headline from "./pages/home/Headline";
 
 function AppRoutes() {
@@ -43,6 +45,8 @@ function AppRoutes() {
         <Route element={<PrivateAdminRoute />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/post-event" element={<AdminEventForm />} />
+          <Route path="/admin/edit-event" element={<AdminEditEventForm />} />
+          <Route path="/admin/marquee" element={<AdminMarqueePage />} />
         </Route>
         
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
