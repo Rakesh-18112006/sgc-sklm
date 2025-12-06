@@ -10,7 +10,7 @@ const WebTeam = () => {
   const teamMembers = [
     {
       id: 1,
-      name: 'M. Rakesh (Rgukt Nuzvid)',
+      name: 'M. Rakesh',
       role: 'Fullstack Developer',
       bio: 'Specializes in React and TypeScript with 1 year of experience building responsive web applications.',
       linkedin: 'https://www.linkedin.com/in/rakesh-mummana-16379931a',
