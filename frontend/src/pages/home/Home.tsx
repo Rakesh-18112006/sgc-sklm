@@ -3,12 +3,12 @@ import Carousel from './Carousel';
 import CollegeInfoCards from "./CollegeInfoCards";
 import Counter from "./Numbers/Counter";
 import AboutSGC from './Constitution/AboutSGC';
-
+import img3 from '../../assets/main/img3.webp';
 const Home: React.FC = () => {
   const slides = [
     {
       id: 1,
-      imageUrl: 'https://media.licdn.com/dms/image/v2/D5622AQE-yJgliGUIPw/feedshare-shrink_2048_1536/B56ZYor9.lGsAs-/0/1744439342613?e=1752710400&v=beta&t=_IQvKjEUvqqNj76OQg0DzvzGs7sS0GlY_nkYE3XJwiA',
+      imageUrl: img3,
       title: 'Welcome to SGC',
       subtitle: 'Excellence in Education Since 1950',
       ctaText: 'Explore Programs',
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
     },
     {
       id: 2,
-      imageUrl: '/carousel2.jpeg',
+      imageUrl: img3,
       title: 'Innovative Learning Environment',
       subtitle: "State-of-the-art Facilities for Tomorrow's Leaders",
       ctaText: 'Tour Our Campus',
@@ -24,7 +24,7 @@ const Home: React.FC = () => {
     },
     {
       id: 3,
-      imageUrl: '/carosel3.webp',
+      imageUrl: img3,
       title: 'Join Our Vibrant Community',
       subtitle: 'Applications Now Open for Fall 2023',
       ctaText: 'Apply Now',
