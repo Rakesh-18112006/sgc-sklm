@@ -71,7 +71,8 @@
 
 @media (max-width: 480px) {
   .container {
-    margin-top: -1rem;
+    margin-top: 1rem;
+    margin-left: 2rem;
   }
   .cardTitle {
     margin-top: -1rem;
