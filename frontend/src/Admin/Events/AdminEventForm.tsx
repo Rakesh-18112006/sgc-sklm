@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Upload, 
-  Calendar, 
-  Clock, 
-  Tag, 
+import { motion } from "framer-motion";
+import { toast } from "sonner";
+import {
+  Upload,
+  Calendar,
+  Clock,
+  Tag,
   Image as ImageIcon,
   Send,
-  CheckCircle,
-  XCircle,
-  Info,
-  AlertCircle
+  Building2,
+  FileText,
+  MapPin,
+  Users,
 } from "lucide-react";
-import styles from "./AdminEventForm.module.css";
 
 // Import club icons
 import competative from "../../assets/clubimgs/competative.webp";
@@ -38,7 +38,7 @@ interface FormData {
   description: string;
   date: string;
   time: string;
-  status: "upcoming" | "completed";
+  status: "upcoming";
   club: { name: string; icon: string };
 }
 
@@ -55,43 +55,43 @@ const AdminEventForm: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   const clubs = [
-    { name: "Competitive Club", icon: competative, color: "#FF6B6B" },
-    { name: "Coding Club", icon: coding, color: "#4ECDC4" },
-    { name: "Electronics Club", icon: electronics, color: "#FFD166" },
-    { name: "Arts & Crafts Club", icon: arts, color: "#EF476F" },
-    { name: "Cultural & Choreography Club", icon: cc, color: "#06D6A0" },
-    { name: "Studio Club", icon: dp, color: "#118AB2" },
-    { name: "Internship & Career Opportunities Club", icon: internship, color: "#073B4C" },
-    { name: "Startup Club", icon: startup, color: "#7209B7" },
-    { name: "Higher Education Club", icon: he, color: "#F3722C" },
-    { name: "Sports and Games Club", icon: sports, color: "#43AA8B" },
-    { name: "Eco Club", icon: eco, color: "#90BE6D" },
-    { name: "Lecture Series Club", icon: ls, color: "#F8961E" },
-    { name: "Linguistic & Personality Development Club", icon: linquistic, color: "#577590" },
-    { name: "Research Club", icon: startup, color: "#277DA1" },
-    { name: "Finance Club", icon: Finance, color: "#4D908E" },
-    { name: "Robotics Club", icon: robotics, color: "#F94144" },
-    { name: "Yoga Club", icon: yoga, color: "#90BE6D" },
+    { name: "Competitive Club", icon: competative },
+    { name: "Coding Club", icon: coding },
+    { name: "Electronics Club", icon: electronics },
+    { name: "Arts & Crafts Club", icon: arts },
+    { name: "Cultural & Choreography Club", icon: cc },
+    { name: "Studio Club", icon: dp },
+    { name: "Internship & Career Opportunities Club", icon: internship },
+    { name: "Startup Club", icon: startup },
+    { name: "Higher Education Club", icon: he },
+    { name: "Sports and Games Club", icon: sports },
+    { name: "Eco Club", icon: eco },
+    { name: "Lecture Series Club", icon: ls },
+    { name: "Linguistic & Personality Development Club", icon: linquistic },
+    { name: "Research Club", icon: startup },
+    { name: "Finance Club", icon: Finance },
+    { name: "Robotics Club", icon: robotics },
+    { name: "Yoga Club", icon: yoga },
   ];
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
-    
-    if (!formData.title.trim()) errors.title = "Title is required";
-    if (formData.title.length > 100) errors.title = "Title is too long (max 100 chars)";
-    if (!formData.description.trim()) errors.description = "Description is required";
-    if (formData.description.length < 50) errors.description = "Description should be at least 50 characters";
-    if (!formData.date) errors.date = "Date is required";
-    if (!formData.time) errors.time = "Time is required";
+
+    if (!formData.title.trim()) errors.title = "Event title is required";
+    if (formData.title.length > 100)
+      errors.title = "Title should not exceed 100 characters";
+    if (!formData.description.trim())
+      errors.description = "Event description is required";
+    if (formData.description.length < 50)
+      errors.description = "Description should be at least 50 characters";
+    if (!formData.date) errors.date = "Event date is required";
+    if (!formData.time) errors.time = "Event time is required";
     if (!formData.club.name) errors.club = "Please select a club";
-    if (!image) errors.image = "Please select an event image";
-    
-    // Validate future date
+    if (!image) errors.image = "Event image is required";
+
     if (formData.date) {
       const selectedDate = new Date(formData.date);
       const today = new Date();
@@ -108,7 +108,7 @@ const AdminEventForm: React.FC = () => {
     >
   ) => {
     const { name, value } = e.target;
-    setFormErrors(prev => ({ ...prev, [name]: "" }));
+    setFormErrors((prev) => ({ ...prev, [name]: "" }));
 
     if (name === "clubName") {
       const selectedClub = clubs.find((club) => club.name === value);
@@ -126,24 +126,20 @@ const AdminEventForm: React.FC = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      
-      // Validate file type
-      if (!file.type.startsWith('image/')) {
-        setError("Please select an image file");
+
+      if (!file.type.startsWith("image/")) {
+        toast.error("Please select an image file (PNG, JPG, JPEG)");
         return;
       }
-      
-      // Validate file size (5MB max)
+
       if (file.size > 5 * 1024 * 1024) {
-        setError("Image size should be less than 5MB");
+        toast.error("Image size should be less than 5MB");
         return;
       }
 
       setImage(file);
-      setError(null);
-      setFormErrors(prev => ({ ...prev, image: "" }));
-      
-      // Create preview
+      setFormErrors((prev) => ({ ...prev, image: "" }));
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result as string);
@@ -154,15 +150,16 @@ const AdminEventForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
+      Object.values(errors).forEach((error) => toast.error(error));
       return;
     }
 
     if (!image) {
-      setError("Please select an event image");
+      toast.error("Please select an event image");
       return;
     }
 
@@ -177,295 +174,518 @@ const AdminEventForm: React.FC = () => {
 
     try {
       setSubmitting(true);
-      setError(null);
-      
+
       await axios.post(`http://localhost:5000/api/events`, payload, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
-      
-      setSuccess(true);
-      
-      // Reset form after successful submission
-      setTimeout(() => {
-        setFormData({
-          title: "",
-          description: "",
-          date: "",
-          time: "",
-          status: "upcoming",
-          club: { name: "", icon: "" },
-        });
-        setImage(null);
-        setImagePreview(null);
-        setSuccess(false);
-      }, 2000);
 
+      toast.success("Event created successfully!", {
+        description: `${formData.title} has been published.`,
+        duration: 4000,
+      });
+
+      setFormData({
+        title: "",
+        description: "",
+        date: "",
+        time: "",
+        status: "upcoming",
+        club: { name: "", icon: "" },
+      });
+      setImage(null);
+      setImagePreview(null);
+      setFormErrors({});
     } catch (err: any) {
       console.error("Error posting event:", err);
-      setError(err.response?.data?.message || "Failed to post event. Please try again.");
+      toast.error("Failed to create event", {
+        description: err.response?.data?.message || "Please try again.",
+        duration: 5000,
+      });
     } finally {
       setSubmitting(false);
     }
   };
 
+  // Inline styles object
+  const styles = {
+    page: {
+      minHeight: "100vh",
+      background: "linear-gradient(to bottom, #f9fafb 0%, #f3f4f6 100%)",
+      padding: "2rem 1rem",
+    },
+    container: {
+      maxWidth: "56rem",
+      margin: "0 auto",
+    },
+    headerCard: {
+      background: "#ffffff",
+      borderRadius: "1rem",
+      boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+      border: "1px solid #e5e7eb",
+      overflow: "hidden",
+      marginBottom: "2rem",
+    },
+    headerGradient: {
+      background: "linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)",
+      padding: "1.5rem 2rem",
+    },
+    headerContent: {
+      padding: "1.5rem 2rem",
+    },
+    formCard: {
+      background: "#ffffff",
+      borderRadius: "1rem",
+      boxShadow: "0 2px 10px rgba(0, 0, 0, 0.05)",
+      border: "1px solid #e5e7eb",
+      padding: "1.5rem",
+      marginBottom: "1.5rem",
+    },
+    input: {
+      width: "100%",
+      padding: "0.75rem 1rem",
+      borderRadius: "0.5rem",
+      border: "1px solid #d1d5db",
+      fontSize: "0.875rem",
+      outline: "none",
+      transition: "all 0.2s",
+    },
+    inputError: {
+      borderColor: "#ef4444",
+      backgroundColor: "#fef2f2",
+    },
+    inputFocus: {
+      borderColor: "#3b82f6",
+      boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.1)",
+    },
+    textarea: {
+      width: "100%",
+      padding: "0.75rem 1rem",
+      borderRadius: "0.5rem",
+      border: "1px solid #d1d5db",
+      fontSize: "0.875rem",
+      minHeight: "120px",
+      resize: "vertical",
+      outline: "none",
+      transition: "all 0.2s",
+    },
+    select: {
+      width: "100%",
+      padding: "0.75rem 1rem",
+      borderRadius: "0.5rem",
+      border: "1px solid #d1d5db",
+      fontSize: "0.875rem",
+      backgroundColor: "#ffffff",
+      outline: "none",
+      transition: "all 0.2s",
+    },
+    button: {
+      background: "linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)",
+      color: "#ffffff",
+      padding: "0.75rem 2rem",
+      borderRadius: "0.5rem",
+      border: "none",
+      fontWeight: "600",
+      fontSize: "0.875rem",
+      cursor: "pointer",
+      transition: "all 0.2s",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "0.5rem",
+    },
+    buttonHover: {
+      background: "linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)",
+      boxShadow: "0 4px 12px rgba(30, 64, 175, 0.3)",
+    },
+    buttonDisabled: {
+      opacity: "0.5",
+      cursor: "not-allowed",
+    },
+    label: {
+      display: "flex",
+      alignItems: "center",
+      gap: "0.5rem",
+      fontWeight: "600",
+      fontSize: "0.875rem",
+      color: "#374151",
+      marginBottom: "0.5rem",
+    },
+    errorText: {
+      color: "#ef4444",
+      fontSize: "0.75rem",
+      marginTop: "0.25rem",
+    },
+    gridContainer: {
+      display: "grid",
+      gap: "1rem",
+    },
+    fileUpload: {
+      border: "2px dashed #d1d5db",
+      borderRadius: "0.75rem",
+      padding: "2rem",
+      textAlign: "center",
+      cursor: "pointer",
+      transition: "all 0.2s",
+    },
+    fileUploadHover: {
+      borderColor: "#3b82f6",
+      backgroundColor: "#f0f9ff",
+    },
+    previewImage: {
+      width: "100%",
+      height: "16rem",
+      objectFit: "cover",
+      borderRadius: "0.5rem",
+    },
+    spinner: {
+      width: "1.25rem",
+      height: "1.25rem",
+      border: "2px solid rgba(255, 255, 255, 0.3)",
+      borderTopColor: "#ffffff",
+      borderRadius: "50%",
+      animation: "spin 1s linear infinite",
+    },
+  };
+
   return (
-    <motion.div
-      className={styles.formContainer}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-    >
-      <div className={styles.header}>
-        <div className={styles.headerIcon}>
-          <Send size={24} />
-        </div>
-        <div>
-          <h2 className={styles.heading}>Create New Event</h2>
-          <p className={styles.subtitle}>Fill in the details to announce a new campus event</p>
-        </div>
-      </div>
+    <div style={styles.page}>
+      <motion.div
+        style={styles.container}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        {/* Header */}
+        <div style={styles.headerCard}>
+          <div style={styles.headerGradient}>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <div style={{
+                background: "rgba(255, 255, 255, 0.1)",
+                padding: "0.75rem",
+                borderRadius: "0.75rem",
+                backdropFilter: "blur(8px)",
+              }}>
+                <Building2 style={{ width: "2rem", height: "2rem", color: "#ffffff" }} />
+              </div>
+              <div>
+                <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#ffffff", margin: 0 }}>
+                  Government Event Management System
+                </h1>
+                <p style={{ color: "#bfdbfe", marginTop: "0.25rem", margin: 0 }}>
+                  Create new official campus events
+                </p>
+              </div>
+            </div>
+          </div>
 
-      <AnimatePresence>
-        {success && (
-          <motion.div
-            className={styles.successAlert}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-          >
-            <CheckCircle size={20} />
-            <span>Event posted successfully!</span>
-          </motion.div>
-        )}
-
-        {error && (
-          <motion.div
-            className={styles.errorAlert}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-          >
-            <AlertCircle size={20} />
-            <span>{error}</span>
-            <button onClick={() => setError(null)} className={styles.alertClose}>
-              <XCircle size={18} />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <form onSubmit={handleSubmit} className={styles.form}>
-        {/* Event Title */}
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>
-            <Tag size={18} />
-            Event Title
-          </label>
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            placeholder="Enter event title..."
-            className={`${styles.input} ${formErrors.title ? styles.inputError : ''}`}
-            maxLength={100}
-          />
-          {formErrors.title && (
-            <span className={styles.errorText}>{formErrors.title}</span>
-          )}
-          <div className={styles.charCount}>
-            {formData.title.length}/100
+          <div style={styles.headerContent}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
+              <div style={{ background: "#dbeafe", padding: "0.5rem", borderRadius: "0.5rem" }}>
+                <Send style={{ width: "1.25rem", height: "1.25rem", color: "#1d4ed8" }} />
+              </div>
+              <h2 style={{ fontSize: "1.25rem", fontWeight: "600", color: "#1f2937", margin: 0 }}>
+                Create New Event
+              </h2>
+            </div>
+            <p style={{ color: "#6b7280", margin: 0 }}>
+              Fill in all required details to publish an official campus event
+            </p>
           </div>
         </div>
 
-        {/* Event Description */}
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>
-            <Info size={18} />
-            Description
-          </label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Describe the event in detail..."
-            className={`${styles.textarea} ${formErrors.description ? styles.inputError : ''}`}
-            rows={4}
-            maxLength={500}
-          />
-          {formErrors.description && (
-            <span className={styles.errorText}>{formErrors.description}</span>
-          )}
-          <div className={styles.charCount}>
-            {formData.description.length}/500
-          </div>
-        </div>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+          {/* Event Title & Club */}
+          <div style={{ ...styles.gridContainer, gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+            <div style={styles.formCard}>
+              <label style={styles.label}>
+                <Tag style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
+                <span>Event Title *</span>
+              </label>
+              <input
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                placeholder="Enter official event title"
+                style={{
+                  ...styles.input,
+                  ...(formErrors.title && styles.inputError),
+                }}
+                maxLength={100}
+              />
+              {formErrors.title && (
+                <p style={styles.errorText}>{formErrors.title}</p>
+              )}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.5rem" }}>
+                <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>Official event name</span>
+                <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>{formData.title.length}/100</span>
+              </div>
+            </div>
 
-        {/* Date & Time */}
-        <div className={styles.row}>
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>
-              <Calendar size={18} />
-              Date
+            <div style={styles.formCard}>
+              <label style={styles.label}>
+                <Users style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
+                <span>Organizing Club *</span>
+              </label>
+              <select
+                name="clubName"
+                value={formData.club.name}
+                onChange={handleChange}
+                style={{
+                  ...styles.select,
+                  ...(formErrors.club && styles.inputError),
+                }}
+              >
+                <option value="">Select organizing club...</option>
+                {clubs.map((club, index) => (
+                  <option key={index} value={club.name}>
+                    {club.name}
+                  </option>
+                ))}
+              </select>
+              {formErrors.club && (
+                <p style={styles.errorText}>{formErrors.club}</p>
+              )}
+              {formData.club.icon && (
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginTop: "1rem", padding: "0.75rem", background: "#f9fafb", borderRadius: "0.5rem" }}>
+                  <img
+                    src={formData.club.icon}
+                    alt="Club Icon"
+                    style={{ width: "2.5rem", height: "2.5rem", borderRadius: "0.5rem", objectFit: "cover", border: "1px solid #d1d5db" }}
+                  />
+                  <span style={{ fontSize: "0.875rem", fontWeight: "500", color: "#374151" }}>
+                    {formData.club.name}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Event Description */}
+          <div style={styles.formCard}>
+            <label style={styles.label}>
+              <FileText style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
+              <span>Event Description *</span>
             </label>
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
+            <textarea
+              name="description"
+              value={formData.description}
               onChange={handleChange}
-              className={`${styles.input} ${formErrors.date ? styles.inputError : ''}`}
+              placeholder="Provide detailed description about the event, objectives, and important information..."
+              style={{
+                ...styles.textarea,
+                ...(formErrors.description && styles.inputError),
+              }}
+              rows={4}
+              maxLength={500}
             />
-            {formErrors.date && (
-              <span className={styles.errorText}>{formErrors.date}</span>
+            {formErrors.description && (
+              <p style={styles.errorText}>{formErrors.description}</p>
             )}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.5rem" }}>
+              <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>Detailed official description</span>
+              <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>{formData.description.length}/500</span>
+            </div>
           </div>
-          <div className={styles.inputGroup}>
-            <label className={styles.label}>
-              <Clock size={18} />
-              Time
-            </label>
-            <input
-              type="time"
-              name="time"
-              value={formData.time}
-              onChange={handleChange}
-              className={`${styles.input} ${formErrors.time ? styles.inputError : ''}`}
-            />
-            {formErrors.time && (
-              <span className={styles.errorText}>{formErrors.time}</span>
-            )}
-          </div>
-        </div>
 
-        {/* Club Selection */}
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>
-            <Tag size={18} />
-            Club
-          </label>
-          <div className={styles.clubSelectorContainer}>
-            <select
-              name="clubName"
-              value={formData.club.name}
-              onChange={handleChange}
-              className={`${styles.select} ${formErrors.club ? styles.inputError : ''}`}
-            >
-              <option value="">Select a club...</option>
-              {clubs.map((club, index) => (
-                <option key={index} value={club.name}>
-                  {club.name}
-                </option>
-              ))}
-            </select>
-            
-            {formData.club.icon && (
-              <div className={styles.clubPreview}>
+          {/* Date, Time, Location & Participants */}
+          <div style={{ ...styles.gridContainer, gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+            <div style={styles.formCard}>
+              <label style={styles.label}>
+                <Calendar style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
+                <span>Date *</span>
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                style={{
+                  ...styles.input,
+                  ...(formErrors.date && styles.inputError),
+                }}
+              />
+              {formErrors.date && (
+                <p style={styles.errorText}>{formErrors.date}</p>
+              )}
+            </div>
+
+            <div style={styles.formCard}>
+              <label style={styles.label}>
+                <Clock style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
+                <span>Time *</span>
+              </label>
+              <input
+                type="time"
+                name="time"
+                value={formData.time}
+                onChange={handleChange}
+                style={{
+                  ...styles.input,
+                  ...(formErrors.time && styles.inputError),
+                }}
+              />
+              {formErrors.time && (
+                <p style={styles.errorText}>{formErrors.time}</p>
+              )}
+            </div>
+
+          </div>
+
+          {/* Image Upload */}
+          <div style={styles.formCard}>
+            <label style={styles.label}>
+              <ImageIcon style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
+              <span>Event Image *</span>
+              <span style={{ fontSize: "0.75rem", fontWeight: "normal", color: "#6b7280" }}>
+                (PNG, JPG up to 5MB)
+              </span>
+            </label>
+
+            {imagePreview ? (
+              <div style={{ position: "relative", borderRadius: "0.75rem", overflow: "hidden", border: "1px solid #d1d5db" }}>
                 <img
-                  src={formData.club.icon}
-                  alt="Club Icon"
-                  className={styles.clubIcon}
+                  src={imagePreview}
+                  alt="Event Preview"
+                  style={styles.previewImage}
                 />
-                <span className={styles.clubName}>{formData.club.name}</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setImage(null);
+                    setImagePreview(null);
+                  }}
+                  style={{
+                    position: "absolute",
+                    top: "1rem",
+                    right: "1rem",
+                    background: "#dc2626",
+                    color: "#ffffff",
+                    padding: "0.5rem",
+                    borderRadius: "50%",
+                    border: "none",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Upload style={{ width: "1rem", height: "1rem" }} />
+                </button>
+              </div>
+            ) : (
+              <div
+                style={{
+                  ...styles.fileUpload,
+                  ...(formErrors.image ? {
+                    borderColor: "#ef4444",
+                    backgroundColor: "#fef2f2",
+                  } : {}),
+                }}
+              >
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                  id="event-image"
+                />
+                <label htmlFor="event-image" style={{ cursor: "pointer" }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+                    <div style={{ background: "#dbeafe", padding: "1rem", borderRadius: "50%" }}>
+                      <Upload style={{ width: "2rem", height: "2rem", color: "#2563eb" }} />
+                    </div>
+                    <div>
+                      <p style={{ color: "#374151", fontWeight: "500", margin: 0 }}>
+                        Click to upload event image
+                      </p>
+                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginTop: "0.25rem", margin: 0 }}>
+                        Recommended: 1200x600 pixels
+                      </p>
+                    </div>
+                  </div>
+                </label>
               </div>
             )}
+            {formErrors.image && (
+              <p style={styles.errorText}>{formErrors.image}</p>
+            )}
           </div>
-          {formErrors.club && (
-            <span className={styles.errorText}>{formErrors.club}</span>
-          )}
-        </div>
 
-        {/* Status */}
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>Event Status</label>
-          <div className={styles.statusToggle}>
-            <button
-              type="button"
-              className={`${styles.statusButton} ${formData.status === 'upcoming' ? styles.statusActive : ''}`}
-              onClick={() => setFormData(prev => ({ ...prev, status: 'upcoming' }))}
-            >
-              Upcoming
-            </button>
-            <button
-              type="button"
-              className={`${styles.statusButton} ${formData.status === 'completed' ? styles.statusActive : ''}`}
-              onClick={() => setFormData(prev => ({ ...prev, status: 'completed' }))}
-            >
-              Completed
-            </button>
-          </div>
-        </div>
+          {/* Submit Button */}
+          <div style={styles.formCard}>
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}>
+              <div style={{ textAlign: "center" }}>
+                <p style={{ fontSize: "0.875rem", color: "#6b7280", margin: 0 }}>
+                  <span style={{ fontWeight: "600" }}>Note:</span> All events will be published as "Upcoming"
+                </p>
+                <p style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.25rem", margin: 0 }}>
+                  Status can be updated later through Edit Event section
+                </p>
+              </div>
 
-        {/* Image Upload */}
-        <div className={styles.inputGroup}>
-          <label className={styles.label}>
-            <ImageIcon size={18} />
-            Event Image
-          </label>
-          
-          {imagePreview ? (
-            <div className={styles.imagePreviewContainer}>
-              <img
-                src={imagePreview}
-                alt="Preview"
-                className={styles.imagePreview}
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  setImage(null);
-                  setImagePreview(null);
+              <motion.button
+                type="submit"
+                style={{
+                  ...styles.button,
+                  ...(submitting && styles.buttonDisabled),
+                  minWidth: "200px",
                 }}
-                className={styles.removeImageBtn}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                disabled={submitting}
               >
-                <XCircle size={20} />
-              </button>
+                {submitting ? (
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                    <div style={styles.spinner}></div>
+                    <span>Publishing...</span>
+                  </div>
+                ) : (
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                    <Send style={{ width: "1.25rem", height: "1.25rem" }} />
+                    <span>Publish Official Event</span>
+                  </div>
+                )}
+              </motion.button>
             </div>
-          ) : (
-            <div className={`${styles.fileUploadArea} ${formErrors.image ? styles.inputError : ''}`}>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className={styles.fileInput}
-                id="event-image"
-              />
-              <label htmlFor="event-image" className={styles.fileUploadLabel}>
-                <Upload size={24} />
-                <span>Click to upload event image</span>
-                <span className={styles.fileHint}>PNG, JPG up to 5MB</span>
-              </label>
-            </div>
-          )}
-          
-          {formErrors.image && (
-            <span className={styles.errorText}>{formErrors.image}</span>
-          )}
-        </div>
+          </div>
+        </form>
 
-        {/* Submit Button */}
-        <motion.button
-          type="submit"
-          className={styles.submitBtn}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          disabled={submitting}
-        >
-          {submitting ? (
-            <>
-              <div className={styles.spinner}></div>
-              Publishing Event...
-            </>
-          ) : (
-            <>
-              <Send size={18} />
-              Publish Event
-            </>
-          )}
-        </motion.button>
-      </form>
-    </motion.div>
+        {/* Footer Note */}
+        <div style={{ marginTop: "2rem", textAlign: "center" }}>
+          <p style={{ fontSize: "0.875rem", color: "#6b7280", margin: 0 }}>
+            This is an official government portal. All events will be reviewed
+            and published as per government guidelines.
+          </p>
+          <p style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.5rem", margin: 0 }}>
+            © {new Date().getFullYear()} Government Event Management System. All
+            rights reserved.
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Add CSS animation for spinner */}
+      <style>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 640px) {
+          .responsive-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 

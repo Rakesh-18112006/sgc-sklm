@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import AdminLogin from "./Admin/Login/Login";
 import Dashboard from "./Admin/dashboard/Dashboard";
 import PrivateAdminRoute from "./components/PrivateAdminRoute";
@@ -19,25 +24,38 @@ import AdminEventForm from "./Admin/Events/AdminEventForm";
 import WebTeam from "./components/webTeam/WebTeam";
 import AdminEditEventForm from "./Admin/Events/AdminEditEventForm";
 import AdminMarqueePage from "./Admin/marquee/AdminMarqueePage";
+import { Toaster } from "sonner";
 // import Headline from "./pages/home/Headline";
 
 function AppRoutes() {
   const location = useLocation();
 
-  
   const hideNavbar = location.pathname.startsWith("/admin");
-
 
   return (
     <>
-      {!hideNavbar &&
+      {!hideNavbar && (
         <div>
-          <Navbar />      
+          <Navbar />
           <MobileNavbar />
         </div>
-        
-      }
-      
+      )}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: "white",
+            border: "1px solid #e5e7eb",
+            borderRadius: "0.5rem",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+            fontSize: "0.875rem",
+          },
+          className: "font-medium",
+        }}
+        richColors
+        closeButton
+      />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin/login" element={<AdminLogin />} />
@@ -48,7 +66,7 @@ function AppRoutes() {
           <Route path="/admin/edit-event" element={<AdminEditEventForm />} />
           <Route path="/admin/marquee" element={<AdminMarqueePage />} />
         </Route>
-        
+
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
         <Route path="/about" element={<About />} />
         <Route path="/advisory-board" element={<AdvisoryBoard />} />
@@ -59,9 +77,9 @@ function AppRoutes() {
         <Route path="/events/:id" element={<EventDetail />} />
 
         <Route path="/members" element={<Members />} />
-        <Route path='/clubs/:id' element={<Club />} />
+        <Route path="/clubs/:id" element={<Club />} />
 
-         <Route path="/web-team" element={<WebTeam />} />
+        <Route path="/web-team" element={<WebTeam />} />
       </Routes>
 
       <Footer />
