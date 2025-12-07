@@ -105,6 +105,7 @@ const Navbar = () => {
                 alt="Organization Logo"
                 className="h-7 w-auto" 
             />
+            <h1 className="heading">Student Gymnastic Center</h1>
           </div>
 
           {/* Desktop Navigation */}
