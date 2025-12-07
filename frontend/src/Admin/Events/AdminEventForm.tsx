@@ -371,7 +371,7 @@ const AdminEventForm: React.FC = () => {
               </div>
               <div>
                 <h1 style={{ fontSize: "1.5rem", fontWeight: "bold", color: "#ffffff", margin: 0 }}>
-                  Government Event Management System
+                  SGC Event Management System
                 </h1>
                 <p style={{ color: "#bfdbfe", marginTop: "0.25rem", margin: 0 }}>
                   Create new official campus events

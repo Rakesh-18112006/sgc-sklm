@@ -180,7 +180,7 @@ const AdminEditEventForm: React.FC = () => {
               </div>
               <div>
                 <h1 className="admin-edit-header-title">
-                  Government Event Management System
+                  SGC Event Management System
                 </h1>
                 <p className="admin-edit-header-subtitle">
                   Update and manage official campus events

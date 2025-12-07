@@ -1,5 +1,7 @@
+// AdminMarqueeList.tsx
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "./AdminMarqueeList.module.css";
 
 type MarqueeMessage = {
   _id: string;
@@ -22,39 +24,43 @@ export default function AdminMarqueeList() {
   };
 
   const deleteMessage = async (id: string) => {
-    await axios.delete(`http://localhost:5000/api/marquee/${id}`);
-    fetchMessages();
+    if (window.confirm("Are you sure you want to delete this message?")) {
+      await axios.delete(`http://localhost:5000/api/marquee/${id}`);
+      fetchMessages();
+    }
   };
 
   useEffect(() => {
     fetchMessages();
   }, []);
 
-  if (loading) return <p className="text-center mt-6">Loading...</p>;
+  if (loading) return <p className={styles.loading}>Loading messages...</p>;
 
   return (
-    <div className="max-w-2xl mx-auto mt-6 bg-white shadow p-5 rounded-2xl">
-      <h2 className="text-xl font-bold mb-4">Marquee Messages</h2>
+    <div className={styles.listContainer}>
+      <h2 className={styles.title}>Current Messages</h2>
 
       {messages.length === 0 ? (
-        <p>No messages found.</p>
+        <div className={styles.emptyState}>
+          No messages found. Create your first announcement!
+        </div>
       ) : (
-        <ul className="space-y-3">
+        <div className={styles.messageList}>
           {messages.map((msg) => (
-            <li
+            <div
               key={msg._id}
-              className="flex items-center justify-between p-3 border bg-gray-50 rounded-xl"
+              className={styles.messageItem}
             >
-              <span className="font-medium">{msg.message}</span>
+              <span className={styles.messageText}>{msg.message}</span>
               <button
                 onClick={() => deleteMessage(msg._id)}
-                className="text-red-600 hover:text-red-800 font-semibold"
+                className={styles.deleteButton}
               >
-                Delete
+                🗑️ Delete
               </button>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
