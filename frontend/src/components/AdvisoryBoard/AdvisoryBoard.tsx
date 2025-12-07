@@ -9,6 +9,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import director from "../../assets/advisoryBoardimgs/director.webp";
 import ao from "../../assets/advisoryBoardimgs/ao.webp";
 import chairman from "../../assets/advisoryBoardimgs/chairman.webp";
+import dean from "../../assets/advisoryBoardimgs/dean.webp";
+import fo from "../../assets/advisoryBoardimgs/fo.webp";
 
 interface BoardMember {
   id: number;
@@ -49,19 +51,8 @@ const AdvisoryBoard: React.FC = () => {
       image: director,
       bio: "Distinguished professor with 25 years of academic leadership experience. Spearheading our strategic initiatives and global partnerships. Authored several influential papers on educational reform. Committed to fostering innovation and excellence in higher education through transformative leadership and strategic vision.",
       linkedin: "#",
-      email: "#",
-      website: "#",
-    },
-    {
-      id: 2,
-      name: "Dr. Ravi Gedela",
-      position: "Dean of Student Welfare",
-      department: "Computer Science",
-      image: chairman,
-      bio: "PhD in Computer Engineering with 15 years of industry experience. Specializes in AI research and has led multiple successful tech startups. Currently heading the AI ethics committee. Passionate about mentoring students and bridging the gap between academia and industry.",
-      linkedin: "#",
-      email: "#",
-      website: "#",
+      email: "director.sklm@rgukt.in",
+      website: "https://rguktsklm.ac.in/the-institute/administration/director/",
     },
     {
       id: 3,
@@ -71,30 +62,41 @@ const AdvisoryBoard: React.FC = () => {
       image: ao,
       bio: "Former CEO of TechCorp with expertise in business strategy and innovation management. Advisor to Fortune 500 companies and government think tanks on digital transformation. Brings extensive corporate experience to academic administration.",
       linkedin: "#",
-      email: "#",
-      website: "#",
+      email: "ao@rguktsklm.ac.in",
+      website: "https://rguktsklm.ac.in/the-institute/administration/administrative-officer/",
     },
     {
       id: 4,
-      name: "Dr. Emily Rodriguez",
-      position: "Research Director",
+      name: "Dr. Sivarama Krishna Merugu",
+      position: "Dean Of Academics",
       department: "Electrical Engineering",
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      image: dean,
       bio: "Published researcher in renewable energy systems with multiple patent awards. Leads the university's green energy initiative and international research collaborations. Recognized globally for contributions to sustainable energy solutions.",
       linkedin: "#",
-      email: "#",
-      website: "#",
+      email: "da@rguktsklm.ac.in",
+      website: "https://rguktsklm.ac.in/the-institute/administration/dean-of-academics/",
+    },
+    {
+      id: 2,
+      name: "Dr. Ravi Gedela",
+      position: "Dean of Student Welfare",
+      department: "Computer Science",
+      image: chairman,
+      bio: "PhD in Computer Engineering with 15 years of industry experience. Specializes in AI research and has led multiple successful tech startups. Currently heading the AI ethics committee. Passionate about mentoring students and bridging the gap between academia and industry.",
+      linkedin: "#",
+      email: "dsw@rguktsklm.ac.in",
+      website: "https://rguktsklm.ac.in/the-institute/administration/dean-of-student-welfare",
     },
     {
       id: 5,
-      name: "Prof. David Wilson",
-      position: "Industry Liaison",
+      name: "Dr. Ch Vasu",
+      position: "finance officer",
       department: "Mechanical Engineering",
-      image: "https://randomuser.me/api/portraits/men/22.jpg",
+      image: fo,
       bio: "Industrial designer with 20+ years of experience in automotive engineering. Bridges academia and industry through innovative partnership programs and student internships. Instrumental in securing industry collaborations and research funding.",
       linkedin: "#",
-      email: "#",
-      website: "#",
+      email: "fo@rguktsklm.ac.in",
+      website: "https://rguktsklm.ac.in/the-institute/administration/finance-officer/",
     },
   ];
 

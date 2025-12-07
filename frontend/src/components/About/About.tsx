@@ -1,7 +1,7 @@
 import React from 'react';
 import './About.css';
 import { motion } from 'framer-motion';
-
+import chairman from "../../assets/advisoryBoardimgs/chairman.webp"
 const About = () => {
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -116,7 +116,7 @@ const About = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="chairman-image"
           >
-            <img src="https://sgcrguktsklm.org.in/about/images/Ravi_Sir.JPG" alt="Chairman" />
+            <img src={chairman} alt="Chairman" />
             <div className="image-overlay"></div>
             <div className="image-border"></div>
           </motion.div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import './Footer.css';
+import sgc from '../../assets/sgc.webp';
 
 // Fallback logo (in case image fails to load)
 const FallbackLogo = () => (
@@ -45,7 +46,7 @@ const Footer = () => {
             <div className="logo-container">
               {(
                 <img
-                  src="https://sgcrguktsklm.org.in/assets/img/logo/logo1.png"
+                  src={sgc}
                   alt="Organization Logo"
                   className="footer-logo"
                   onError={() => setLogoError(true)}
