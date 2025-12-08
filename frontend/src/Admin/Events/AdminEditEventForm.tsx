@@ -17,7 +17,7 @@ import {
   AlertCircle,
   BarChart,
 } from "lucide-react";
-import "./AdminEditEventForm.css"; // Import the CSS file
+import "./AdminEditEventForm.css";
 
 interface Club {
   name: string;
@@ -49,18 +49,22 @@ const AdminEditEventForm: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [showEventList, setShowEventList] = useState(false);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get<Event[]>(
-          "http://localhost:5000/api/events"
-        );
-        setEvents(res.data);
-        setFilteredEvents(res.data);
-        toast.success("Events loaded successfully");
+        const res = await axios.get<{
+          success: boolean;
+          data: Event[];
+          total: number;
+        }>("http://localhost:5000/api/events");
+        const eventData = res.data.data || [];
+        setEvents(eventData);
+        setFilteredEvents(eventData);
+        if (eventData.length > 0) {
+          toast.success("Events loaded successfully");
+        }
       } catch (err) {
         console.error("Error fetching events:", err);
         toast.error("Failed to load events", {
@@ -209,7 +213,6 @@ const AdminEditEventForm: React.FC = () => {
               placeholder="Search events by title, club, or description..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              onFocus={() => setShowEventList(true)}
               className="admin-edit-search-input"
             />
             {searchTerm && (
@@ -227,7 +230,16 @@ const AdminEditEventForm: React.FC = () => {
           {/* Event Selection Panel */}
           <div className="admin-edit-events-panel">
             <div className="admin-edit-panel-header">
-              <h3 className="admin-edit-panel-title">Select Event</h3>
+              <h3 className="admin-edit-panel-title">
+                {searchTerm
+                  ? `Search Results for "${searchTerm}"`
+                  : "All Events"}
+              </h3>
+              {searchTerm && filteredEvents.length > 0 && (
+                <span className="admin-edit-results-count">
+                  {filteredEvents.length} found
+                </span>
+              )}
             </div>
 
             <div className="admin-edit-events-list">
@@ -240,59 +252,69 @@ const AdminEditEventForm: React.FC = () => {
                 filteredEvents.length === 0 ? (
                 <div className="admin-edit-empty">
                   <AlertCircle className="admin-edit-empty-icon" size={48} />
-                  <p className="admin-edit-empty-text">No events found</p>
+                  <p className="admin-edit-empty-text">
+                    {searchTerm ? "No events found" : "No events available"}
+                  </p>
                   <p className="admin-edit-empty-hint">
-                    Try a different search term
+                    {searchTerm
+                      ? "Try a different search term"
+                      : "Check back later"}
                   </p>
                 </div>
               ) : (
-                (Array.isArray(filteredEvents) ? filteredEvents : []).map(
-                  (event) => (
-                    <div
-                      key={event._id}
-                      className={`admin-edit-event-item ${
-                        selectedEventId === event._id
-                          ? "admin-edit-event-item-selected"
-                          : ""
-                      }`}
-                      onClick={() => {
-                        setSelectedEventId(event._id);
-                        setShowEventList(false);
-                      }}
-                    >
-                      <img
-                        src={event.club.icon}
-                        alt={event.club.name}
-                        className="admin-edit-event-icon"
-                      />
-                      <div className="admin-edit-event-content">
-                        <p className="admin-edit-event-title">{event.title}</p>
-                        <p className="admin-edit-event-club">
-                          {event.club.name}
-                        </p>
-                        <div className="admin-edit-event-meta">
-                          <span className="admin-edit-meta-item">
-                            <Calendar size={12} />
-                            {formatDate(event.date)}
+                filteredEvents.map((event) => (
+                  <div
+                    key={event._id}
+                    className={`admin-edit-event-item ${
+                      selectedEventId === event._id
+                        ? "admin-edit-event-item-selected"
+                        : ""
+                    }`}
+                    onClick={() => {
+                      setSelectedEventId(event._id);
+                    }}
+                  >
+                    <div className="admin-edit-event-icon-wrapper">
+                      {event.club.icon &&
+                        (event.club.icon.startsWith("/") ||
+                        event.club.icon.startsWith("http") ||
+                        event.club.icon.startsWith("data:image") ? (
+                          <img
+                            src={event.club.icon}
+                            alt={event.club.name}
+                            className="admin-edit-event-icon"
+                          />
+                        ) : (
+                          <span className="admin-edit-event-icon-text">
+                            {event.club.icon || "🏢"}
                           </span>
-                          <span className="admin-edit-meta-item">
-                            <Eye size={12} />
-                            {event.views}
-                          </span>
-                        </div>
-                      </div>
-                      <div
-                        className={`admin-edit-event-status ${
-                          event.status === "upcoming"
-                            ? "admin-edit-status-upcoming"
-                            : "admin-edit-status-completed"
-                        }`}
-                      >
-                        {event.status}
+                        ))}
+                    </div>
+                    <div className="admin-edit-event-content">
+                      <p className="admin-edit-event-title">{event.title}</p>
+                      <p className="admin-edit-event-club">{event.club.name}</p>
+                      <div className="admin-edit-event-meta">
+                        <span className="admin-edit-meta-item">
+                          <Calendar size={12} />
+                          {formatDate(event.date)}
+                        </span>
+                        <span className="admin-edit-meta-item">
+                          <Eye size={12} />
+                          {event.views}
+                        </span>
                       </div>
                     </div>
-                  )
-                )
+                    <div
+                      className={`admin-edit-event-status ${
+                        event.status === "upcoming"
+                          ? "admin-edit-status-upcoming"
+                          : "admin-edit-status-completed"
+                      }`}
+                    >
+                      {event.status}
+                    </div>
+                  </div>
+                ))
               )}
             </div>
           </div>
@@ -314,11 +336,22 @@ const AdminEditEventForm: React.FC = () => {
                   <div className="admin-edit-event-header">
                     <div className="admin-edit-header-row">
                       <div className="admin-edit-event-main">
-                        <img
-                          src={selectedEvent.club.icon}
-                          alt={selectedEvent.club.name}
-                          className="admin-edit-event-main-icon"
-                        />
+                        <div className="admin-edit-event-main-icon-wrapper">
+                          {selectedEvent.club.icon &&
+                            (selectedEvent.club.icon.startsWith("/") ||
+                            selectedEvent.club.icon.startsWith("http") ||
+                            selectedEvent.club.icon.startsWith("data:image") ? (
+                              <img
+                                src={selectedEvent.club.icon}
+                                alt={selectedEvent.club.name}
+                                className="admin-edit-event-main-icon"
+                              />
+                            ) : (
+                              <span className="admin-edit-event-main-icon-text">
+                                {selectedEvent.club.icon || "🏢"}
+                              </span>
+                            ))}
+                        </div>
                         <div className="admin-edit-event-details">
                           <h3>{selectedEvent.title}</h3>
                           <p>{selectedEvent.club.name}</p>
