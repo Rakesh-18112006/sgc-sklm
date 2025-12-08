@@ -30,8 +30,6 @@ interface Event {
   description: string;
   date: string;
   time: string;
-  location: string;
-  maxParticipants: string;
   views: number;
   imageUrl: string;
   club: Club;
