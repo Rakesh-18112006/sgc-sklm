@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './EurekaHomePage.module.css';
 import { eventsData, type Event } from './events.data';
 
@@ -38,7 +39,7 @@ const EurekaHomePage: React.FC = () => {
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>EUREKA 2K25</h1>
             <p className={styles.heroSubtitle}>Where Ideas Ignite</p>
-            <p className={styles.heroDate}>October 27-29, 2025 | Rgukt Sklm</p>
+            <p className={styles.heroDate}>December 27-29, 2025 | Rgukt Sklm</p>
             {/* <button className={styles.registerButton}>Register Now</button> */}
           </div>
         </div>
@@ -131,7 +132,12 @@ const EurekaHomePage: React.FC = () => {
                 >
                   Register Now
                 </a>
-                <button className={styles.detailsButton}>View Details</button>
+                <Link 
+                  to={`/event/${event.id}`}
+                  className={styles.detailsButton}
+                >
+                  View Details
+                </Link>
               </div>
             </div>
           ))}

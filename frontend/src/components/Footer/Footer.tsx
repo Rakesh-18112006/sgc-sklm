@@ -86,13 +86,10 @@ const Footer = () => {
             <div className="social-media">
               <h4 className="social-heading">Follow Us</h4>
               <div className="social-icons">
-                <a href="#" className="social-icon" aria-label="Facebook">
-                  <FaFacebook />
-                </a>
-                <a href="#" className="social-icon" aria-label="Twitter">
+                <a href="https://x.com/sgcrguktsklm/status/1967312662385365123?t=1BsZDaNJXFv03ZteGW6srg&s=08" className="social-icon" aria-label="Twitter">
                   <FaTwitter />
                 </a>
-                <a href="#" className="social-icon" aria-label="Instagram">
+                <a href="https://www.instagram.com/rgukt_sgc_official?igsh=MWY5dWNrM3czM2d5YQ==" className="social-icon" aria-label="Instagram">
                   <FaInstagram />
                 </a>
                 <a href="https://www.linkedin.com/company/student-gymkhana-center-rajiv-gandhi-university-of-knowledge-technologies/posts/?feedView=all" className="social-icon" aria-label="LinkedIn">

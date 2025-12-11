@@ -1,0 +1,547 @@
+/* Container & Layout */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0f29 0%, #1a1f3a 100%);
+  color: #ffffff;
+}
+
+.loadingContainer,
+.notFoundContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a0f29 0%, #1a1f3a 100%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #6c63ff;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.notFoundContainer h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ff6b6b;
+}
+
+.notFoundContainer p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.backLink {
+  color: #6c63ff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.backLink:hover {
+  color: #8a84ff;
+  transform: translateX(-5px);
+}
+
+.backButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #6c63ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  background: #8a84ff;
+  transform: translateY(-2px);
+}
+
+.clubTag {
+  background: linear-gradient(135deg, #6c63ff, #8a84ff);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.heroImageContainer {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 0 0 30px 30px;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.heroOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem 4rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+}
+
+.eventMeta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.eventDate,
+.eventVenue {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Content Layout */
+.contentWrapper {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Main Content */
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #6c63ff;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Highlights Grid */
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.highlightCard {
+  background: rgba(108, 99, 255, 0.1);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.highlightCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(108, 99, 255, 0.4);
+}
+
+.highlightNumber {
+  min-width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #6c63ff, #8a84ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.highlightText {
+  margin: 0;
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* Details Grid */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.detailCard {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.detailCard:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-3px);
+}
+
+.detailIcon {
+  font-size: 1.5rem;
+}
+
+.detailContent {
+  flex: 1;
+}
+
+.detailTitle {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.detailValue {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+}
+
+.registrationCard,
+.contactCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.registrationTitle,
+.contactTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #6c63ff;
+}
+
+.registrationText,
+.contactText {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.registerButton {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #6c63ff, #8a84ff);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.registerButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
+}
+
+.shareSection {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+}
+
+.shareText {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.shareButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.shareButton {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shareButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Contact Info */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.contactClub {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #6c63ff;
+}
+
+.contactEmail,
+.contactPhone {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.contactEmail {
+  color: #6c63ff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.contactEmail:hover {
+  opacity: 0.8;
+}
+
+/* Similar Events */
+.similarEventsSection {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-top: 4rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.exploreButton {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  color: #6c63ff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: 2px solid #6c63ff;
+  transition: all 0.3s ease;
+}
+
+.exploreButton:hover {
+  background: #6c63ff;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #6c63ff, #8a84ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footerText {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin-top: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .contentWrapper {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+  }
+  
+  .sidebar {
+    position: static;
+    margin-top: 2rem;
+  }
+  
+  .heroTitle {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    padding: 1rem;
+  }
+  
+  .heroImageContainer {
+    height: 400px;
+  }
+  
+  .heroOverlay {
+    padding: 2rem;
+  }
+  
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+  
+  .eventMeta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .contentWrapper {
+    padding: 0 1rem;
+  }
+  
+  .section {
+    padding: 1.5rem;
+  }
+  
+  .highlightsGrid,
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .clubTag {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.8rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .registrationCard,
+  .contactCard {
+    padding: 1.5rem;
+  }
+  
+  .similarEventsSection {
+    padding: 3rem 1rem;
+  }
+}
