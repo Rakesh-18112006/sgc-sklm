@@ -24,6 +24,7 @@ import AdminEventForm from "./Admin/Events/AdminEventForm";
 import WebTeam from "./components/webTeam/WebTeam";
 import AdminEditEventForm from "./Admin/Events/AdminEditEventForm";
 import AdminMarqueePage from "./Admin/marquee/AdminMarqueePage";
+import EurekaHome from "./components/Members/Eureka/EurekaHomePage";
 import { Toaster } from "sonner";
 // import Headline from "./pages/home/Headline";
 
@@ -80,6 +81,7 @@ function AppRoutes() {
         <Route path="/clubs/:id" element={<Club />} />
 
         <Route path="/web-team" element={<WebTeam />} />
+        <Route path="/eureka" element={<EurekaHome />} />
       </Routes>
 
       <Footer />

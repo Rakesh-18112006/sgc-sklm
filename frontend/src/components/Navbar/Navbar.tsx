@@ -12,8 +12,10 @@ import {
   FaChalkboardTeacher, 
   
 } from 'react-icons/fa';
+import { MdNewLabel } from 'react-icons/md';
 import './Navbar.css';
 import sgc from '../../assets/sgc.webp'
+import { icons } from 'lucide-react';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -77,6 +79,7 @@ const Navbar = () => {
 
     },
     { name: 'About', icon: <FaInfoCircle />, path: '/about', dropdown: null },
+    {name:'Eureka',icon:<MdNewLabel />,path:'/eureka',dropdown:null},
     { name: 'News & Events', icon: <FaNewspaper />, path: '/events', dropdown: null },
       { name: 'Clubs', icon: <FaEnvelope />, path: '/clubs', dropdown: null },
       

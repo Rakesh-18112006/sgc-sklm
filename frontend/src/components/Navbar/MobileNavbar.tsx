@@ -11,6 +11,7 @@ import {
   FaUserTie,
   FaFileAlt,
 } from "react-icons/fa";
+import { MdNewLabel } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import "./MobileNavbar.css";
 
@@ -196,6 +197,14 @@ useEffect(() => {
                 <span className="flex gap-2">
                   <FaUsers className="nav-icon" />
                   CLUBS
+                </span>
+              </Link>
+            </li>
+            <li>
+              {" "}
+              <Link to="/eureka" onClick={toggleNav}>
+                <span className="flex gap-2">
+                  <FaUserTie className="nav-icon" /> Eureka
                 </span>
               </Link>
             </li>

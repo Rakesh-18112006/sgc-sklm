@@ -112,7 +112,7 @@
 
 .nav-links {
   display: flex;
-  gap: 25px;
+  gap: 10px;
   list-style: none;
 }
 

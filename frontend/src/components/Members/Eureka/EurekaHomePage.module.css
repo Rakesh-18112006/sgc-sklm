@@ -1,0 +1,559 @@
+/* Base Styles */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  min-height: 500px;
+  max-height: 800px;
+  overflow: hidden;
+}
+
+.heroImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+  animation: fadeIn 1s ease-out;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #60a5fa, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+  animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+  max-width: 800px;
+  animation: slideUp 0.8s ease-out 0.4s both;
+}
+
+.heroDate {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: 2rem;
+  opacity: 0.8;
+  animation: slideUp 0.8s ease-out 0.6s both;
+}
+
+/* Marquee Section - INCREASED SPEED */
+.marqueeSection {
+  padding: 4rem 1rem;
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.8;
+}
+
+.marqueeContainer {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 0;
+  /* Add gradient fade effect on edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.marquee {
+  display: flex;
+  /* Increased speed: Changed from 60s to 30s (2x faster) */
+  animation: marquee 30s linear infinite;
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+/* For even faster speed on larger screens */
+@media (min-width: 1024px) {
+  .marquee {
+    /* Even faster on desktop: 25s */
+    animation-duration: 25s;
+  }
+}
+
+.marqueeItem {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 200px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.marqueeItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.marqueeImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.marqueeItem:hover .marqueeImage {
+  transform: scale(1.1);
+}
+
+.marqueeOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(180deg, transparent, rgba(15, 23, 42, 0.95));
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.marqueeItem:hover .marqueeOverlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.marqueeEventName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.marqueeDescription {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Club Events Section */
+.clubEventsSection {
+  padding: 4rem 1rem;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.clubEventsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.clubEventCard {
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.clubEventCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.clubLogoPlaceholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+}
+
+.clubInitial {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.clubInfo {
+  flex: 1;
+}
+
+.clubName {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.eventName {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg, #f8fafc, #cbd5e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.3;
+}
+
+.eventDescription {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+/* Highlights Section */
+.highlightsSection {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.3);
+  border-radius: 8px;
+  border-left: 4px solid #8b5cf6;
+}
+
+.highlightsTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #cbd5e1;
+}
+
+.highlightsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.highlightItem {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+.bullet {
+  color: #8b5cf6;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.eventDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.detailIcon {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.detailText {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  flex: 1;
+}
+
+/* Button Group */
+.buttonGroup {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.registerButton {
+  flex: 1;
+  padding: 0.75rem;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registerButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+}
+
+.detailsButton {
+  flex: 1;
+  padding: 0.75rem;
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.detailsButton:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: #8b5cf6;
+}
+
+/* Footer */
+.footer {
+  background: rgba(15, 23, 42, 0.9);
+  padding: 3rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 4rem;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footerTitle {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.footerText {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footerLink {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.footerLink:hover {
+  color: #8b5cf6;
+}
+
+/* Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .heroSection {
+    height: 70vh;
+    min-height: 400px;
+  }
+  
+  .heroOverlay {
+    padding: 1rem;
+  }
+  
+  .marqueeItem {
+    width: 250px;
+    height: 160px;
+  }
+  
+  /* Even faster on mobile for better UX */
+  .marquee {
+    animation-duration: 20s;
+  }
+  
+  .clubEventsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .footerLinks {
+    gap: 1.5rem;
+  }
+  
+  .marquee {
+    gap: 1rem;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+  }
+  
+  .clubEventCard {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .marqueeItem {
+    width: 220px;
+    height: 140px;
+  }
+  
+  /* Fastest on very small screens */
+  .marquee {
+    animation-duration: 18s;
+  }
+  
+  .clubEventCard {
+    padding: 1rem;
+  }
+  
+  .footerLinks {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .eventName {
+    font-size: 1.2rem;
+  }
+  
+  .clubEventsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .clubEventsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
