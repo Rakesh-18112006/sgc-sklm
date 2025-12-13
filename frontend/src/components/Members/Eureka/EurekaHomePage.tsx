@@ -4,8 +4,8 @@ import styles from './EurekaHomePage.module.css';
 import { eventsData, type Event } from './events.data';
 
 const EurekaHomePage: React.FC = () => {
-  // Main event poster
-  const mainEventPoster = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80";
+  // Main event poster - updated with Eureka theme
+  const mainEventPoster = "https://images.unsplash.com/photo-1492684223066-e9e3a5c6e029?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80";
 
   // Get first 6 events for marquee
   const marqueeEvents = eventsData.slice(0, 6);
@@ -33,14 +33,13 @@ const EurekaHomePage: React.FC = () => {
         <div className={styles.heroImageContainer}>
           <img 
             src={mainEventPoster} 
-            alt="Eureka 2025 - Innovation Festival" 
+            alt="Eureka 2k25 - Innovation Festival" 
             className={styles.heroImage}
           />
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>EUREKA 2K25</h1>
-            <p className={styles.heroSubtitle}>Where Ideas Ignite</p>
-            <p className={styles.heroDate}>December 27-29, 2025 | Rgukt Sklm</p>
-            {/* <button className={styles.registerButton}>Register Now</button> */}
+            <p className={styles.heroSubtitle}>Where Technical Brilliance Meets Cultural Rhythms</p>
+            <p className={styles.heroDate}>December 26-31, 2025 | Students Gymkhana Center, RGUKT</p>
           </div>
         </div>
       </section>
@@ -48,7 +47,7 @@ const EurekaHomePage: React.FC = () => {
       {/* Marquee Section for Sub-events */}
       <section className={styles.marqueeSection}>
         <h2 className={styles.sectionTitle}>Featured Events</h2>
-        <p className={styles.sectionSubtitle}>Scroll through our exciting lineup</p>
+        <p className={styles.sectionSubtitle}>Scroll through our exciting 6-day lineup</p>
         
         <div className={styles.marqueeContainer}>
           <div className={styles.marquee}>
@@ -72,8 +71,8 @@ const EurekaHomePage: React.FC = () => {
       {/* Club Events Section */}
       <section className={styles.clubEventsSection}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>All Events</h2>
-          <p className={styles.sectionSubtitle}>Events conducted by various clubs</p>
+          <h2 className={styles.sectionTitle}>Eureka 2K25 Schedule</h2>
+          <p className={styles.sectionSubtitle}>Multi-day, multi-club events from December 26-31</p>
         </div>
         
         <div className={styles.clubEventsGrid}>
@@ -145,18 +144,19 @@ const EurekaHomePage: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <h3 className={styles.footerTitle}>EUREKA 2K25</h3>
-          <p className={styles.footerText}>Where Ideas Ignite | RGUKT Sklm</p>
+          <h3 className={styles.footerTitle}>EUREKA 2024</h3>
+          <p className={styles.footerText}>Where Technical Brilliance Meets Cultural Rhythms | Students' Gymkhana Center</p>
           <div className={styles.footerLinks}>
-            <a href="#" className={styles.footerLink}>Contact</a>
+            <a href="mailto:contact@eureka2024.edu" className={styles.footerLink}>Contact</a>
+            <Link to="/eureka" className={styles.footerLink}>All Events</Link>
             <a href="#" className={styles.footerLink}>Schedule</a>
-            <a href="#" className={styles.footerLink}>Sponsors</a>
             <a href="#" className={styles.footerLink}>FAQs</a>
           </div>
+          <p className={styles.copyright}>© 2024 EUREKA - Students' Gymkhana Center. All rights reserved.</p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

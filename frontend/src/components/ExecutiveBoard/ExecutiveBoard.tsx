@@ -19,6 +19,7 @@ import apr1 from "../../assets/executiveimgs/apr1.webp";
 import apr2 from "../../assets/executiveimgs/apr2.webp";
 import sm from "../../assets/executiveimgs/sm.webp";
 import asm1 from "../../assets/executiveimgs/asm1.webp";
+import asm2 from "../../assets/executiveimgs/asm2.webp";
 import wom from "../../assets/webteam/m2.webp";
 import awom from "../../assets/webteam/m3.webp";
 
@@ -211,7 +212,7 @@ const ExecutiveBoard: React.FC = () => {
       id: 17,
       name: "P. Gireesh Satya",
       position: "Associate Social Media Manager",
-      image: "https://randomuser.me/api/portraits/men/9.jpg",
+      image: asm2,
       department: "EEE",
       social: {
         linkedin:

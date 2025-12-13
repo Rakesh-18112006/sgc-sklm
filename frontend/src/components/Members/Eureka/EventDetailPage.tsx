@@ -30,8 +30,8 @@ const EventDetailPage: React.FC = () => {
       <div className={styles.notFoundContainer}>
         <h2>Event Not Found</h2>
         <p>The event you're looking for doesn't exist or has been removed.</p>
-        <Link to="/" className={styles.backButton}>
-          ← Back to Home
+        <Link to="/eureka" className={styles.backButton}>
+          ← Back to Eureka Home
         </Link>
       </div>
     );
@@ -118,7 +118,7 @@ const EventDetailPage: React.FC = () => {
                 <div className={styles.detailIcon}>🎯</div>
                 <div className={styles.detailContent}>
                   <h3 className={styles.detailTitle}>Registration</h3>
-                  <p className={styles.detailValue}>Open to All Students</p>
+                  <p className={styles.detailValue}>Open to All RGUKT Students</p>
                 </div>
               </div>
             </div>
@@ -162,8 +162,8 @@ const EventDetailPage: React.FC = () => {
             </p>
             <div className={styles.contactInfo}>
               <span className={styles.contactClub}>{event.conductedClubName}</span>
-              <a href="mailto:contact@eureka2025.edu" className={styles.contactEmail}>
-                contact@eureka2025.edu
+              <a href="mailto:eureka2024@rgukt.in" className={styles.contactEmail}>
+                eureka2024@rgukt.in
               </a>
               <span className={styles.contactPhone}>+91 98765 43210</span>
             </div>
@@ -174,7 +174,7 @@ const EventDetailPage: React.FC = () => {
       {/* Similar Events Section */}
       <section className={styles.similarEventsSection}>
         <h2 className={styles.sectionTitle}>Other Events You Might Like</h2>
-        <p className={styles.sectionSubtitle}>Check out these exciting events happening during Eureka 2025</p>
+        <p className={styles.sectionSubtitle}>Check out these exciting events happening during Eureka 2024</p>
         
         <Link to="/eureka" className={styles.exploreButton}>
           Explore All Events →
@@ -184,9 +184,9 @@ const EventDetailPage: React.FC = () => {
       {/* Footer */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <h3 className={styles.footerTitle}>EUREKA 2K25</h3>
-          <p className={styles.footerText}>Where Ideas Ignite | RGUKT Sklm</p>
-          <p className={styles.copyright}>© 2025 Eureka Innovation Festival. All rights reserved.</p>
+          <h3 className={styles.footerTitle}>EUREKA 2024</h3>
+          <p className={styles.footerText}>Where Technical Brilliance Meets Cultural Rhythms | Students' Gymkhana Center</p>
+          <p className={styles.copyright}>© 2024 EUREKA Innovation Festival. All rights reserved.</p>
         </div>
       </footer>
     </div>

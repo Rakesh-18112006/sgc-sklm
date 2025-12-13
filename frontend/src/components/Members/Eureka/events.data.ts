@@ -11,177 +11,221 @@ export interface Event {
   conductedClubName: string;
 }
 
-// Main Events Data Array
+// Main Events Data Array - Updated with consolidated schedule
 export const eventsData: Event[] = [
   {
-    id: 'tech-hackathon-2024',
-    name: 'Eureka Hackathon 2024',
-    description: 'A 24-hour intense coding competition where participants develop innovative solutions for real-world problems. Open to all skill levels.',
+    id: 'finance-lecture-series',
+    name: 'Finance & Lecture Series',
+    description: 'Collaborative event by Finance Club and Lecture Series Club focusing on financial literacy and expert talks.',
     highlights: [
-      '24-hour coding marathon',
-      '₹1,00,000 total prize pool',
-      'Industry expert mentors',
-      'Free workshops and sessions',
-      'Networking with recruiters'
+      'Financial planning workshops',
+      'Guest lectures from industry experts',
+      'Investment strategies discussion',
+      'Networking with finance professionals',
+      'Interactive Q&A sessions'
     ],
-    img: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/eureka-hackathon-2024',
-    venue: 'Tech Innovation Center, Main Campus',
-    date: 'October 15-16, 2024 | 9:00 AM - 9:00 AM',
-    conductedClubName: 'Tech Club'
+    img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/finance-lecture-series',
+    venue: 'SGC Auditorium',
+    date: 'December 26, 2025 | 5:30 PM - 8:30 PM',
+    conductedClubName: 'Finance Club & Lecture Series Club'
   },
   {
-    id: 'robo-wars-2024',
-    name: 'Robo Wars: Battle Bots',
-    description: 'Intense robotics competition where teams design and build combat robots to battle in an electrifying arena.',
+    id: 'linguistic-personality-dev',
+    name: 'Linguistic & Personality Development',
+    description: 'Communication skills and personality enhancement competition with multiple rounds throughout the day.',
     highlights: [
-      'Combat robot competition',
-      'Weight categories: 15kg, 30kg, 60kg',
-      'Safety certified arena',
-      'Judges from robotics industry',
-      'Live audience voting'
+      'First Round: 6:00 PM - 7:00 PM (Seminar Hall 1)',
+      'Second Round: 2:30 PM - 5:00 PM (Multiple Venues)',
+      'Public speaking competition',
+      'Debate on contemporary topics',
+      'Personality assessment workshops',
+      'Expert feedback sessions'
     ],
-    img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/robo-wars-2024',
-    venue: 'Engineering Block Arena',
-    date: 'October 17, 2024 | 10:00 AM - 6:00 PM',
-    conductedClubName: 'Robotics Society'
+    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/linguistic-personality',
+    venue: 'Seminar Hall 1 & Multiple Venues',
+    date: 'December 27, 2025 | First Round: 6:00 PM - 7:00 PM | Second Round: December 28, 2:30 PM - 5:00 PM',
+    conductedClubName: 'Linguistic & Personality Development Club'
   },
   {
-    id: 'startup-pitch-2024',
-    name: 'Startup Pitch Competition',
-    description: 'Entrepreneurs showcase their innovative business ideas to a panel of investors and industry experts.',
+    id: 'eco-club-event',
+    name: 'Eco Club Sustainability Drive',
+    description: 'Environmental awareness and sustainability initiatives workshop and competition.',
     highlights: [
-      '₹5,00,000 seed funding',
-      'Investor networking session',
-      'Business mentoring',
-      'Legal and IP consultation',
-      'Incubation opportunities'
+      'Sustainable practices workshop',
+      'Green innovation competition',
+      'Tree plantation drive',
+      'Waste management solutions',
+      'Eco-friendly product exhibition'
+    ],
+    img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/eco-club-event',
+    venue: 'Botanical Garden',
+    date: 'December 27, 2025 | 5:30 PM - 8:30 PM',
+    conductedClubName: 'Eco Club'
+  },
+  {
+    id: 'internship-startup-research',
+    name: 'Internship, Startup & Research Fair',
+    description: 'Two-part collaborative event showcasing internship opportunities, startup ideas and research projects with morning and afternoon sessions.',
+    highlights: [
+      'First Round: 9:30 AM - 11:30 AM (Innovation Center)',
+      'Second Round: 2:30 PM - 5:00 PM (Multiple Venues)',
+      'Internship opportunities showcase',
+      'Startup pitch sessions (morning & afternoon)',
+      'Research project exhibitions',
+      'Industry mentor interactions',
+      'Career guidance workshops'
     ],
     img: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/startup-pitch-2024',
-    venue: 'Business School Auditorium',
-    date: 'October 18, 2024 | 2:00 PM - 8:00 PM',
-    conductedClubName: 'Entrepreneurship Cell'
+    registrationLink: 'https://forms.google.com/internship-startup-research',
+    venue: 'Innovation Center & Multiple Venues',
+    date: 'December 28, 2025 | First Round: 9:30 AM - 11:30 AM | Second Round: 2:30 PM - 5:00 PM',
+    conductedClubName: 'Internship, Startup & Research Clubs'
   },
   {
-    id: 'ai-workshop-2024',
-    name: 'AI & Machine Learning Workshop',
-    description: 'Hands-on workshop covering fundamentals of AI, ML models, and practical implementation using Python.',
+    id: 'competitive-higher-education',
+    name: 'Competitive & Higher Education Expo',
+    description: 'Two-part event focusing on competitive exams and higher education opportunities with morning and afternoon sessions.',
     highlights: [
-      'Hands-on coding sessions',
-      'Industry case studies',
-      'TensorFlow and PyTorch basics',
-      'Real-world project building',
-      'Certificate of completion'
+      'First Round: 11:30 AM - 1:00 PM (Academic Block)',
+      'Second Round: 2:30 PM - 5:00 PM (Multiple Venues)',
+      'Competitive exam guidance sessions',
+      'Higher education counseling',
+      'Study abroad opportunities fair',
+      'Scholarship information desk',
+      'Alumni success stories panel'
     ],
-    img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/ai-workshop-2024',
-    venue: 'Computer Lab 301, CS Department',
-    date: 'October 19, 2024 | 9:00 AM - 5:00 PM',
-    conductedClubName: 'AI Club'
+    img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/competitive-higher-education',
+    venue: 'Academic Block & Multiple Venues',
+    date: 'December 28, 2025 | First Round: 11:30 AM - 1:00 PM | Second Round: 2:30 PM - 5:00 PM',
+    conductedClubName: 'Competitive Club & Higher Education Clubs'
   },
   {
-    id: 'design-sprint-2024',
-    name: 'UI/UX Design Sprint',
-    description: 'A rapid design challenge where participants create user interfaces and experiences for given problem statements.',
+    id: 'sparc-event',
+    name: 'SPARC Innovation Challenge',
+    description: 'Student Project and Research Competition showcasing innovative projects and research at Kredavedika.',
     highlights: [
-      '48-hour design challenge',
-      'Figma masterclass',
-      'Portfolio review sessions',
-      'Design thinking workshops',
-      'Industry expert feedback'
-    ],
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/design-sprint-2024',
-    venue: 'Design Studio, Art Center',
-    date: 'October 20-21, 2024 | 10:00 AM - 6:00 PM',
-    conductedClubName: 'Design Hub'
-  },
-  {
-    id: 'esports-tournament-2024',
-    name: 'E-Sports Championship',
-    description: 'Multi-game esports tournament featuring popular competitive games with exciting prizes.',
-    highlights: [
-      'Games: Valorant, CS2, BGMI, FIFA 24',
-      '₹2,00,000 prize pool',
-      'Professional gaming setup',
-      'Live streaming on Twitch',
-      'Celebrity gamer appearances'
-    ],
-    img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/esports-2024',
-    venue: 'Student Center Gaming Arena',
-    date: 'October 22-23, 2024 | 12:00 PM - 10:00 PM',
-    conductedClubName: 'Gaming Guild'
-  },
-  {
-    id: 'cyber-security-ctf',
-    name: 'Capture The Flag - Cyber Security',
-    description: 'Cybersecurity competition where participants solve challenges related to cryptography, forensics, and web exploitation.',
-    highlights: [
-      'Jeopardy-style CTF',
-      'Beginner to advanced levels',
-      'Real-world security scenarios',
-      'Industry professional challenges',
-      'Ethical hacking workshops'
-    ],
-    img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/cyber-ctf-2024',
-    venue: 'Cybersecurity Lab, IT Building',
-    date: 'October 24, 2024 | 9:00 AM - 9:00 PM',
-    conductedClubName: 'Cyber Security Club'
-  },
-  {
-    id: 'science-expo-2024',
-    name: 'Science & Innovation Expo',
-    description: 'Showcase of scientific projects, innovations, and research from various departments.',
-    highlights: [
-      'Research project displays',
-      'Live demonstrations',
-      'Poster presentation competition',
-      'Industry-academia interaction',
-      'Special awards for innovation'
+      'Venue: Kredavedika',
+      'Full-day event: 10:00 AM - 5:00 PM',
+      'Research paper presentations',
+      'Project demonstrations',
+      'Industry evaluation panel',
+      'Innovation awards ceremony',
+      'Publication opportunities showcase'
     ],
     img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/science-expo-2024',
-    venue: 'Main Auditorium & Exhibition Hall',
-    date: 'October 25-26, 2024 | 10:00 AM - 8:00 PM',
-    conductedClubName: 'Science Society'
+    registrationLink: 'https://forms.google.com/sparc-event',
+    venue: 'Kredavedika',
+    date: 'December 28, 2025 | 10:00 AM - 5:00 PM',
+    conductedClubName: 'Research Club'
   },
   {
-    id: 'music-festival-2024',
-    name: 'Eureka Music Festival',
-    description: 'Annual music festival featuring performances by college bands, solo artists, and professional musicians.',
+    id: 'tech-expo',
+    name: 'Eureka Tech Expo',
+    description: 'Technology exhibition showcasing latest innovations, gadgets, and tech solutions at Kredavedika.',
     highlights: [
-      'Battle of Bands competition',
-      'Professional artist performances',
-      'Open mic sessions',
-      'DJ night',
-      'Food stalls and merchandise'
+      'Venue: Kredavedika',
+      'Full-day event: 10:00 AM - 5:00 PM',
+      'Latest tech gadgets display',
+      'Innovative projects showcase',
+      'Tech workshops and demos',
+      'Startup tech presentations',
+      'Interactive tech experience zones'
+    ],
+    img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/tech-expo',
+    venue: 'Kredavedika',
+    date: 'December 28, 2025 | 10:00 AM - 5:00 PM',
+    conductedClubName: 'Tech Clubs'
+  },
+  {
+    id: 'electronics-robotics',
+    name: 'Electronics & Robotics Showcase',
+    description: 'Collaborative event showcasing electronics projects and robotics innovations.',
+    highlights: [
+      'Robotics demonstrations',
+      'Electronics projects display',
+      'DIY workshops',
+      'Drone technology showcase',
+      'Interactive robot challenges'
+    ],
+    img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/electronics-robotics',
+    venue: 'Engineering Block',
+    date: 'December 29, 2025 | 5:30 PM - 8:30 PM',
+    conductedClubName: 'Electronics Club & Robotics Club'
+  },
+  {
+    id: 'coding-competition',
+    name: 'Eureka Coding Challenge',
+    description: 'Intense coding competition for programmers of all levels with exciting problems.',
+    highlights: [
+      'Multiple problem tracks',
+      'Real-world coding challenges',
+      'Team and individual categories',
+      'Hackathon-style rounds',
+      'Industry standard judging'
+    ],
+    img: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/coding-competition',
+    venue: 'Computer Center',
+    date: 'December 29, 2025 | 5:30 PM - 8:30 PM',
+    conductedClubName: 'Coding Club'
+  },
+  {
+    id: 'sports-ipl-auction',
+    name: 'Sports Club - IPL Auction',
+    description: 'Interactive IPL-style auction event for sports enthusiasts.',
+    highlights: [
+      'Fantasy IPL auction',
+      'Team building strategy',
+      'Player bidding wars',
+      'Sports analytics workshop',
+      'Prizes for best teams'
+    ],
+    img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/sports-ipl-auction',
+    venue: 'Sports Complex',
+    date: 'December 30, 2025 | 5:30 PM - 8:30 PM',
+    conductedClubName: 'Sports Club'
+  },
+  {
+    id: 'rangoli-competition',
+    name: 'Rangoli Art Competition',
+    description: 'Traditional rangoli making competition celebrating cultural heritage and creativity.',
+    highlights: [
+      'Traditional art showcase',
+      'Creative designs competition',
+      'Team collaboration event',
+      'Cultural heritage celebration',
+      'Judging by art experts'
+    ],
+    img: 'https://images.unsplash.com/photo-1542744095-68b6a2c5cd3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    registrationLink: 'https://forms.google.com/rangoli-competition',
+    venue: 'Main Campus Ground',
+    date: 'December 31, 2025 | 6:00 AM - 9:00 AM',
+    conductedClubName: 'Cultural Club'
+  },
+  {
+    id: 'eureka-night',
+    name: 'EUREKA Night - Grand Finale',
+    description: 'The grand cultural night celebrating achievements, creativity, and campus unity with performances, awards, and celebrations.',
+    highlights: [
+      'Live musical performances',
+      'Dance shows and cultural events',
+      'Award ceremony for competition winners',
+      'Fireworks display',
+      'Special guest appearances',
+      'Food stalls and celebrations'
     ],
     img: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/music-festival-2024',
+    registrationLink: 'https://forms.google.com/eureka-night',
     venue: 'Open Air Theater',
-    date: 'October 27, 2024 | 4:00 PM - 11:00 PM',
-    conductedClubName: 'Music Club'
-  },
-  {
-    id: 'debate-competition-2024',
-    name: 'Inter-College Debate Championship',
-    description: 'Parliamentary style debate competition on contemporary topics with participants from various colleges.',
-    highlights: [
-      'British Parliamentary format',
-      'National level participation',
-      'Renowned adjudicators',
-      'Workshops by debate champions',
-      'Trophy and certificates'
-    ],
-    img: 'https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/debate-2024',
-    venue: 'Law College Moot Court',
-    date: 'October 28-29, 2024 | 9:00 AM - 6:00 PM',
-    conductedClubName: 'Literary & Debate Society'
+    date: 'December 31, 2025 | 6:00 PM - 12:00 Midnight',
+    conductedClubName: 'EUREKA Organizing Committee'
   }
 ];
 
@@ -197,8 +241,6 @@ export const getEventsByClub = (clubName: string): Event[] => {
 };
 
 export const getUpcomingEvents = (): Event[] => {
-  // Since we're using string dates, you might want to implement
-  // proper date comparison based on your needs
   return eventsData;
 };
 
@@ -208,28 +250,32 @@ export const getFeaturedEvents = (count: number = 4): Event[] => {
 
 // Event categories (derived from event names/descriptions)
 export const eventCategories = [
+  'Finance',
+  'Language',
+  'Environment',
+  'Career',
+  'Education',
   'Technology',
-  'Robotics',
-  'Entrepreneurship',
-  'AI/ML',
-  'Design',
-  'Gaming',
-  'Cyber Security',
-  'Science',
-  'Music',
-  'Debate'
+  'Research',
+  'Electronics',
+  'Coding',
+  'Sports',
+  'Cultural',
+  'Entertainment'
 ];
 
 // Club names for filtering
 export const conductingClubs = [
-  'Tech Club',
-  'Robotics Society',
-  'Entrepreneurship Cell',
-  'AI Club',
-  'Design Hub',
-  'Gaming Guild',
-  'Cyber Security Club',
-  'Science Society',
-  'Music Club',
-  'Literary & Debate Society'
+  'Finance Club & Lecture Series Club',
+  'Linguistic & Personality Development Club',
+  'Eco Club',
+  'Internship, Startup & Research Clubs',
+  'Competitive Club & Higher Education Clubs',
+  'Research Club',
+  'Tech Clubs',
+  'Electronics Club & Robotics Club',
+  'Coding Club',
+  'Sports Club',
+  'Cultural Club',
+  'EUREKA Organizing Committee'
 ];
