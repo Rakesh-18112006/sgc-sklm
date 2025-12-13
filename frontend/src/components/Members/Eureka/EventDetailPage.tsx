@@ -37,6 +37,14 @@ const EventDetailPage: React.FC = () => {
     );
   }
 
+  // Parse date for better display
+  const formatEventDate = (dateString: string) => {
+    if (dateString.includes('|')) {
+      return dateString.split('|').map(part => part.trim()).join('<br />');
+    }
+    return dateString;
+  };
+
   return (
     <div className={styles.container}>
       {/* Back Navigation */}
@@ -57,7 +65,9 @@ const EventDetailPage: React.FC = () => {
           />
           <div className={styles.heroOverlay}>
             <div className={styles.eventMeta}>
-              <span className={styles.eventDate}>{event.date}</span>
+              <span className={styles.eventDate}>
+                <span dangerouslySetInnerHTML={{ __html: formatEventDate(event.date) }} />
+              </span>
               <span className={styles.eventVenue}>{event.venue}</span>
             </div>
             <h1 className={styles.heroTitle}>{event.name}</h1>
@@ -75,7 +85,7 @@ const EventDetailPage: React.FC = () => {
 
           {/* Highlights */}
           <section className={styles.section}>
-            <h2 className={styles.sectionTitle}>Event Highlights</h2>
+            <h2 className={styles.sectionTitle}>Key Highlights</h2>
             <div className={styles.highlightsGrid}>
               {event.highlights.map((highlight, index) => (
                 <div key={index} className={styles.highlightCard}>
@@ -94,7 +104,7 @@ const EventDetailPage: React.FC = () => {
                 <div className={styles.detailIcon}>📅</div>
                 <div className={styles.detailContent}>
                   <h3 className={styles.detailTitle}>Date & Time</h3>
-                  <p className={styles.detailValue}>{event.date}</p>
+                  <p className={styles.detailValue} dangerouslySetInnerHTML={{ __html: formatEventDate(event.date) }} />
                 </div>
               </div>
               
@@ -117,7 +127,7 @@ const EventDetailPage: React.FC = () => {
               <div className={styles.detailCard}>
                 <div className={styles.detailIcon}>🎯</div>
                 <div className={styles.detailContent}>
-                  <h3 className={styles.detailTitle}>Registration</h3>
+                  <h3 className={styles.detailTitle}>Eligibility</h3>
                   <p className={styles.detailValue}>Open to All RGUKT Students</p>
                 </div>
               </div>
@@ -128,9 +138,9 @@ const EventDetailPage: React.FC = () => {
         {/* Sidebar */}
         <aside className={styles.sidebar}>
           <div className={styles.registrationCard}>
-            <h3 className={styles.registrationTitle}>Ready to Join?</h3>
+            <h3 className={styles.registrationTitle}>Ready to Participate?</h3>
             <p className={styles.registrationText}>
-              Don't miss this exciting opportunity to participate in {event.name}
+              Don't miss this exciting opportunity to showcase your skills in {event.name}
             </p>
             
             <div className={styles.actionButtons}>
@@ -146,9 +156,15 @@ const EventDetailPage: React.FC = () => {
               <div className={styles.shareSection}>
                 <p className={styles.shareText}>Share this event:</p>
                 <div className={styles.shareButtons}>
-                  <button className={styles.shareButton}>📱</button>
-                  <button className={styles.shareButton}>📧</button>
-                  <button className={styles.shareButton}>🔗</button>
+                  <button className={styles.shareButton} onClick={() => navigator.share?.({ title: event.name, url: window.location.href })}>
+                    📱
+                  </button>
+                  <button className={styles.shareButton} onClick={() => window.open(`mailto:?subject=${encodeURIComponent(event.name)}&body=${encodeURIComponent(window.location.href)}`)}>
+                    📧
+                  </button>
+                  <button className={styles.shareButton} onClick={() => navigator.clipboard.writeText(window.location.href)}>
+                    🔗
+                  </button>
                 </div>
               </div>
             </div>
@@ -156,7 +172,7 @@ const EventDetailPage: React.FC = () => {
 
           {/* Contact Info */}
           <div className={styles.contactCard}>
-            <h3 className={styles.contactTitle}>Need Help?</h3>
+            <h3 className={styles.contactTitle}>Need Assistance?</h3>
             <p className={styles.contactText}>
               For queries about this event, contact the organizing club:
             </p>
@@ -165,7 +181,8 @@ const EventDetailPage: React.FC = () => {
               <a href="mailto:eureka2024@rgukt.in" className={styles.contactEmail}>
                 eureka2024@rgukt.in
               </a>
-              <span className={styles.contactPhone}>+91 98765 43210</span>
+              <span className={styles.contactPhone}>Contact: +91 98765 43210</span>
+              <small className={styles.contactNote}>Please mention the event name in your query</small>
             </div>
           </div>
         </aside>
@@ -173,11 +190,11 @@ const EventDetailPage: React.FC = () => {
 
       {/* Similar Events Section */}
       <section className={styles.similarEventsSection}>
-        <h2 className={styles.sectionTitle}>Other Events You Might Like</h2>
-        <p className={styles.sectionSubtitle}>Check out these exciting events happening during Eureka 2024</p>
+        <h2 className={styles.sectionTitle}>Explore More Events</h2>
+        <p className={styles.sectionSubtitle}>Check out other exciting events happening during Eureka 2024</p>
         
         <Link to="/eureka" className={styles.exploreButton}>
-          Explore All Events →
+          View All Events →
         </Link>
       </section>
 
@@ -185,7 +202,7 @@ const EventDetailPage: React.FC = () => {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <h3 className={styles.footerTitle}>EUREKA 2024</h3>
-          <p className={styles.footerText}>Where Technical Brilliance Meets Cultural Rhythms | Students' Gymkhana Center</p>
+          <p className={styles.footerText}>Where Technical Brilliance Meets Cultural Rhythms | Students' Gymkhana Center, RGUKT</p>
           <p className={styles.copyright}>© 2024 EUREKA Innovation Festival. All rights reserved.</p>
         </div>
       </footer>

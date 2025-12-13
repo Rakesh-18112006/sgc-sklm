@@ -1,11 +1,10 @@
-// AdvisoryBoard.tsx
 import React, { useState, useEffect } from "react";
 import "./AdvisoryBoard.css";
-import { FaLinkedin, FaEnvelope, FaGlobe } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope, FaGlobe, FaArrowRight } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 
-// board-member images
+// Import images - adjust paths as needed
 import director from "../../assets/advisoryBoardimgs/director.webp";
 import ao from "../../assets/advisoryBoardimgs/ao.webp";
 import chairman from "../../assets/advisoryBoardimgs/chairman.webp";
@@ -22,12 +21,15 @@ interface BoardMember {
   linkedin?: string;
   email?: string;
   website?: string;
+  accentColor: string;
+  isFeatured?: boolean;
 }
 
 const AdvisoryBoard: React.FC = () => {
   const [activeMember, setActiveMember] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
+  const [hoveredMember, setHoveredMember] = useState<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,28 +55,8 @@ const AdvisoryBoard: React.FC = () => {
       linkedin: "#",
       email: "director.sklm@rgukt.in",
       website: "https://rguktsklm.ac.in/the-institute/administration/director/",
-    },
-    {
-      id: 3,
-      name: "Mr. Rama Krishna Muni",
-      position: "Administrative Officer",
-      department: "Business Administration",
-      image: ao,
-      bio: "Former CEO of TechCorp with expertise in business strategy and innovation management. Advisor to Fortune 500 companies and government think tanks on digital transformation. Brings extensive corporate experience to academic administration.",
-      linkedin: "#",
-      email: "ao@rguktsklm.ac.in",
-      website: "https://rguktsklm.ac.in/the-institute/administration/administrative-officer/",
-    },
-    {
-      id: 4,
-      name: "Dr. Sivarama Krishna Merugu",
-      position: "Dean Of Academics",
-      department: "Electrical Engineering",
-      image: dean,
-      bio: "Published researcher in renewable energy systems with multiple patent awards. Leads the university's green energy initiative and international research collaborations. Recognized globally for contributions to sustainable energy solutions.",
-      linkedin: "#",
-      email: "da@rguktsklm.ac.in",
-      website: "https://rguktsklm.ac.in/the-institute/administration/dean-of-academics/",
+      accentColor: "#3B82F6",
+      isFeatured: true
     },
     {
       id: 2,
@@ -86,18 +68,44 @@ const AdvisoryBoard: React.FC = () => {
       linkedin: "#",
       email: "dsw@rguktsklm.ac.in",
       website: "https://rguktsklm.ac.in/the-institute/administration/dean-of-student-welfare",
+      accentColor: "#8B5CF6"
+    },
+    {
+      id: 3,
+      name: "Mr. Rama Krishna Muni",
+      position: "Administrative Officer",
+      department: "Business Administration",
+      image: ao,
+      bio: "Former CEO of TechCorp with expertise in business strategy and innovation management. Advisor to Fortune 500 companies and government think tanks on digital transformation. Brings extensive corporate experience to academic administration.",
+      linkedin: "#",
+      email: "ao@rguktsklm.ac.in",
+      website: "https://rguktsklm.ac.in/the-institute/administration/administrative-officer/",
+      accentColor: "#10B981"
+    },
+    {
+      id: 4,
+      name: "Dr. Sivarama Krishna Merugu",
+      position: "Dean Of Academics",
+      department: "Electrical Engineering",
+      image: dean,
+      bio: "Published researcher in renewable energy systems with multiple patent awards. Leads the university's green energy initiative and international research collaborations. Recognized globally for contributions to sustainable energy solutions.",
+      linkedin: "#",
+      email: "da@rguktsklm.ac.in",
+      website: "https://rguktsklm.ac.in/the-institute/administration/dean-of-academics/",
+      accentColor: "#F59E0B"
     },
     {
       id: 5,
       name: "Dr. Ch Vasu",
-      position: "finance officer",
+      position: "Finance Officer",
       department: "Mechanical Engineering",
       image: fo,
       bio: "Industrial designer with 20+ years of experience in automotive engineering. Bridges academia and industry through innovative partnership programs and student internships. Instrumental in securing industry collaborations and research funding.",
       linkedin: "#",
       email: "fo@rguktsklm.ac.in",
       website: "https://rguktsklm.ac.in/the-institute/administration/finance-officer/",
-    },
+      accentColor: "#EC4899"
+    }
   ];
 
   const toggleBio = (id: number) => {
@@ -121,8 +129,16 @@ const AdvisoryBoard: React.FC = () => {
       .slice(0, 2);
   };
 
+  const getGradient = (color: string) => {
+    return `linear-gradient(135deg, ${color}40, ${color}20)`;
+  };
+
+  const featuredMember = boardMembers.find(m => m.isFeatured);
+  const otherMembers = boardMembers.filter(m => !m.isFeatured);
+
   return (
     <div className="advisory-board">
+      {/* Animated background elements */}
       <div className="animated-bg">
         <div className="bg-circle circle-1"></div>
         <div className="bg-circle circle-2"></div>
@@ -131,145 +147,202 @@ const AdvisoryBoard: React.FC = () => {
       </div>
 
       <div className="container">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="section-header"
         >
-          <h2 className="section-title">
-            Meet Our Advisory Board
-          </h2>
-          <p className="section-subtitle">
+          <div className="section-title-wrapper">
+            <span className="section-subtitle">Our Leadership</span>
+            <h2 className="section-title">
+              Advisory <span className="highlight">Board</span>
+            </h2>
+          </div>
+          <p className="section-description">
             Visionary leaders guiding our institution's future with expertise, innovation, and dedication
           </p>
-          <div className="divider"></div>
+          <div className="header-divider">
+            <div className="divider-line"></div>
+            <div className="divider-dot"></div>
+            <div className="divider-line"></div>
+          </div>
         </motion.div>
 
-        <div className="board-members-container">
-          {/* First row - single member centered */}
-          <div className="first-row">
-            <motion.div
-              key={boardMembers[0].id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className={`member-card ${
-                activeMember === boardMembers[0].id ? "active" : ""
-              }`}
-              onClick={() => toggleBio(boardMembers[0].id)}
-              whileHover={{ y: -10 }}
-            >
-              <div className="card-inner">
-                <div className="card-image-container">
-                  <div className="image-wrapper">
-                    {!imageErrors[boardMembers[0].id] ? (
-                      <img
-                        src={boardMembers[0].image}
-                        alt={boardMembers[0].name}
-                        className="member-image"
-                        onError={() => handleImageError(boardMembers[0].id)}
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="member-image-fallback">
-                        {getInitials(boardMembers[0].name)}
-                      </div>
-                    )}
-                    <div className="image-hover-effect"></div>
-                  </div>
-                  <div className="decorative-shape decorative-shape-1"></div>
-                  <div className="decorative-shape decorative-shape-2"></div>
-                </div>
+        {/* Desktop Layout: Featured Member First, Others in Grid */}
+        <div className="desktop-layout">
+          {/* Featured Member Card (Centered on Desktop) */}
+          {featuredMember && (
+            <div className="featured-member-container">
+              <motion.div
+                key={featuredMember.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className={`member-card featured-card ${activeMember === featuredMember.id ? "active" : ""}`}
+                onMouseEnter={() => setHoveredMember(featuredMember.id)}
+                onMouseLeave={() => setHoveredMember(null)}
+                onClick={() => toggleBio(featuredMember.id)}
+                whileHover={{ y: -5 }}
+              >
+                <div 
+                  className="card-glow"
+                  style={{
+                    background: `radial-gradient(circle at 50% 0%, ${featuredMember.accentColor}30, transparent 70%)`,
+                    opacity: hoveredMember === featuredMember.id ? 0.6 : 0
+                  }}
+                ></div>
 
                 <div className="card-content">
-                  <h3 className="member-name">{boardMembers[0].name}</h3>
-                  <p className="member-position">{boardMembers[0].position}</p>
-                  <p className="member-department">
-                    {boardMembers[0].department}
-                  </p>
+                  {/* Image Container */}
+                  <div className="image-container">
+                    <div 
+                      className="image-wrapper"
+                      style={{
+                        borderColor: featuredMember.accentColor
+                      }}
+                    >
+                      {!imageErrors[featuredMember.id] ? (
+                        <img
+                          src={featuredMember.image}
+                          alt={featuredMember.name}
+                          className="member-image"
+                          onError={() => handleImageError(featuredMember.id)}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div 
+                          className="member-image-fallback"
+                          style={{ background: getGradient(featuredMember.accentColor) }}
+                        >
+                          <span className="fallback-initials">{getInitials(featuredMember.name)}</span>
+                        </div>
+                      )}
+                      
+                      {/* Image Overlay */}
+                      <div className="image-overlay">
+                        <div className="view-profile">
+                          <FaArrowRight />
+                        </div>
+                      </div>
+                    </div>
 
-                  <div className="social-links">
-                    {boardMembers[0].linkedin && (
-                      <a
-                        href={boardMembers[0].linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        aria-label={`Connect with ${boardMembers[0].name} on LinkedIn`}
+                    {/* Accent Decoration */}
+                    <div 
+                      className="accent-decoration"
+                      style={{ background: featuredMember.accentColor }}
+                    ></div>
+                  </div>
+
+                  {/* Member Info */}
+                  <div className="member-info">
+                    <div className="member-header">
+                      <h3 className="member-name">{featuredMember.name}</h3>
+                      <div 
+                        className="position-badge"
+                        style={{ 
+                          background: featuredMember.accentColor
+                        }}
                       >
-                        <FaLinkedin className="social-icon" />
-                      </a>
-                    )}
-                    {boardMembers[0].email && (
-                      <a
-                        href={`mailto:${boardMembers[0].email}`}
-                        onClick={(e) => e.stopPropagation()}
-                        aria-label={`Email ${boardMembers[0].name}`}
-                      >
-                        <FaEnvelope className="social-icon" />
-                      </a>
-                    )}
-                    {boardMembers[0].website && (
-                      <a
-                        href={boardMembers[0].website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        aria-label={`Visit ${boardMembers[0].name}'s website`}
-                      >
-                        <FaGlobe className="social-icon" />
-                      </a>
-                    )}
+                        {featuredMember.position}
+                      </div>
+                    </div>
+                    
+                    <p className="member-department">{featuredMember.department}</p>
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="social-container">
+                    <div className="social-links">
+                      {featuredMember.linkedin && (
+                        <a
+                          href={featuredMember.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Connect with ${featuredMember.name} on LinkedIn`}
+                          className="social-link"
+                          style={{ color: featuredMember.accentColor }}
+                        >
+                          <FaLinkedin />
+                        </a>
+                      )}
+                      {featuredMember.email && (
+                        <a
+                          href={`mailto:${featuredMember.email}`}
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Email ${featuredMember.name}`}
+                          className="social-link"
+                          style={{ color: featuredMember.accentColor }}
+                        >
+                          <FaEnvelope />
+                        </a>
+                      )}
+                      {featuredMember.website && (
+                        <a
+                          href={featuredMember.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Visit ${featuredMember.name}'s website`}
+                          className="social-link"
+                          style={{ color: featuredMember.accentColor }}
+                        >
+                          <FaGlobe />
+                        </a>
+                      )}
+                    </div>
+                    
+                    <button 
+                      className="view-bio-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleBio(featuredMember.id);
+                      }}
+                      style={{ 
+                        background: featuredMember.accentColor
+                      }}
+                    >
+                      View Full Bio
+                    </button>
                   </div>
                 </div>
-              </div>
+              </motion.div>
+            </div>
+          )}
 
-              <AnimatePresence>
-                {activeMember === boardMembers[0].id && (
-                  <motion.div
-                    className="expanded-bio"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="bio-content">
-                      <p>{boardMembers[0].bio}</p>
-                      <button
-                        className="close-bio"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          closeBio();
-                        }}
-                        aria-label="Close biography"
-                      >
-                        <IoMdClose />
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          </div>
-
-          {/* Second row - remaining four members */}
-          <div className="second-row">
-            {boardMembers.slice(1).map((member, index) => (
+          {/* Other Members Grid (4 cards in one row on desktop) */}
+          <div className="other-members-grid">
+            {otherMembers.map((member, index) => (
               <motion.div
                 key={member.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`member-card ${
-                  activeMember === member.id ? "active" : ""
-                }`}
+                className={`member-card ${activeMember === member.id ? "active" : ""}`}
+                onMouseEnter={() => setHoveredMember(member.id)}
+                onMouseLeave={() => setHoveredMember(null)}
                 onClick={() => toggleBio(member.id)}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="card-inner">
-                  <div className="card-image-container">
-                    <div className="image-wrapper">
+                <div 
+                  className="card-glow"
+                  style={{
+                    background: `radial-gradient(circle at 50% 0%, ${member.accentColor}30, transparent 70%)`,
+                    opacity: hoveredMember === member.id ? 0.6 : 0
+                  }}
+                ></div>
+
+                <div className="card-content">
+                  {/* Image Container */}
+                  <div className="image-container">
+                    <div 
+                      className="image-wrapper"
+                      style={{
+                        borderColor: member.accentColor
+                      }}
+                    >
                       {!imageErrors[member.id] ? (
                         <img
                           src={member.image}
@@ -279,21 +352,47 @@ const AdvisoryBoard: React.FC = () => {
                           loading="lazy"
                         />
                       ) : (
-                        <div className="member-image-fallback">
-                          {getInitials(member.name)}
+                        <div 
+                          className="member-image-fallback"
+                          style={{ background: getGradient(member.accentColor) }}
+                        >
+                          <span className="fallback-initials">{getInitials(member.name)}</span>
                         </div>
                       )}
-                      <div className="image-hover-effect"></div>
+                      
+                      {/* Image Overlay */}
+                      <div className="image-overlay">
+                        <div className="view-profile">
+                          <FaArrowRight />
+                        </div>
+                      </div>
                     </div>
-                    <div className="decorative-shape decorative-shape-1"></div>
-                    <div className="decorative-shape decorative-shape-2"></div>
+
+                    {/* Accent Decoration */}
+                    <div 
+                      className="accent-decoration"
+                      style={{ background: member.accentColor }}
+                    ></div>
                   </div>
 
-                  <div className="card-content">
-                    <h3 className="member-name">{member.name}</h3>
-                    <p className="member-position">{member.position}</p>
+                  {/* Member Info */}
+                  <div className="member-info">
+                    <div className="member-header">
+                      <h3 className="member-name">{member.name}</h3>
+                      <div 
+                        className="position-badge"
+                        style={{ background: member.accentColor }}
+                      >
+                        {member.position}
+                      </div>
+                    </div>
+                    
                     <p className="member-department">{member.department}</p>
 
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="social-container">
                     <div className="social-links">
                       {member.linkedin && (
                         <a
@@ -302,8 +401,10 @@ const AdvisoryBoard: React.FC = () => {
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
                           aria-label={`Connect with ${member.name} on LinkedIn`}
+                          className="social-link"
+                          style={{ color: member.accentColor }}
                         >
-                          <FaLinkedin className="social-icon" />
+                          <FaLinkedin />
                         </a>
                       )}
                       {member.email && (
@@ -311,8 +412,10 @@ const AdvisoryBoard: React.FC = () => {
                           href={`mailto:${member.email}`}
                           onClick={(e) => e.stopPropagation()}
                           aria-label={`Email ${member.name}`}
+                          className="social-link"
+                          style={{ color: member.accentColor }}
                         >
-                          <FaEnvelope className="social-icon" />
+                          <FaEnvelope />
                         </a>
                       )}
                       {member.website && (
@@ -322,43 +425,259 @@ const AdvisoryBoard: React.FC = () => {
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
                           aria-label={`Visit ${member.name}'s website`}
+                          className="social-link"
+                          style={{ color: member.accentColor }}
                         >
-                          <FaGlobe className="social-icon" />
+                          <FaGlobe />
                         </a>
                       )}
                     </div>
+                    
+                    <button 
+                      className="view-bio-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleBio(member.id);
+                      }}
+                      style={{ background: member.accentColor }}
+                    >
+                      View Bio
+                    </button>
                   </div>
                 </div>
-
-                <AnimatePresence>
-                  {activeMember === member.id && (
-                    <motion.div
-                      className="expanded-bio"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="bio-content">
-                        <p>{member.bio}</p>
-                        <button
-                          className="close-bio"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            closeBio();
-                          }}
-                          aria-label="Close biography"
-                        >
-                          <IoMdClose />
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Mobile Layout: All cards in one grid */}
+        <div className="mobile-layout">
+          <div className="mobile-members-grid">
+            {boardMembers.map((member, index) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`member-card ${activeMember === member.id ? "active" : ""}`}
+                onClick={() => toggleBio(member.id)}
+                whileHover={{ y: -3 }}
+              >
+                <div className="card-content">
+                  {/* Image Container */}
+                  <div className="image-container">
+                    <div 
+                      className="image-wrapper"
+                      style={{
+                        borderColor: member.accentColor
+                      }}
+                    >
+                      {!imageErrors[member.id] ? (
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="member-image"
+                          onError={() => handleImageError(member.id)}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div 
+                          className="member-image-fallback"
+                          style={{ background: getGradient(member.accentColor) }}
+                        >
+                          <span className="fallback-initials">{getInitials(member.name)}</span>
+                        </div>
+                      )}
+                      
+                      {/* Image Overlay */}
+                      <div className="image-overlay">
+                        <div className="view-profile">
+                          <FaArrowRight />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Accent Decoration */}
+                    <div 
+                      className="accent-decoration"
+                      style={{ background: member.accentColor }}
+                    ></div>
+                  </div>
+
+                  {/* Member Info */}
+                  <div className="member-info">
+                    <div className="member-header">
+                      <h3 className="member-name">{member.name}</h3>
+                      <div 
+                        className="position-badge"
+                        style={{ background: member.accentColor }}
+                      >
+                        {member.position}
+                      </div>
+                    </div>
+                    
+                    <p className="member-department">{member.department}</p>
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="social-container">
+                    <div className="social-links">
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Connect with ${member.name} on LinkedIn`}
+                          className="social-link"
+                          style={{ color: member.accentColor }}
+                        >
+                          <FaLinkedin />
+                        </a>
+                      )}
+                      {member.email && (
+                        <a
+                          href={`mailto:${member.email}`}
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Email ${member.name}`}
+                          className="social-link"
+                          style={{ color: member.accentColor }}
+                        >
+                          <FaEnvelope />
+                        </a>
+                      )}
+                      {member.website && (
+                        <a
+                          href={member.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Visit ${member.name}'s website`}
+                          className="social-link"
+                          style={{ color: member.accentColor }}
+                        >
+                          <FaGlobe />
+                        </a>
+                      )}
+                    </div>
+                    
+                    <button 
+                      className="view-bio-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleBio(member.id);
+                      }}
+                      style={{ background: member.accentColor }}
+                    >
+                      View Bio
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Expanded Bio Modal */}
+        <AnimatePresence>
+          {activeMember && (
+            <motion.div
+              className="bio-modal-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeBio}
+            >
+              <motion.div
+                className="bio-modal"
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {activeMember && (() => {
+                  const member = boardMembers.find(m => m.id === activeMember);
+                  if (!member) return null;
+                  
+                  return (
+                    <>
+                      <div className="modal-header">
+                        <div className="modal-image">
+                          {!imageErrors[member.id] ? (
+                            <img
+                              src={member.image}
+                              alt={member.name}
+                              className="modal-member-image"
+                            />
+                          ) : (
+                            <div 
+                              className="modal-image-fallback"
+                              style={{ background: getGradient(member.accentColor) }}
+                            >
+                              <span className="modal-fallback-initials">{getInitials(member.name)}</span>
+                            </div>
+                          )}
+                        </div>
+                        <div className="modal-info">
+                          <h3 className="modal-name">{member.name}</h3>
+                          <div 
+                            className="modal-position"
+                            style={{ color: member.accentColor }}
+                          >
+                            {member.position}
+                          </div>
+                          <div className="modal-department">{member.department}</div>
+                        </div>
+                        <button 
+                          className="modal-close"
+                          onClick={closeBio}
+                          aria-label="Close"
+                        >
+                          <IoMdClose />
+                        </button>
+                      </div>
+
+                      <div className="modal-content">
+                        <div className="bio-section">
+                          <h4 className="section-title">Biography</h4>
+                          <p className="bio-text">{member.bio}</p>
+                        </div>
+
+                        <div className="contact-section">
+                          <h4 className="section-title">Contact</h4>
+                          <div className="contact-links">
+                            {member.email && (
+                              <a 
+                                href={`mailto:${member.email}`}
+                                className="contact-link"
+                                style={{ '--accent': member.accentColor } as React.CSSProperties}
+                              >
+                                <FaEnvelope />
+                                <span>{member.email}</span>
+                              </a>
+                            )}
+                            {member.website && (
+                              <a 
+                                href={member.website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="contact-link"
+                                style={{ '--accent': member.accentColor } as React.CSSProperties}
+                              >
+                                <FaGlobe />
+                                <span>Official Website</span>
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })()}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

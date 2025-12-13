@@ -26,6 +26,22 @@ const EurekaHomePage: React.FC = () => {
     return datePart;
   };
 
+  // Event Highlights from PDF
+  const eventHighlights = [
+    {
+      title: "Diverse Multi-Day Club Events",
+      description: "A dynamic lineup of technical, professional, cultural, and sports activities conducted by multiple SGC clubs from 26th–31st December."
+    },
+    {
+      title: "Collaborative & Competitive Rounds",
+      description: "Well-structured multi-round events encouraging teamwork, innovation, and healthy competition across domains."
+    },
+    {
+      title: "Grand Finale – EUREKA Night",
+      description: "A vibrant cultural evening celebrating talent, achievements, and the spirit of campus unity."
+    }
+  ];
+
   return (
     <div className={styles.container}>
       {/* Hero Section */}
@@ -33,14 +49,33 @@ const EurekaHomePage: React.FC = () => {
         <div className={styles.heroImageContainer}>
           <img 
             src={mainEventPoster} 
-            alt="Eureka 2k25 - Innovation Festival" 
+            alt="Eureka 2025 - Innovation Festival" 
             className={styles.heroImage}
           />
           <div className={styles.heroOverlay}>
-            <h1 className={styles.heroTitle}>EUREKA 2K25</h1>
+            <h1 className={styles.heroTitle}>EUREKA 2025</h1>
             <p className={styles.heroSubtitle}>Where Technical Brilliance Meets Cultural Rhythms</p>
             <p className={styles.heroDate}>December 26-31, 2025 | Students Gymkhana Center, RGUKT</p>
+            <p className={styles.heroTagline}>Innovate the Mind, Celebrate the Spirit</p>
           </div>
+        </div>
+      </section>
+
+      {/* Event Highlights Section */}
+      <section className={styles.highlightsOverviewSection}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Event Highlights</h2>
+          <p className={styles.sectionSubtitle}>Experience the best of Eureka 2025</p>
+        </div>
+        
+        <div className={styles.highlightsOverviewGrid}>
+          {eventHighlights.map((highlight, index) => (
+            <div key={index} className={styles.highlightOverviewCard}>
+              <div className={styles.highlightNumberCircle}>{index + 1}</div>
+              <h3 className={styles.highlightOverviewTitle}>{highlight.title}</h3>
+              <p className={styles.highlightOverviewDescription}>{highlight.description}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -71,7 +106,7 @@ const EurekaHomePage: React.FC = () => {
       {/* Club Events Section */}
       <section className={styles.clubEventsSection}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Eureka 2K25 Schedule</h2>
+          <h2 className={styles.sectionTitle}>Eureka 2025 Event Schedule</h2>
           <p className={styles.sectionSubtitle}>Multi-day, multi-club events from December 26-31</p>
         </div>
         
@@ -94,7 +129,7 @@ const EurekaHomePage: React.FC = () => {
               
               {/* Highlights */}
               <div className={styles.highlightsSection}>
-                <h4 className={styles.highlightsTitle}>Highlights:</h4>
+                <h4 className={styles.highlightsTitle}>Key Highlights:</h4>
                 <ul className={styles.highlightsList}>
                   {event.highlights.slice(0, 3).map((highlight, index) => (
                     <li key={index} className={styles.highlightItem}>
@@ -144,19 +179,19 @@ const EurekaHomePage: React.FC = () => {
       </section>
 
       {/* Footer */}
-      {/* <footer className={styles.footer}>
+      <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <h3 className={styles.footerTitle}>EUREKA 2024</h3>
+          <h3 className={styles.footerTitle}>EUREKA 2025</h3>
           <p className={styles.footerText}>Where Technical Brilliance Meets Cultural Rhythms | Students' Gymkhana Center</p>
           <div className={styles.footerLinks}>
-            <a href="mailto:contact@eureka2024.edu" className={styles.footerLink}>Contact</a>
+            <a href="mailto:eureka2025@rgukt.in" className={styles.footerLink}>Contact</a>
             <Link to="/eureka" className={styles.footerLink}>All Events</Link>
             <a href="#" className={styles.footerLink}>Schedule</a>
             <a href="#" className={styles.footerLink}>FAQs</a>
           </div>
-          <p className={styles.copyright}>© 2024 EUREKA - Students' Gymkhana Center. All rights reserved.</p>
+          <p className={styles.copyright}>© 2025 EUREKA - Students' Gymkhana Center. All rights reserved.</p>
         </div>
-      </footer> */}
+      </footer>
     </div>
   );
 };

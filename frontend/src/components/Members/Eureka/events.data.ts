@@ -11,221 +11,168 @@ export interface Event {
   conductedClubName: string;
 }
 
-// Main Events Data Array - Updated with consolidated schedule
+// Main Events Data Array - Updated with detailed Eureka schedule
 export const eventsData: Event[] = [
   {
-    id: 'finance-lecture-series',
-    name: 'Finance & Lecture Series',
-    description: 'Collaborative event by Finance Club and Lecture Series Club focusing on financial literacy and expert talks.',
+    id: 'tedx-traders',
+    name: 'TEDx Traders',
+    description: 'An engaging finance-focused event jointly organized by the Finance Club and Lecture Series Club. The event blends interactive learning with real-life financial decision-making through fun quizzes and practical scenarios. It aims to improve financial awareness, quick thinking, and money management skills in an exciting and competitive environment.',
     highlights: [
-      'Financial planning workshops',
-      'Guest lectures from industry experts',
-      'Investment strategies discussion',
-      'Networking with finance professionals',
-      'Interactive Q&A sessions'
+      'Two-round event featuring a fast-paced Kahoot quiz followed by a real-life finance decision round',
+      'Kahoot round tests finance and lecture-based knowledge, scoring based on accuracy and speed',
+      'Top 10 teams qualify for the final "Money Moves" round',
+      'Final round focuses on practical personal finance decisions like saving, investing, borrowing, and emergencies'
     ],
     img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/finance-lecture-series',
+    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSeJE7giVXsPhBfgTPMNGnyyLQBTNk0ZrPJGT8RxUVS9kyUDtw/viewform?usp=preview',
     venue: 'SGC Auditorium',
-    date: 'December 26, 2025 | 5:30 PM - 8:30 PM',
+    date: 'December 26, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Finance Club & Lecture Series Club'
   },
   {
-    id: 'linguistic-personality-dev',
-    name: 'Linguistic & Personality Development',
-    description: 'Communication skills and personality enhancement competition with multiple rounds throughout the day.',
+    id: 'lexihunt-arena',
+    name: 'LEXIHUNT Arena',
+    description: 'A high-energy linguistic and personality development event designed as a competitive word battle that tests participants\' speed, vocabulary, logical thinking, and teamwork. The event consists of two rounds: Rush Hour and Cipher Hunt. In the first round, teams compete by solving language-based questions of varying difficulty levels, while in the final round, qualified teams race against time to decode riddles and clues spread across the campus to find the final treasure.',
     highlights: [
-      'First Round: 6:00 PM - 7:00 PM (Seminar Hall 1)',
-      'Second Round: 2:30 PM - 5:00 PM (Multiple Venues)',
-      'Public speaking competition',
-      'Debate on contemporary topics',
-      'Personality assessment workshops',
-      'Expert feedback sessions'
+      'Team-based linguistic competition with 3–5 members, featuring live scoring and increasing difficulty levels',
+      'Rush Hour round includes jumbled words, sentence rearrangement, foreign phrases, one-word substitutes, and emoji-based questions',
+      'Top teams qualify for the final Cipher Hunt, a clue-based treasure hunt using riddles and campus hints',
+      'Winners are decided by fastest completion time, with penalties for wrong answers or extra clues'
     ],
     img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/linguistic-personality',
-    venue: 'Seminar Hall 1 & Multiple Venues',
-    date: 'December 27, 2025 | First Round: 6:00 PM - 7:00 PM | Second Round: December 28, 2:30 PM - 5:00 PM',
+    registrationLink: 'https://forms.google.com/lexihunt-arena',
+    venue: 'Seminar Hall 1 & Campus-wide',
+    date: 'December 27, 2024 | 6:00 PM - 7:00 PM (Round 1) | December 28, 2024 | 2:30 PM - 5:00 PM (Round 2)',
     conductedClubName: 'Linguistic & Personality Development Club'
   },
   {
-    id: 'eco-club-event',
-    name: 'Eco Club Sustainability Drive',
-    description: 'Environmental awareness and sustainability initiatives workshop and competition.',
+    id: 'rapid-rush',
+    name: 'Rapid Rush',
+    description: 'A fast-paced, team-based eco adventure race where teams of 2–5 members compete to complete a series of fun, environment-themed challenges across multiple stations. Teams start at the Start Point and must clear all eco-stations and return as quickly as possible while collecting signatures and avoiding time penalties.',
     highlights: [
-      'Sustainable practices workshop',
-      'Green innovation competition',
-      'Tree plantation drive',
-      'Waste management solutions',
-      'Eco-friendly product exhibition'
+      'Eco Challenge Stations: Four engaging stations with sounds, images, riddles, taboo-style guessing, and quizzes based on environmental themes',
+      'Race Against Time: Final score is based on total time taken, including penalties for wrong answers or skipped stations',
+      'Signature-Based Progress: Teams must collect the Station Master\'s signature at each station to move ahead',
+      'Team Activity: 2–5 members per team, promoting teamwork, quick thinking, and eco-awareness'
     ],
     img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/eco-club-event',
-    venue: 'Botanical Garden',
-    date: 'December 27, 2025 | 5:30 PM - 8:30 PM',
+    registrationLink: 'https://forms.gle/m2aUvFyktL2NaVu28',
+    venue: 'Campus-wide Stations',
+    date: 'December 27, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Eco Club'
   },
   {
-    id: 'internship-startup-research',
-    name: 'Internship, Startup & Research Fair',
-    description: 'Two-part collaborative event showcasing internship opportunities, startup ideas and research projects with morning and afternoon sessions.',
+    id: 'corporate-innovation-simulator',
+    name: 'Corporate Innovation Simulator (CIS 2025)',
+    description: 'A fast-paced, research-driven innovation challenge that simulates how real companies solve problems and pitch solutions. Participants work in teams to develop research-backed, startup-oriented ideas under time pressure and present them through role-based corporate pitching, gaining hands-on exposure to research, strategy, and professional skills.',
     highlights: [
-      'First Round: 9:30 AM - 11:30 AM (Innovation Center)',
-      'Second Round: 2:30 PM - 5:00 PM (Multiple Venues)',
-      'Internship opportunities showcase',
-      'Startup pitch sessions (morning & afternoon)',
-      'Research project exhibitions',
-      'Industry mentor interactions',
-      'Career guidance workshops'
+      'Teams tackle real-world technical and social problem statements through a research-based mini hackathon',
+      'Guided mentorship from Startup, Research, and Career clubs covering research, market analysis, and industry expectations',
+      'Role-based corporate pitching where participants act as CEO, CTO, Marketing, HR, etc., evaluated by role-specific judges',
+      'Focus on innovation, teamwork, communication, and career-oriented learning at a minimal entry fee'
     ],
     img: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/internship-startup-research',
-    venue: 'Innovation Center & Multiple Venues',
-    date: 'December 28, 2025 | First Round: 9:30 AM - 11:30 AM | Second Round: 2:30 PM - 5:00 PM',
+    registrationLink: 'https://forms.gle/v5p7TGLvhdwXJymDA',
+    venue: 'Innovation Center',
+    date: 'December 28, 2024 | Round 1: 9:30 AM - 11:30 AM | Round 2: 2:30 PM - 5:00 PM',
     conductedClubName: 'Internship, Startup & Research Clubs'
   },
   {
-    id: 'competitive-higher-education',
-    name: 'Competitive & Higher Education Expo',
-    description: 'Two-part event focusing on competitive exams and higher education opportunities with morning and afternoon sessions.',
+    id: 'iq-arena',
+    name: 'IQ Arena',
+    description: 'A high-intensity, competitive-exam–inspired administrative simulation designed for aspirants of SSC, Banking, UPSC, State Services, and students interested in higher or overseas education. The event challenges participants on knowledge, decision-making, teamwork, and crisis management through a two-round format that simulates real-time district administration.',
     highlights: [
-      'First Round: 11:30 AM - 1:00 PM (Academic Block)',
-      'Second Round: 2:30 PM - 5:00 PM (Multiple Venues)',
-      'Competitive exam guidance sessions',
-      'Higher education counseling',
-      'Study abroad opportunities fair',
-      'Scholarship information desk',
-      'Alumni success stories panel'
+      'Two-Level Challenge: A fast-paced screening round followed by an in-depth District Collector–style administrative simulation',
+      'Realistic Governance Experience: Teams earn and manage development funds, build district zones, and handle real-life crisis scenarios',
+      'Skill-Focused Evaluation: Tests speed, accuracy, leadership, teamwork, and decision-making under pressure',
+      'Competitive & Strategic: Winners are decided based on overall district stability, fund management, and crisis handling ability'
     ],
     img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/competitive-higher-education',
-    venue: 'Academic Block & Multiple Venues',
-    date: 'December 28, 2025 | First Round: 11:30 AM - 1:00 PM | Second Round: 2:30 PM - 5:00 PM',
+    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdfqsMX9VDjhj2vBsdPUdQmqwgrDCImMrfwiUYvvpl99V2G9w/viewform?usp=dialog',
+    venue: 'Academic Block',
+    date: 'December 28, 2024 | Round 1: 11:30 AM - 1:00 PM | Round 2: 2:30 PM - 5:00 PM',
     conductedClubName: 'Competitive Club & Higher Education Clubs'
   },
   {
-    id: 'sparc-event',
-    name: 'SPARC Innovation Challenge',
-    description: 'Student Project and Research Competition showcasing innovative projects and research at Kredavedika.',
+    id: 'synergy',
+    name: 'SYNERGY',
+    description: 'A hands-on technical competition for teams of four students that blends electronics puzzles, component identification, quizzes, and practical circuit building under time and resource constraints. The event tests technical knowledge, teamwork, and innovation, leading to an exciting final IoT-based car race.',
     highlights: [
-      'Venue: Kredavedika',
-      'Full-day event: 10:00 AM - 5:00 PM',
-      'Research paper presentations',
-      'Project demonstrations',
-      'Industry evaluation panel',
-      'Innovation awards ceremony',
-      'Publication opportunities showcase'
-    ],
-    img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/sparc-event',
-    venue: 'Kredavedika',
-    date: 'December 28, 2025 | 10:00 AM - 5:00 PM',
-    conductedClubName: 'Research Club'
-  },
-  {
-    id: 'tech-expo',
-    name: 'Eureka Tech Expo',
-    description: 'Technology exhibition showcasing latest innovations, gadgets, and tech solutions at Kredavedika.',
-    highlights: [
-      'Venue: Kredavedika',
-      'Full-day event: 10:00 AM - 5:00 PM',
-      'Latest tech gadgets display',
-      'Innovative projects showcase',
-      'Tech workshops and demos',
-      'Startup tech presentations',
-      'Interactive tech experience zones'
-    ],
-    img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/tech-expo',
-    venue: 'Kredavedika',
-    date: 'December 28, 2025 | 10:00 AM - 5:00 PM',
-    conductedClubName: 'Tech Clubs'
-  },
-  {
-    id: 'electronics-robotics',
-    name: 'Electronics & Robotics Showcase',
-    description: 'Collaborative event showcasing electronics projects and robotics innovations.',
-    highlights: [
-      'Robotics demonstrations',
-      'Electronics projects display',
-      'DIY workshops',
-      'Drone technology showcase',
-      'Interactive robot challenges'
+      'Two-Round Format: Round 1 includes parallel practical and quiz-based challenges; top 4 teams advance to the final round',
+      'Hands-on Learning: Activities like breadboard circuit building, component puzzles, IoT identification, and sensor recognition',
+      'Final F1 Race: Qualified teams build and race IoT-enabled car models within a fixed time',
+      'Skill Development: Promotes problem-solving, teamwork, speed, and accuracy using minimal resources'
     ],
     img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/electronics-robotics',
+    registrationLink: 'https://forms.google.com/synergy-event',
     venue: 'Engineering Block',
-    date: 'December 29, 2025 | 5:30 PM - 8:30 PM',
+    date: 'December 29, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Electronics Club & Robotics Club'
   },
   {
-    id: 'coding-competition',
-    name: 'Eureka Coding Challenge',
-    description: 'Intense coding competition for programmers of all levels with exciting problems.',
+    id: 'cash-or-crash',
+    name: 'Cash or Crash',
+    description: 'A high-energy, strategy-based tech challenge where teams compete using virtual money, bidding on hidden questions from mixed categories. With no prerequisites required, the event tests quick thinking, smart bidding, teamwork, and decision-making under pressure.',
     highlights: [
-      'Multiple problem tracks',
-      'Real-world coding challenges',
-      'Team and individual categories',
-      'Hackathon-style rounds',
-      'Industry standard judging'
+      'Unique Bidding Format: Teams bid virtual money to unlock questions; correct answers double the bid, while wrong answers result in a loss',
+      'Mixed Question Categories: Coding & tech, GK, fun puzzles, tasks, games, and surprise rounds ensure excitement for everyone',
+      'Strategic Lifelines: Limited lifeline options add an extra layer of planning and risk management',
+      'Exciting Rewards: Cash prizes/goodies with winner e-certificates make the competition rewarding and memorable'
     ],
     img: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/coding-competition',
+    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfBSE2CodvOmGA-n-400dpFNwJrDkb5Mi8imRbdQF74GACcsQ/viewform?usp=publish-editor',
     venue: 'Computer Center',
-    date: 'December 29, 2025 | 5:30 PM - 8:30 PM',
+    date: 'December 29, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Coding Club'
   },
   {
-    id: 'sports-ipl-auction',
-    name: 'Sports Club - IPL Auction',
-    description: 'Interactive IPL-style auction event for sports enthusiasts.',
+    id: 'clash-bid',
+    name: 'CLASH BID',
+    description: 'An exciting two-round team event that blends cricket knowledge with strategy and decision-making. Teams first compete in a quiz-based screening round to earn their way into a Mini IPL–style auction, where smart bidding and team planning decide the winners.',
     highlights: [
-      'Fantasy IPL auction',
-      'Team building strategy',
-      'Player bidding wars',
-      'Sports analytics workshop',
-      'Prizes for best teams'
+      'Khaansar Clash (Round 1): A quiz round testing cricket knowledge with MCQs and fill-in-the-blanks; top 8 teams qualify',
+      'Mini IPL Auction (Final Round): Qualified teams bid for retired T20 players to build a balanced squad',
+      'Strategy & Planning: Winning depends on smart budgeting, role balance, and captain/vice-captain selection',
+      'Performance-Based Scoring: Teams are ranked based on players\' overall T20 statistics to decide winners and runners-up'
     ],
     img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/sports-ipl-auction',
+    registrationLink: 'https://forms.gle/a1tpmAhvFCfd6rid6',
     venue: 'Sports Complex',
-    date: 'December 30, 2025 | 5:30 PM - 8:30 PM',
+    date: 'December 30, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Sports Club'
   },
   {
     id: 'rangoli-competition',
-    name: 'Rangoli Art Competition',
-    description: 'Traditional rangoli making competition celebrating cultural heritage and creativity.',
+    name: 'Rangoli Competition',
+    description: 'A vibrant and creative event that celebrates traditional art, color harmony, and cultural expression. Participants design beautiful rangoli patterns using colors, flowers, or eco-friendly materials, showcasing creativity, precision, and artistic skills within a given time.',
     highlights: [
-      'Traditional art showcase',
-      'Creative designs competition',
-      'Team collaboration event',
-      'Cultural heritage celebration',
-      'Judging by art experts'
+      'Encourages creativity and artistic expression rooted in Indian culture',
+      'Focus on themes such as festivals, unity, nature, or social messages',
+      'Judged on creativity, color combination, neatness, and overall presentation',
+      'Promotes teamwork, time management, and cultural appreciation'
     ],
     img: 'https://images.unsplash.com/photo-1542744095-68b6a2c5cd3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/rangoli-competition',
+    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdS71avanOYq_AvBT7WI7N1IRUAXzVP7Y3q8bn5m4xccnGlGg/viewform?usp=publish-editor',
     venue: 'Main Campus Ground',
-    date: 'December 31, 2025 | 6:00 AM - 9:00 AM',
+    date: 'December 31, 2024 | 6:00 AM - 9:00 AM',
     conductedClubName: 'Cultural Club'
   },
   {
     id: 'eureka-night',
     name: 'EUREKA Night - Grand Finale',
-    description: 'The grand cultural night celebrating achievements, creativity, and campus unity with performances, awards, and celebrations.',
+    description: 'The grand cultural night celebrating achievements, creativity, and campus unity with performances, awards, and celebrations. Featuring cultural performances, student ramp walk, and student achievement video presentation.',
     highlights: [
-      'Live musical performances',
-      'Dance shows and cultural events',
-      'Award ceremony for competition winners',
-      'Fireworks display',
-      'Special guest appearances',
-      'Food stalls and celebrations'
+      'Cultural Performances: Energetic dance routines, hilarious skits, soulful singing, vibrant cultural showcases',
+      'Student Ramp Walk: Creative and dazzling costumes, spectacular display of style and confidence',
+      'Student Achievement Video Presentation: Heartwarming showcase of talented students, celebrating student excellence and diversity',
+      'Award Ceremony: Recognition of competition winners and outstanding participants',
+      'Fireworks Display & Celebrations'
     ],
     img: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/eureka-night',
+    registrationLink: 'https://forms.gle/FcZyTTyuHclkRTxp9',
     venue: 'Open Air Theater',
-    date: 'December 31, 2025 | 6:00 PM - 12:00 Midnight',
-    conductedClubName: 'EUREKA Organizing Committee'
+    date: 'December 31, 2024 | 6:00 PM - 12:00 Midnight',
+    conductedClubName: 'Cultural & Choreography Club'
   }
 ];
 
@@ -271,11 +218,9 @@ export const conductingClubs = [
   'Eco Club',
   'Internship, Startup & Research Clubs',
   'Competitive Club & Higher Education Clubs',
-  'Research Club',
-  'Tech Clubs',
   'Electronics Club & Robotics Club',
   'Coding Club',
   'Sports Club',
   'Cultural Club',
-  'EUREKA Organizing Committee'
+  'Cultural & Choreography Club'
 ];

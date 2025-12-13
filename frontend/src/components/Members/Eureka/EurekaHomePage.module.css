@@ -67,15 +67,28 @@
 
 .heroDate {
   font-size: clamp(1rem, 2vw, 1.5rem);
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   opacity: 0.8;
   animation: slideUp 0.8s ease-out 0.6s both;
 }
 
-/* Marquee Section - INCREASED SPEED */
-.marqueeSection {
+.heroTagline {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  margin-top: 0.5rem;
+  opacity: 0.9;
+  font-style: italic;
+  animation: slideUp 0.8s ease-out 0.8s both;
+}
+
+/* Event Highlights Overview Section */
+.highlightsOverviewSection {
   padding: 4rem 1rem;
-  background: rgba(30, 41, 59, 0.5);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.9) 100%);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .sectionTitle {
@@ -91,8 +104,79 @@
 .sectionSubtitle {
   text-align: center;
   font-size: 1.2rem;
-  margin-bottom: 3rem;
   opacity: 0.8;
+}
+
+.highlightsOverviewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.highlightOverviewCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.highlightOverviewCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.highlightNumberCircle {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.highlightOverviewCard:nth-child(2) .highlightNumberCircle {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.highlightOverviewCard:nth-child(3) .highlightNumberCircle {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+}
+
+.highlightOverviewTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f8fafc;
+  line-height: 1.3;
+}
+
+.highlightOverviewDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Marquee Section */
+.marqueeSection {
+  padding: 4rem 1rem;
+  background: rgba(30, 41, 59, 0.5);
 }
 
 .marqueeContainer {
@@ -101,7 +185,6 @@
   width: 100%;
   margin: 0 auto;
   padding: 1rem 0;
-  /* Add gradient fade effect on edges */
   mask-image: linear-gradient(
     to right,
     transparent,
@@ -120,7 +203,6 @@
 
 .marquee {
   display: flex;
-  /* Increased speed: Changed from 60s to 30s (2x faster) */
   animation: marquee 30s linear infinite;
   gap: 1.5rem;
   padding: 0.5rem;
@@ -130,10 +212,8 @@
   animation-play-state: paused;
 }
 
-/* For even faster speed on larger screens */
 @media (min-width: 1024px) {
   .marquee {
-    /* Even faster on desktop: 25s */
     animation-duration: 25s;
   }
 }
@@ -196,11 +276,6 @@
 /* Club Events Section */
 .clubEventsSection {
   padding: 4rem 1rem;
-}
-
-.sectionHeader {
-  text-align: center;
-  margin-bottom: 3rem;
 }
 
 .clubEventsGrid {
@@ -283,9 +358,10 @@
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
   flex-grow: 1;
+  white-space: pre-line;
 }
 
-/* Highlights Section */
+/* Highlights Section (in cards) */
 .highlightsSection {
   margin-bottom: 1.5rem;
   padding: 1rem;
@@ -320,6 +396,7 @@
   color: #8b5cf6;
   margin-right: 0.5rem;
   font-weight: bold;
+  flex-shrink: 0;
 }
 
 .eventDetails {
@@ -340,12 +417,14 @@
 .detailIcon {
   font-size: 1.2rem;
   opacity: 0.8;
+  flex-shrink: 0;
 }
 
 .detailText {
   font-size: 0.9rem;
   opacity: 0.9;
   flex: 1;
+  white-space: pre-line;
 }
 
 /* Button Group */
@@ -387,6 +466,10 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .detailsButton:hover {
@@ -421,6 +504,7 @@
   font-size: 1.1rem;
   margin-bottom: 2rem;
   opacity: 0.8;
+  line-height: 1.6;
 }
 
 .footerLinks {
@@ -428,6 +512,7 @@
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 
 .footerLink {
@@ -439,6 +524,12 @@
 
 .footerLink:hover {
   color: #8b5cf6;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  margin-top: 1rem;
 }
 
 /* Animations */
@@ -471,7 +562,7 @@
   }
 }
 
-/* Mobile Responsive Styles */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .heroSection {
     height: 70vh;
@@ -487,7 +578,6 @@
     height: 160px;
   }
   
-  /* Even faster on mobile for better UX */
   .marquee {
     animation-duration: 20s;
   }
@@ -512,6 +602,26 @@
   .clubEventCard {
     padding: 1.25rem;
   }
+  
+  .highlightsOverviewGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .highlightOverviewCard {
+    padding: 1.5rem;
+  }
+  
+  .highlightNumberCircle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .highlightOverviewTitle {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -528,7 +638,6 @@
     height: 140px;
   }
   
-  /* Fastest on very small screens */
   .marquee {
     animation-duration: 18s;
   }
@@ -546,8 +655,16 @@
     font-size: 1.2rem;
   }
   
-  .clubEventsGrid {
-    grid-template-columns: 1fr;
+  .highlightOverviewCard {
+    padding: 1.25rem;
+  }
+  
+  .highlightOverviewTitle {
+    font-size: 1.2rem;
+  }
+  
+  .highlightOverviewDescription {
+    font-size: 0.95rem;
   }
 }
 

@@ -128,15 +128,24 @@
   display: flex;
   gap: 2rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 
 .eventDate,
 .eventVenue {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 0.5rem;
   font-size: 1rem;
   opacity: 0.9;
+  line-height: 1.4;
+}
+
+.eventDate br {
+  display: block;
+  content: "";
+  margin: 0.25rem 0;
 }
 
 .heroTitle {
@@ -187,6 +196,7 @@
   line-height: 1.8;
   opacity: 0.9;
   margin: 0;
+  white-space: pre-line;
 }
 
 /* Highlights Grid */
@@ -229,6 +239,7 @@
   margin: 0;
   line-height: 1.6;
   flex: 1;
+  white-space: pre-line;
 }
 
 /* Details Grid */
@@ -275,6 +286,7 @@
   font-weight: 600;
   margin: 0;
   line-height: 1.5;
+  white-space: pre-line;
 }
 
 /* Sidebar */
@@ -310,6 +322,7 @@
   line-height: 1.6;
   opacity: 0.9;
   margin-bottom: 1.5rem;
+  white-space: pre-line;
 }
 
 /* Action Buttons */
@@ -366,6 +379,9 @@
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .shareButton:hover {
@@ -400,6 +416,14 @@
 
 .contactEmail:hover {
   opacity: 0.8;
+}
+
+.contactNote {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+  font-style: italic;
+  line-height: 1.4;
 }
 
 /* Similar Events */
@@ -461,6 +485,7 @@
   font-size: 1.1rem;
   opacity: 0.9;
   margin-bottom: 0.5rem;
+  line-height: 1.6;
 }
 
 .copyright {
@@ -525,6 +550,11 @@
     font-size: 0.8rem;
     padding: 6px 12px;
   }
+  
+  .eventDate,
+  .eventVenue {
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 480px) {
@@ -543,5 +573,9 @@
   
   .similarEventsSection {
     padding: 3rem 1rem;
+  }
+  
+  .eventDate br {
+    margin: 0.15rem 0;
   }
 }
