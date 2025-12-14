@@ -82,6 +82,29 @@
   transform-origin: center;
 }
 
+/* Club Info */
+.clubInfo {
+  margin-top: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.foundedYear {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.clubDescription {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 /* Section Styling */
 .sectionContainer {
   max-width: 1200px;
@@ -105,6 +128,46 @@
   background: linear-gradient(90deg, #6c5ce7, #fd79a8);
   margin: 15px auto 0;
   border-radius: 2px;
+}
+
+/* Events Header */
+.eventsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Event Type Filter */
+.eventTypeFilter {
+  display: flex;
+  gap: 15px;
+}
+
+.eventTypeButton {
+  padding: 10px 25px;
+  border: 2px solid #6c5ce7;
+  background: white;
+  color: #6c5ce7;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.eventTypeButton:hover {
+  background: rgba(108, 92, 231, 0.1);
+  transform: translateY(-2px);
+}
+
+.eventTypeButton.active {
+  background: #6c5ce7;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
 }
 
 /* About Section */
@@ -141,46 +204,191 @@
 
 .eventsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 30px;
 }
 
 .eventCard {
   background: white;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
+}
+
+.eventImageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.eventImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.eventCard:hover .eventImage {
+  transform: scale(1.05);
+}
+
+.eventStatusBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: #6c5ce7;
+  color: white;
+}
+
+.eventContent {
+  padding: 25px;
 }
 
 .eventCard h3 {
-  color: #6c5ce7;
+  color: #2d3748;
   margin-bottom: 15px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
-.eventDate {
-  color: #fd79a8;
-  font-weight: 600;
+.eventMeta {
+  display: flex;
+  gap: 20px;
   margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #718096;
   font-size: 0.9rem;
 }
 
-.eventButton {
+.metaIcon {
+  color: #6c5ce7;
+  font-size: 0.9rem;
+}
+
+.eventDescription {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.eventActions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.detailsButton {
   background: #6c5ce7;
   color: white;
-  border: none;
-  padding: 12px 25px;
+  text-decoration: none;
+  padding: 10px 20px;
   border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
 }
 
-.eventButton:hover {
-  background: #a29bfe;
+.detailsButton:hover {
+  background: #5b4bd8;
+  transform: translateY(-2px);
+}
+
+.registerButton {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.registerButton:hover {
+  background: #00a085;
+  transform: translateY(-2px);
+}
+
+/* Loading States */
+.eventsLoading {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #6c5ce7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.noEvents {
+  text-align: center;
+  padding: 4rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.noEventsIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #6c5ce7;
+}
+
+.noEvents h3 {
+  color: #2d3748;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.noEvents p {
+  color: #718096;
+  margin-bottom: 20px;
+}
+
+.browseAllButton {
+  display: inline-block;
+  color: #6c5ce7;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 2px solid #6c5ce7;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.browseAllButton:hover {
+  background: #6c5ce7;
+  color: white;
 }
 
 /* Members Section */
@@ -269,15 +477,13 @@
   font-size: 2.5rem;
 }
 
-/* Loading States */
-.eventsLoading,
-.noEvents,
+/* Not Found */
 .notFound {
   text-align: center;
-  padding: 2rem;
-  font-size: 1.2rem;
+  padding: 4rem;
+  font-size: 1.5rem;
   color: #666;
-  background: rgba(255, 255, 255, 0.8);
+  background: white;
   border-radius: 10px;
   margin: 2rem auto;
   max-width: 800px;
@@ -292,11 +498,18 @@
   .sectionTitle {
     font-size: 2rem;
   }
+
+  .eventsHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
   .mainHero {
     min-height: 500px;
+    height: 120vh;
   }
 
   .mainTitle {
@@ -307,6 +520,10 @@
     font-size: 1rem;
   }
 
+  .eventsGrid {
+    grid-template-columns: 1fr;
+  }
+
   .membersGrid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
@@ -315,11 +532,21 @@
     width: 120px;
     height: 120px;
   }
+
+  .eventTypeFilter {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .eventActions {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 480px) {
   .mainHero {
     min-height: 400px;
+    height: 100vh;
   }
 
   .mainTitle {
@@ -331,7 +558,7 @@
   }
 
   .heroContent {
-    top: -180px;
+    top: -150px;
   }
 
   .sectionContainer {
@@ -341,5 +568,10 @@
   .eventCard,
   .memberCard {
     padding: 20px 15px;
+  }
+
+  .eventMeta {
+    flex-direction: column;
+    gap: 10px;
   }
 }

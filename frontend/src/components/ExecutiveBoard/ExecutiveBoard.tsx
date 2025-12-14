@@ -359,6 +359,99 @@ const ExecutiveBoard: React.FC = () => {
     }
   };
 
+  // Separate members by position
+  const chairmanMember = boardMembers.find(m => m.position === "Chairman");
+  const viceChairmen = boardMembers.filter(m => m.position === "Vice Chairman");
+  const presidentMember = boardMembers.find(m => m.position === "President");
+  
+  // All other members (excluding chairman, vice chairmen, and president)
+  const otherMembers = boardMembers.filter(m => 
+    m.position !== "Chairman" && 
+    m.position !== "Vice Chairman" && 
+    m.position !== "President"
+  );
+
+  const renderMemberCard = (member: BoardMember) => (
+    <motion.div
+      key={member.id}
+      className={`board-card ${getCardClass(member.position)} ${
+        member.position === "Chairman" ? "chairman-card" : 
+        member.position === "President" ? "president-card" :
+        member.position === "Vice Chairman" ? "vice-chairman-card" : ""
+      }`}
+      variants={cardVariants}
+      whileHover="hover"
+    >
+      <div className="card-image-container">
+        <img
+          src={member.image || "https://via.placeholder.com/150"}
+          alt={member.name}
+          className="card-image"
+        />
+      </div>
+      <div className="card-content">
+        <h3 className="card-name">{member.name}</h3>
+        <p className="card-position">{member.position}</p>
+        {member.department && (
+          <p className="card-department">{member.department}</p>
+        )}
+
+        {member.social && (
+          <div className="social-icons">
+            {member.social.linkedin && (
+              <motion.a
+                href={member.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={iconVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <FaLinkedin className="social-icon linkedin" />
+              </motion.a>
+            )}
+            {member.social.twitter && (
+              <motion.a
+                href={member.social.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={iconVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <FaTwitter className="social-icon twitter" />
+              </motion.a>
+            )}
+            {member.social.facebook && (
+              <motion.a
+                href={member.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={iconVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <FaFacebook className="social-icon facebook" />
+              </motion.a>
+            )}
+            {member.social.instagram && (
+              <motion.a
+                href={member.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={iconVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <FaInstagram className="social-icon instagram" />
+              </motion.a>
+            )}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+
   return (
     <div className="executive-board">
       <FloatingElements />
@@ -375,91 +468,30 @@ const ExecutiveBoard: React.FC = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* First row - single centered card */}
-        <div className="first-row-container">
-          {boardMembers.slice(0, 1).map((member) => (
-            <motion.div
-              key={member.id}
-              className={`board-card ${getCardClass(
-                member.position
-              )} first-row-card`}
-              variants={cardVariants}
-              whileHover="hover"
-            >
-              <div className="card-image-container">
-                <img
-                  src={member.image || "https://via.placeholder.com/150"}
-                  alt={member.name}
-                  className="card-image"
-                />
-              </div>
-              <div className="card-content">
-                <h3 className="card-name">{member.name}</h3>
-                <p className="card-position">{member.position}</p>
-                {member.department && (
-                  <p className="card-department">{member.department}</p>
-                )}
+        {/* First row - Chairman */}
+        {chairmanMember && (
+          <div className="chairman-row-container">
+            {renderMemberCard(chairmanMember)}
+          </div>
+        )}
 
-                {member.social && (
-                  <div className="social-icons">
-                    {member.social.linkedin && (
-                      <motion.a
-                        href={member.social.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variants={iconVariants}
-                        whileHover="hover"
-                        whileTap="tap"
-                      >
-                        <FaLinkedin className="social-icon linkedin" />
-                      </motion.a>
-                    )}
-                    {member.social.twitter && (
-                      <motion.a
-                        href={member.social.twitter}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variants={iconVariants}
-                        whileHover="hover"
-                        whileTap="tap"
-                      >
-                        <FaTwitter className="social-icon twitter" />
-                      </motion.a>
-                    )}
-                    {member.social.facebook && (
-                      <motion.a
-                        href={member.social.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variants={iconVariants}
-                        whileHover="hover"
-                        whileTap="tap"
-                      >
-                        <FaFacebook className="social-icon facebook" />
-                      </motion.a>
-                    )}
-                    {member.social.instagram && (
-                      <motion.a
-                        href={member.social.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        variants={iconVariants}
-                        whileHover="hover"
-                        whileTap="tap"
-                      >
-                        <FaInstagram className="social-icon instagram" />
-                      </motion.a>
-                    )}
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* Second row - Vice Chairmen in a row */}
+        {viceChairmen.length > 0 && (
+          <div className="vice-chairmen-row-container">
+            {viceChairmen.map((member) => renderMemberCard(member))}
+          </div>
+        )}
+
+        {/* Third row - President */}
+        {presidentMember && (
+          <div className="president-row-container">
+            {renderMemberCard(presidentMember)}
+          </div>
+        )}
 
         {/* Remaining members in 3-column layout */}
         <div className="regular-rows-container">
-          {boardMembers.slice(1).map((member, index) => (
+          {otherMembers.map((member, index) => (
             <motion.div
               key={member.id}
               className={`board-card ${getCardClass(member.position)}`}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { FaLinkedin } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { FaLinkedin, FaCalendar, FaClock, FaEye } from "react-icons/fa";
+import { useParams, Link } from "react-router-dom";
 import { clubsData } from "../Clubs/ClubsData";
 import axios from "axios";
 import styles from "./Club.module.css";
@@ -16,6 +16,7 @@ interface ApiEvent {
   time: string;
   views: number;
   imageUrl: string;
+  status: "upcoming" | "completed";
   club: {
     name: string;
     icon: string;
@@ -29,6 +30,7 @@ const Club: React.FC = () => {
   const club = clubsData.find((e) => e.id === id);
   const [clubEvents, setClubEvents] = useState<ApiEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedEventType, setSelectedEventType] = useState<"upcoming" | "completed">("upcoming");
   const controls = useAnimation();
 
   // Floating animations
@@ -46,39 +48,64 @@ const Club: React.FC = () => {
 
   // Fetch club events from backend
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchClubEvents = async () => {
       if (!club) return;
 
+      setIsLoading(true);
       try {
+        // First try to fetch by club ID
         const response = await axios.get<{
           success: boolean;
           data: ApiEvent[];
           total: number;
         }>(`http://localhost:5000/api/events?clubId=${id}`);
 
+        // If no events found with clubId parameter, fetch all events and filter
+        let events: ApiEvent[] = [];
+        
         if (response.data.success && response.data.data.length > 0) {
-          const processedEvents = response.data.data.map((event) => ({
-            ...event,
-            id: event._id, // assign _id to id
-            club: {
-              name:
-                event.club?.name ||
-                club.name1 + (club.name2 ? ` ${club.name2}` : ""),
-              icon:
-                event.club?.icon || club.heroImage || "/default-club-icon.png",
-                //@ts-ignore
-              id: event.club?._id || club.id,
-            },
-            clubId: event.clubId || club.id,
-            time: event.time || "00:00",
-            views: event.views || 0,
-            imageUrl: event.imageUrl || "",
-          }));
-
-          setClubEvents(processedEvents);
+          events = response.data.data;
         } else {
-          setClubEvents([]); // no events
+          // Fetch all events and filter by club name
+          const allEventsResponse = await axios.get<{
+            success: boolean;
+            data: ApiEvent[];
+            total: number;
+          }>("http://localhost:5000/api/events");
+          
+          if (allEventsResponse.data.success) {
+            // Filter events by club name (case-insensitive partial match)
+            const clubName = club.name1 + (club.name2 ? ` ${club.name2}` : "");
+            events = allEventsResponse.data.data.filter(event => {
+              const eventClubName = event.club?.name?.toLowerCase() || "";
+              const searchClubName = clubName.toLowerCase();
+              
+              // Check for partial match or contains
+              return eventClubName.includes(searchClubName) || 
+                     searchClubName.includes(eventClubName) ||
+                     event.clubId === id;
+            });
+          }
         }
+
+        // Process and set events
+        const processedEvents = events.map((event) => ({
+          ...event,
+          id: event._id || event.id,
+          club: {
+            name: event.club?.name || club.name1 + (club.name2 ? ` ${club.name2}` : ""),
+            icon: event.club?.icon || club.heroImage || "/default-club-icon.png",
+            id: event.clubId || club.id,
+          },
+          clubId: event.clubId || club.id,
+          time: event.time || "00:00",
+          views: event.views || 0,
+          imageUrl: event.imageUrl || club.heroImage || "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+          status: event.status || "upcoming",
+          description: event.description || `An exciting event hosted by ${club.name1} Club`,
+        }));
+
+        setClubEvents(processedEvents);
       } catch (error) {
         console.error("Error fetching club events:", error);
         setClubEvents([]); // handle error gracefully
@@ -87,10 +114,13 @@ const Club: React.FC = () => {
       }
     };
 
-    fetchEvents();
+    fetchClubEvents();
   }, [id, club]);
 
-  if (!club) return <p className={styles.notFound}>Page not found</p>;
+  // Filter events by type
+  const filteredEvents = clubEvents.filter(event => event.status === selectedEventType);
+
+  if (!club) return <p className={styles.notFound}>Club not found</p>;
 
   return (
     <div className={styles.mainContainer}>
@@ -128,6 +158,17 @@ const Club: React.FC = () => {
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           />
+          
+          {/* Club Info */}
+          <motion.div 
+            className={styles.clubInfo}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <p className={styles.foundedYear}>Founded in {club.founded}</p>
+            <p className={styles.clubDescription}>{club.description}</p>
+          </motion.div>
         </div>
 
         {/* About Section */}
@@ -179,12 +220,34 @@ const Club: React.FC = () => {
         transition={{ duration: 0.8 }}
       >
         <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Upcoming Events</h2>
+          <div className={styles.eventsHeader}>
+            <h2 className={styles.sectionTitle}>Club Events</h2>
+            
+            {/* Event Type Filter */}
+            <div className={styles.eventTypeFilter}>
+              <button
+                className={`${styles.eventTypeButton} ${selectedEventType === "upcoming" ? styles.active : ""}`}
+                onClick={() => setSelectedEventType("upcoming")}
+              >
+                Upcoming Events
+              </button>
+              <button
+                className={`${styles.eventTypeButton} ${selectedEventType === "completed" ? styles.active : ""}`}
+                onClick={() => setSelectedEventType("completed")}
+              >
+                Past Events
+              </button>
+            </div>
+          </div>
+
           {isLoading ? (
-            <div className={styles.eventsLoading}>Loading events...</div>
-          ) : clubEvents.length > 0 ? (
+            <div className={styles.eventsLoading}>
+              <div className={styles.loadingSpinner}></div>
+              <p>Loading events...</p>
+            </div>
+          ) : filteredEvents.length > 0 ? (
             <div className={styles.eventsGrid}>
-              {clubEvents.map((event) => (
+              {filteredEvents.map((event) => (
                 <motion.div
                   key={event.id}
                   className={styles.eventCard}
@@ -193,73 +256,126 @@ const Club: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
                   whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                    scale: 1.03,
+                    boxShadow: "0 15px 30px rgba(0,0,0,0.15)",
                   }}
                 >
-                  <h3>{event.title}</h3>
-                  <p className={styles.eventDate}>{event.date}</p>
-                  <p>{event.description}</p>
-                  <motion.button
-                    className={styles.eventButton}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Learn More
-                  </motion.button>
+                  {/* Event Image */}
+                  <div className={styles.eventImageContainer}>
+                    <img
+                      src={event.imageUrl}
+                      alt={event.title}
+                      className={styles.eventImage}
+                    />
+                    <div className={styles.eventStatusBadge}>
+                      {event.status === "upcoming" ? "Upcoming" : "Completed"}
+                    </div>
+                  </div>
+
+                  {/* Event Content */}
+                  <div className={styles.eventContent}>
+                    <h3>{event.title}</h3>
+                    
+                    {/* Event Meta */}
+                    <div className={styles.eventMeta}>
+                      <div className={styles.metaItem}>
+                        <FaCalendar className={styles.metaIcon} />
+                        <span>{new Date(event.date).toLocaleDateString('en-US', { 
+                          month: 'short', 
+                          day: 'numeric',
+                          year: 'numeric' 
+                        })}</span>
+                      </div>
+                      <div className={styles.metaItem}>
+                        <FaClock className={styles.metaIcon} />
+                        <span>{event.time}</span>
+                      </div>
+                      <div className={styles.metaItem}>
+                        <FaEye className={styles.metaIcon} />
+                        <span>{event.views} views</span>
+                      </div>
+                    </div>
+
+                    <p className={styles.eventDescription}>{event.description}</p>
+                    
+                    {/* Action Buttons */}
+                    <div className={styles.eventActions}>
+                      <Link 
+                        to={`/events/${event.id}`} 
+                        className={styles.detailsButton}
+                      >
+                        View Details
+                      </Link>
+                      {event.status === "upcoming" && (
+                        <button className={styles.registerButton}>
+                          Register Now
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
           ) : (
-            <div className={styles.noEvents}>No upcoming events scheduled</div>
+            <div className={styles.noEvents}>
+              <div className={styles.noEventsIcon}>📅</div>
+              <h3>No {selectedEventType} events found</h3>
+              <p>Check back later for new events from {club.name1} Club</p>
+              {selectedEventType === "upcoming" && (
+                <Link to="/events" className={styles.browseAllButton}>
+                  Browse All Events →
+                </Link>
+              )}
+            </div>
           )}
         </div>
       </motion.section>
 
-      {/* Members Section */}
-      {/* <motion.section 
-      <motion.section
-        className={styles.membersSection}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Our Members</h2>
-          <div className={styles.membersGrid}>
-            {club.members.map((member) => (
-              <motion.div
-                key={member.id}
-                className={styles.memberCard}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: member.id * 0.05 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className={styles.memberImageContainer}>
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className={styles.memberImage}
-                  />
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.linkedinIcon}
-                  >
-                    <FaLinkedin />
-                  </a>
-                </div>
-                <h3>{member.name}</h3>
-                <p className={styles.memberRole}>{member.role}</p>
-              </motion.div>
-            ))}
+      {/* Members Section (Optional - can be commented out) */}
+      {club.members && club.members.length > 0 && (
+        <motion.section
+          className={styles.membersSection}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className={styles.sectionContainer}>
+            <h2 className={styles.sectionTitle}>Club Leadership</h2>
+            <div className={styles.membersGrid}>
+              {club.members.slice(0, 8).map((member) => (
+                <motion.div
+                  key={member.id}
+                  className={styles.memberCard}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: member.id * 0.05 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className={styles.memberImageContainer}>
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className={styles.memberImage}
+                    />
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.linkedinIcon}
+                    >
+                      <FaLinkedin />
+                    </a>
+                  </div>
+                  <h3>{member.name}</h3>
+                  <p className={styles.memberRole}>{member.role}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </motion.section> */}
+        </motion.section>
+      )}
     </div>
   );
 };

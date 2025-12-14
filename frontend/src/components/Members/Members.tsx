@@ -58,22 +58,22 @@ const clubNameMappings: Record<string, string> = {
 };
 
 const clubNames = [
-  {name:"COMPETATIVE CLUB",logo:competative },
-  {name:"CODING CLUB",logo:coding},
-  {name:"DESIGNING CLUB",logo:dp},
-  {name:"STARTUP CLUB",logo:startup},
-  {name:"ROBOTICS CLUB",logo:robotics},
-  {name:"LECTURE SERIES CLUB",logo:ls},
-  {name:"INTERNSHIP & CARRER OPPURTUNITIES",logo:internship},
-  {name:"LINGUSTIC & PERSONAL DEVELOPMENT CLUB",logo:linquistic},
-  {name:"FINANCE CLUB",logo:Finance},
-  {name:"SPORTS & GAMES CLUB",logo:sports},
-  {name:"CULTURAL & CHOREOGRAPHY CLUB",logo:cc},
   {name:"ARTS & CRAFTS CLUB",logo:arts},
-  {name:"ELECTRONICS CLUB",logo:electronics},
+  {name:"CODING CLUB",logo:coding},
+  {name:"COMPETATIVE CLUB",logo:competative},
+  {name:"CULTURAL & CHOREOGRAPHY CLUB",logo:cc},
+  {name:"DESIGNING CLUB",logo:dp},
   {name:"ECO CLUB",logo:eco},
-  {name:"YOGA CLUB",logo:yoga},
+  {name:"ELECTRONICS CLUB",logo:electronics},
+  {name:"FINANCE CLUB",logo:Finance},
   {name:"HIGHER EDUCATION CLUB",logo:he},
+  {name:"INTERNSHIP & CARRER OPPURTUNITIES",logo:internship},
+  {name:"LECTURE SERIES CLUB",logo:ls},
+  {name:"LINGUSTIC & PERSONAL DEVELOPMENT CLUB",logo:linquistic},
+  {name:"ROBOTICS CLUB",logo:robotics},
+  {name:"SPORTS & GAMES CLUB",logo:sports},
+  {name:"STARTUP CLUB",logo:startup},
+  {name:"YOGA CLUB",logo:yoga},
 ];
 
 function Members() {
