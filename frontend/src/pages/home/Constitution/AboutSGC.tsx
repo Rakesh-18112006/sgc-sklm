@@ -7,7 +7,7 @@ const AboutSGC = () => {
       <div className={styles.gradientBg}></div>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          About our <span className={styles.highlight}>(SGC)</span> Students' Gymkhana Center
+          About our Students' Gymkhana Center
         </h1>
         
         <div className={styles.quoteCard}>

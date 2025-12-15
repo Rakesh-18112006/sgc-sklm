@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import {  FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import './Footer.css';
 import sgc from '../../assets/sgc.webp';
 
@@ -55,13 +55,21 @@ const Footer = () => {
             </div>
             <h3 className="footer-heading">Information</h3>
             <ul className="footer-links">
-              {['About Us', 'Events', 'Service', 'Privacy', 'Contact Us'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="footer-link">
-                    {item}
-                  </a>
+                <li>
+                  <a href="/eureka" className="footer-link">Eureka</a>
                 </li>
-              ))}
+                <li>
+                  <a href="/" className="footer-link">Home</a>
+                </li>
+                <li>
+                  <a href="/about" className="footer-link">About Us</a>
+                </li>
+                <li>
+                  <a href="/events" className="footer-link">Events</a>
+                </li>
+                <li>
+                  <a href="/clubs" className="footer-link">Clubs</a>
+                </li>
             </ul>
           </div>
 
@@ -105,10 +113,10 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p className="copyright">
-            Copyright © 2023-2024 Student Gymkhana Center
+            Copyright © 2025-2026 Student Gymkhana Center
           </p>
           <p className="contact-info">
-            For queries contact <a href="mailto:help@sgorguktskim.org" className="contact-link">help@sgorguktskim.org</a> | 
+            For queries contact <a href="mailto:help@sgorguktskim.org" className="contact-link">help@sgcrguktskim.org</a> | 
             Design and Maintained By SGC Web Team
           </p>
         </div>

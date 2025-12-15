@@ -340,40 +340,7 @@ const Club: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className={styles.sectionContainer}>
-            <h2 className={styles.sectionTitle}>Club Leadership</h2>
-            <div className={styles.membersGrid}>
-              {club.members.slice(0, 8).map((member) => (
-                <motion.div
-                  key={member.id}
-                  className={styles.memberCard}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: member.id * 0.05 }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className={styles.memberImageContainer}>
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className={styles.memberImage}
-                    />
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.linkedinIcon}
-                    >
-                      <FaLinkedin />
-                    </a>
-                  </div>
-                  <h3>{member.name}</h3>
-                  <p className={styles.memberRole}>{member.role}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          
         </motion.section>
       )}
     </div>

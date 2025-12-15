@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   FaFacebook,
+  FaYoutube,
   FaTwitter,
   FaInstagram,
   FaLinkedin,
@@ -14,6 +15,7 @@ import {
 import { MdNewLabel } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import "./MobileNavbar.css";
+import sgc from '../../assets/sgc.webp';
 
 const MobileNavbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -118,7 +120,7 @@ useEffect(() => {
               className="h-8 w-auto"
             />
             <img
-              src="https://sgcrguktsklm.org.in/assets/img/logo/logo1.png"
+              src={sgc}
               alt="Organization Logo"
               className="h-7 w-auto"
             />
@@ -281,17 +283,17 @@ useEffect(() => {
         <div className="nav-section">
           <div className="section-title">SOCIAL MEDIA INFO</div>
           <div className="social-icons">
-            <a href="#">
-              <FaFacebook className="icon" />
-            </a>
-            <a href="#">
+            <a href="https://x.com/sgcrguktsklm/status/1967312662385365123?t=1BsZDaNJXFv03ZteGW6srg&s=08">
               <FaTwitter className="icon" />
             </a>
-            <a href="#">
+            <a href="https://www.instagram.com/rgukt_sgc_official?igsh=MWY5dWNrM3czM2d5YQ==">
               <FaInstagram className="icon" />
             </a>
-            <a href="#">
+            <a href="https://www.linkedin.com/company/student-gymkhana-center-rajiv-gandhi-university-of-knowledge-technologies/posts/?feedView=all">
               <FaLinkedin className="icon" />
+            </a>
+            <a href="https://www.youtube.com/@StudentsGymkhanaCenter">
+                <FaYoutube className="icon"/>
             </a>
           </div>
         </div>
