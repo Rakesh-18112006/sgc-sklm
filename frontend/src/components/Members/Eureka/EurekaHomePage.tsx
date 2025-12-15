@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './EurekaHomePage.module.css';
-import { eventsData, type Event } from './events.data';
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./EurekaHomePage.module.css";
+import { eventsData } from "./events.data";
 
 const EurekaHomePage: React.FC = () => {
   // Main event poster - updated with Eureka theme
-  const mainEventPoster = "https://images.unsplash.com/photo-1492684223066-e9e3a5c6e029?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80";
+  const mainEventPoster =
+    "https://images.unsplash.com/photo-1492684223066-e9e3a5c6e029?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80";
 
   // Get first 6 events for marquee
   const marqueeEvents = eventsData.slice(0, 6);
@@ -15,14 +16,16 @@ const EurekaHomePage: React.FC = () => {
 
   // Function to extract first sentence from description for marquee
   const getShortDescription = (description: string): string => {
-    const firstSentence = description.split('.')[0];
-    return firstSentence.length > 60 ? firstSentence.substring(0, 57) + '...' : firstSentence;
+    const firstSentence = description.split(".")[0];
+    return firstSentence.length > 60
+      ? firstSentence.substring(0, 57) + "..."
+      : firstSentence;
   };
 
   // Function to format date for display (extract just the date part)
   const formatDateForDisplay = (dateString: string): string => {
     // Extract just the date part before the pipe
-    const datePart = dateString.split('|')[0].trim();
+    const datePart = dateString.split("|")[0].trim();
     return datePart;
   };
 
@@ -30,16 +33,19 @@ const EurekaHomePage: React.FC = () => {
   const eventHighlights = [
     {
       title: "Diverse Multi-Day Club Events",
-      description: "A dynamic lineup of technical, professional, cultural, and sports activities conducted by multiple SGC clubs from 26th–31st December."
+      description:
+        "A dynamic lineup of technical, professional, cultural, and sports activities conducted by multiple SGC clubs from 26th–31st December.",
     },
     {
       title: "Collaborative & Competitive Rounds",
-      description: "Well-structured multi-round events encouraging teamwork, innovation, and healthy competition across domains."
+      description:
+        "Well-structured multi-round events encouraging teamwork, innovation, and healthy competition across domains.",
     },
     {
       title: "Grand Finale – EUREKA Night",
-      description: "A vibrant cultural evening celebrating talent, achievements, and the spirit of campus unity."
-    }
+      description:
+        "A vibrant cultural evening celebrating talent, achievements, and the spirit of campus unity.",
+    },
   ];
 
   return (
@@ -47,16 +53,22 @@ const EurekaHomePage: React.FC = () => {
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroImageContainer}>
-          <img 
-            src={mainEventPoster} 
-            alt="Eureka 2025 - Innovation Festival" 
+          <img
+            src={mainEventPoster}
+            alt="Eureka 2025 - Innovation Festival"
             className={styles.heroImage}
           />
           <div className={styles.heroOverlay}>
             <h1 className={styles.heroTitle}>EUREKA 2025</h1>
-            <p className={styles.heroSubtitle}>Where Technical Brilliance Meets Cultural Rhythms</p>
-            <p className={styles.heroDate}>December 26-31, 2025 | Students Gymkhana Center, RGUKT</p>
-            <p className={styles.heroTagline}>Innovate the Mind, Celebrate the Spirit</p>
+            <p className={styles.heroSubtitle}>
+              Where Technical Brilliance Meets Cultural Rhythms
+            </p>
+            <p className={styles.heroDate}>
+              December 26-31, 2025 | Students Gymkhana Center, RGUKT
+            </p>
+            <p className={styles.heroTagline}>
+              Innovate the Mind, Celebrate the Spirit
+            </p>
           </div>
         </div>
       </section>
@@ -65,15 +77,21 @@ const EurekaHomePage: React.FC = () => {
       <section className={styles.highlightsOverviewSection}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Event Highlights</h2>
-          <p className={styles.sectionSubtitle}>Experience the best of Eureka 2025</p>
+          <p className={styles.sectionSubtitle}>
+            Experience the best of Eureka 2025
+          </p>
         </div>
-        
+
         <div className={styles.highlightsOverviewGrid}>
           {eventHighlights.map((highlight, index) => (
             <div key={index} className={styles.highlightOverviewCard}>
               <div className={styles.highlightNumberCircle}>{index + 1}</div>
-              <h3 className={styles.highlightOverviewTitle}>{highlight.title}</h3>
-              <p className={styles.highlightOverviewDescription}>{highlight.description}</p>
+              <h3 className={styles.highlightOverviewTitle}>
+                {highlight.title}
+              </h3>
+              <p className={styles.highlightOverviewDescription}>
+                {highlight.description}
+              </p>
             </div>
           ))}
         </div>
@@ -82,20 +100,24 @@ const EurekaHomePage: React.FC = () => {
       {/* Marquee Section for Sub-events */}
       <section className={styles.marqueeSection}>
         <h2 className={styles.sectionTitle}>Featured Events</h2>
-        <p className={styles.sectionSubtitle}>Scroll through our exciting 6-day lineup</p>
-        
+        <p className={styles.sectionSubtitle}>
+          Scroll through our exciting 6-day lineup
+        </p>
+
         <div className={styles.marqueeContainer}>
           <div className={styles.marquee}>
             {marqueeEvents.concat(marqueeEvents).map((event, index) => (
               <div key={`${event.id}-${index}`} className={styles.marqueeItem}>
-                <img 
-                  src={event.img} 
+                <img
+                  src={event.img}
                   alt={event.name}
                   className={styles.marqueeImage}
                 />
                 <div className={styles.marqueeOverlay}>
                   <h3 className={styles.marqueeEventName}>{event.name}</h3>
-                  <p className={styles.marqueeDescription}>{getShortDescription(event.description)}</p>
+                  <p className={styles.marqueeDescription}>
+                    {getShortDescription(event.description)}
+                  </p>
                 </div>
               </div>
             ))}
@@ -107,9 +129,11 @@ const EurekaHomePage: React.FC = () => {
       <section className={styles.clubEventsSection}>
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Eureka 2025 Event Schedule</h2>
-          <p className={styles.sectionSubtitle}>Multi-day, multi-club events from December 26-31</p>
+          <p className={styles.sectionSubtitle}>
+            Multi-day, multi-club events from December 26-31
+          </p>
         </div>
-        
+
         <div className={styles.clubEventsGrid}>
           {clubEvents.map((event) => (
             <div key={event.id} className={styles.clubEventCard}>
@@ -120,13 +144,15 @@ const EurekaHomePage: React.FC = () => {
                   </span>
                 </div>
                 <div className={styles.clubInfo}>
-                  <span className={styles.clubName}>{event.conductedClubName}</span>
+                  <span className={styles.clubName}>
+                    {event.conductedClubName}
+                  </span>
                   <h3 className={styles.eventName}>{event.name}</h3>
                 </div>
               </div>
-              
+
               <p className={styles.eventDescription}>{event.description}</p>
-              
+
               {/* Highlights */}
               <div className={styles.highlightsSection}>
                 <h4 className={styles.highlightsTitle}>Key Highlights:</h4>
@@ -139,34 +165,36 @@ const EurekaHomePage: React.FC = () => {
                   ))}
                   {event.highlights.length > 3 && (
                     <li className={styles.highlightItem}>
-                      <span className={styles.bullet}>•</span>
-                      +{event.highlights.length - 3} more highlights
+                      <span className={styles.bullet}>•</span>+
+                      {event.highlights.length - 3} more highlights
                     </li>
                   )}
                 </ul>
               </div>
-              
+
               <div className={styles.eventDetails}>
                 <div className={styles.detailItem}>
                   <span className={styles.detailIcon}>📅</span>
-                  <span className={styles.detailText}>{formatDateForDisplay(event.date)}</span>
+                  <span className={styles.detailText}>
+                    {formatDateForDisplay(event.date)}
+                  </span>
                 </div>
                 <div className={styles.detailItem}>
                   <span className={styles.detailIcon}>📍</span>
                   <span className={styles.detailText}>{event.venue}</span>
                 </div>
               </div>
-              
+
               <div className={styles.buttonGroup}>
-                <a 
-                  href={event.registrationLink} 
-                  target="_blank" 
+                <a
+                  href={event.registrationLink}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className={styles.registerButton}
                 >
                   Register Now
                 </a>
-                <Link 
+                <Link
                   to={`/event/${event.id}`}
                   className={styles.detailsButton}
                 >
@@ -182,14 +210,27 @@ const EurekaHomePage: React.FC = () => {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <h3 className={styles.footerTitle}>EUREKA 2025</h3>
-          <p className={styles.footerText}>Where Technical Brilliance Meets Cultural Rhythms | Students' Gymkhana Center</p>
+          <p className={styles.footerText}>
+            Where Technical Brilliance Meets Cultural Rhythms | Students'
+            Gymkhana Center
+          </p>
           <div className={styles.footerLinks}>
-            <a href="mailto:eureka2025@rgukt.in" className={styles.footerLink}>Contact</a>
-            <Link to="/eureka" className={styles.footerLink}>All Events</Link>
-            <a href="#" className={styles.footerLink}>Schedule</a>
-            <a href="#" className={styles.footerLink}>FAQs</a>
+            <a href="mailto:eureka2025@rgukt.in" className={styles.footerLink}>
+              Contact
+            </a>
+            <Link to="/eureka" className={styles.footerLink}>
+              All Events
+            </Link>
+            <a href="#" className={styles.footerLink}>
+              Schedule
+            </a>
+            <a href="#" className={styles.footerLink}>
+              FAQs
+            </a>
           </div>
-          <p className={styles.copyright}>© 2025 EUREKA - Students' Gymkhana Center. All rights reserved.</p>
+          <p className={styles.copyright}>
+            © 2025 EUREKA - Students' Gymkhana Center. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>

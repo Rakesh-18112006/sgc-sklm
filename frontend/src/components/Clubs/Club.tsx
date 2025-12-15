@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { FaLinkedin, FaCalendar, FaClock, FaEye } from "react-icons/fa";
+import { FaCalendar, FaClock, FaEye } from "react-icons/fa";
 import { useParams, Link } from "react-router-dom";
 import { clubsData } from "../Clubs/ClubsData";
 import axios from "axios";
@@ -30,7 +30,9 @@ const Club: React.FC = () => {
   const club = clubsData.find((e) => e.id === id);
   const [clubEvents, setClubEvents] = useState<ApiEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedEventType, setSelectedEventType] = useState<"upcoming" | "completed">("upcoming");
+  const [selectedEventType, setSelectedEventType] = useState<
+    "upcoming" | "completed"
+  >("upcoming");
   const controls = useAnimation();
 
   // Floating animations
@@ -62,7 +64,7 @@ const Club: React.FC = () => {
 
         // If no events found with clubId parameter, fetch all events and filter
         let events: ApiEvent[] = [];
-        
+
         if (response.data.success && response.data.data.length > 0) {
           events = response.data.data;
         } else {
@@ -72,18 +74,20 @@ const Club: React.FC = () => {
             data: ApiEvent[];
             total: number;
           }>("https://sgc-sklm-01.onrender.com/api/events");
-          
+
           if (allEventsResponse.data.success) {
             // Filter events by club name (case-insensitive partial match)
             const clubName = club.name1 + (club.name2 ? ` ${club.name2}` : "");
-            events = allEventsResponse.data.data.filter(event => {
+            events = allEventsResponse.data.data.filter((event) => {
               const eventClubName = event.club?.name?.toLowerCase() || "";
               const searchClubName = clubName.toLowerCase();
-              
+
               // Check for partial match or contains
-              return eventClubName.includes(searchClubName) || 
-                     searchClubName.includes(eventClubName) ||
-                     event.clubId === id;
+              return (
+                eventClubName.includes(searchClubName) ||
+                searchClubName.includes(eventClubName) ||
+                event.clubId === id
+              );
             });
           }
         }
@@ -93,16 +97,24 @@ const Club: React.FC = () => {
           ...event,
           id: event._id || event.id,
           club: {
-            name: event.club?.name || club.name1 + (club.name2 ? ` ${club.name2}` : ""),
-            icon: event.club?.icon || club.heroImage || "/default-club-icon.png",
+            name:
+              event.club?.name ||
+              club.name1 + (club.name2 ? ` ${club.name2}` : ""),
+            icon:
+              event.club?.icon || club.heroImage || "/default-club-icon.png",
             id: event.clubId || club.id,
           },
           clubId: event.clubId || club.id,
           time: event.time || "00:00",
           views: event.views || 0,
-          imageUrl: event.imageUrl || club.heroImage || "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+          imageUrl:
+            event.imageUrl ||
+            club.heroImage ||
+            "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
           status: event.status || "upcoming",
-          description: event.description || `An exciting event hosted by ${club.name1} Club`,
+          description:
+            event.description ||
+            `An exciting event hosted by ${club.name1} Club`,
         }));
 
         setClubEvents(processedEvents);
@@ -118,7 +130,9 @@ const Club: React.FC = () => {
   }, [id, club]);
 
   // Filter events by type
-  const filteredEvents = clubEvents.filter(event => event.status === selectedEventType);
+  const filteredEvents = clubEvents.filter(
+    (event) => event.status === selectedEventType
+  );
 
   if (!club) return <p className={styles.notFound}>Club not found</p>;
 
@@ -158,9 +172,9 @@ const Club: React.FC = () => {
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           />
-          
+
           {/* Club Info */}
-          <motion.div 
+          <motion.div
             className={styles.clubInfo}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -222,17 +236,21 @@ const Club: React.FC = () => {
         <div className={styles.sectionContainer}>
           <div className={styles.eventsHeader}>
             <h2 className={styles.sectionTitle}>Club Events</h2>
-            
+
             {/* Event Type Filter */}
             <div className={styles.eventTypeFilter}>
               <button
-                className={`${styles.eventTypeButton} ${selectedEventType === "upcoming" ? styles.active : ""}`}
+                className={`${styles.eventTypeButton} ${
+                  selectedEventType === "upcoming" ? styles.active : ""
+                }`}
                 onClick={() => setSelectedEventType("upcoming")}
               >
                 Upcoming Events
               </button>
               <button
-                className={`${styles.eventTypeButton} ${selectedEventType === "completed" ? styles.active : ""}`}
+                className={`${styles.eventTypeButton} ${
+                  selectedEventType === "completed" ? styles.active : ""
+                }`}
                 onClick={() => setSelectedEventType("completed")}
               >
                 Past Events
@@ -275,16 +293,18 @@ const Club: React.FC = () => {
                   {/* Event Content */}
                   <div className={styles.eventContent}>
                     <h3>{event.title}</h3>
-                    
+
                     {/* Event Meta */}
                     <div className={styles.eventMeta}>
                       <div className={styles.metaItem}>
                         <FaCalendar className={styles.metaIcon} />
-                        <span>{new Date(event.date).toLocaleDateString('en-US', { 
-                          month: 'short', 
-                          day: 'numeric',
-                          year: 'numeric' 
-                        })}</span>
+                        <span>
+                          {new Date(event.date).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </span>
                       </div>
                       <div className={styles.metaItem}>
                         <FaClock className={styles.metaIcon} />
@@ -296,12 +316,14 @@ const Club: React.FC = () => {
                       </div>
                     </div>
 
-                    <p className={styles.eventDescription}>{event.description}</p>
-                    
+                    <p className={styles.eventDescription}>
+                      {event.description}
+                    </p>
+
                     {/* Action Buttons */}
                     <div className={styles.eventActions}>
-                      <Link 
-                        to={`/events/${event.id}`} 
+                      <Link
+                        to={`/events/${event.id}`}
                         className={styles.detailsButton}
                       >
                         View Details
@@ -339,9 +361,7 @@ const Club: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-        >
-          
-        </motion.section>
+        ></motion.section>
       )}
     </div>
   );

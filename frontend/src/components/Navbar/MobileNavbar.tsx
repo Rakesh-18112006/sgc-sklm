@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  FaFacebook,
   FaYoutube,
   FaTwitter,
   FaInstagram,
@@ -12,10 +11,9 @@ import {
   FaUserTie,
   FaFileAlt,
 } from "react-icons/fa";
-import { MdNewLabel } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import "./MobileNavbar.css";
-import sgc from '../../assets/sgc.webp';
+import sgc from "../../assets/sgc.webp";
 
 const MobileNavbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,24 +53,26 @@ const MobileNavbar: React.FC = () => {
       Fetch marquee messages from backend
      --------------------------------------------------- */
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const res = await fetch("https://sgc-sklm-01.onrender.com/api/marquee/all");
-      const data = await res.json();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          "https://sgc-sklm-01.onrender.com/api/marquee/all"
+        );
+        const data = await res.json();
 
-      if (Array.isArray(data.marquee)) {
-        setMessages(data.marquee.map((item: any) => item.message));
-      } else {
-        console.error("Invalid API response:", data);
+        if (Array.isArray(data.marquee)) {
+          setMessages(data.marquee.map((item: any) => item.message));
+        } else {
+          console.error("Invalid API response:", data);
+        }
+      } catch (err) {
+        console.error("Error loading marquee:", err);
       }
-    } catch (err) {
-      console.error("Error loading marquee:", err);
-    }
-  };
+    };
 
-  fetchData();
-}, []);
+    fetchData();
+  }, []);
 
   // Handle scroll to show/hide ticker
   useEffect(() => {
@@ -84,7 +84,7 @@ useEffect(() => {
 
       if (scrollTop > lastScrollTop.current) {
         // Scrolling down
-        if (scrollTop > headerHeight){
+        if (scrollTop > headerHeight) {
           setIsTickerVisible(false);
         }
       } else {
@@ -119,11 +119,7 @@ useEffect(() => {
               alt="College Logo"
               className="h-8 w-auto"
             />
-            <img
-              src={sgc}
-              alt="Organization Logo"
-              className="h-7 w-auto"
-            />
+            <img src={sgc} alt="Organization Logo" className="h-7 w-auto" />
           </div>
         </div>
 
@@ -140,7 +136,6 @@ useEffect(() => {
           !isTickerVisible ? "hide-ticker" : ""
         }`}
       >
-        
         <div className="ticker-content">
           <span className="font-semibold">Latest Updates: </span>
 
@@ -293,7 +288,7 @@ useEffect(() => {
               <FaLinkedin className="icon" />
             </a>
             <a href="https://www.youtube.com/@StudentsGymkhanaCenter">
-                <FaYoutube className="icon"/>
+              <FaYoutube className="icon" />
             </a>
           </div>
         </div>

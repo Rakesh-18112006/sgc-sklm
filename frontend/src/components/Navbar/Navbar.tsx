@@ -1,52 +1,51 @@
-
-import { useState, useEffect } from 'react';
-import { 
-  FaHome, 
-  FaGraduationCap, 
-  FaInfoCircle, 
-  FaNewspaper, 
-  FaEnvelope, 
-  FaBars, 
-  FaTimes, 
-  FaChevronDown, 
-  FaChalkboardTeacher, 
-  
-} from 'react-icons/fa';
-import { MdNewLabel } from 'react-icons/md';
-import './Navbar.css';
-import sgc from '../../assets/sgc.webp'
-import { icons } from 'lucide-react';
+import { useState, useEffect } from "react";
+import {
+  FaHome,
+  FaGraduationCap,
+  FaInfoCircle,
+  FaNewspaper,
+  FaEnvelope,
+  FaBars,
+  FaTimes,
+  FaChevronDown,
+  FaChalkboardTeacher,
+} from "react-icons/fa";
+import { MdNewLabel } from "react-icons/md";
+import "./Navbar.css";
+import sgc from "../../assets/sgc.webp";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-   const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<string[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const toggleDropdown = (dropdown : any ) => {
+  const toggleDropdown = (dropdown: any) => {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   };
   /*  ---------------------------------------------------
         Fetch marquee messages from backend
        --------------------------------------------------- */
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://sgc-sklm-01.onrender.com/api/marquee/all");
+        const res = await fetch(
+          "https://sgc-sklm-01.onrender.com/api/marquee/all"
+        );
         const data = await res.json();
 
         if (Array.isArray(data.marquee)) {
@@ -62,34 +61,47 @@ const Navbar = () => {
     fetchData();
   }, []);
 
-  
-
   const navLinks = [
-    { name: 'Home', icon: <FaHome />, path: '/', dropdown: null },
-    { 
-        name: 'Advisory & Executive Board',
-        icon: <FaChalkboardTeacher />,
-        path: '#',
-        dropdown: [
-          { name: 'Advisory Board', icon: <FaGraduationCap />, path: '/advisory-board' },
-          { name: 'Executive Board', icon: <FaGraduationCap />, path: '/executive-board' },
-          { name: 'Members', icon: <FaGraduationCap />, path: '/members' },
-          { name: 'Web Team', icon: <FaGraduationCap />, path: '/web-team' },
-        ]
-
+    { name: "Home", icon: <FaHome />, path: "/", dropdown: null },
+    {
+      name: "Advisory & Executive Board",
+      icon: <FaChalkboardTeacher />,
+      path: "#",
+      dropdown: [
+        {
+          name: "Advisory Board",
+          icon: <FaGraduationCap />,
+          path: "/advisory-board",
+        },
+        {
+          name: "Executive Board",
+          icon: <FaGraduationCap />,
+          path: "/executive-board",
+        },
+        { name: "Members", icon: <FaGraduationCap />, path: "/members" },
+        { name: "Web Team", icon: <FaGraduationCap />, path: "/web-team" },
+      ],
     },
-    { name: 'About', icon: <FaInfoCircle />, path: '/about', dropdown: null },
-    {name:'Eureka',icon:<MdNewLabel />,path:'/eureka',dropdown:null},
-    { name: 'News & Events', icon: <FaNewspaper />, path: '/events', dropdown: null },
-      { name: 'Clubs', icon: <FaEnvelope />, path: '/clubs', dropdown: null },
-      
-      {
-        name: 'Reports', icon : <FaNewspaper /> , path: '#', dropdown: [
-              { name: 'AY 2022-23', icon: null, path: '#' },
-              { name: 'AY 2023-24', icon: null, path: '#' },
-              { name: 'AY 2024-25', icon: null, path: '#' }
-        ]
-      }
+    { name: "About", icon: <FaInfoCircle />, path: "/about", dropdown: null },
+    { name: "Eureka", icon: <MdNewLabel />, path: "/eureka", dropdown: null },
+    {
+      name: "News & Events",
+      icon: <FaNewspaper />,
+      path: "/events",
+      dropdown: null,
+    },
+    { name: "Clubs", icon: <FaEnvelope />, path: "/clubs", dropdown: null },
+
+    {
+      name: "Reports",
+      icon: <FaNewspaper />,
+      path: "#",
+      dropdown: [
+        { name: "AY 2022-23", icon: null, path: "#" },
+        { name: "AY 2023-24", icon: null, path: "#" },
+        { name: "AY 2024-25", icon: null, path: "#" },
+      ],
+    },
   ];
 
   return (
@@ -103,11 +115,7 @@ const Navbar = () => {
               alt="College Logo"
               className="college-logo"
             />
-           <img 
-               src={sgc} 
-                alt="Organization Logo"
-                className="h-7 w-auto" 
-            />
+            <img src={sgc} alt="Organization Logo" className="h-7 w-auto" />
             <h1 className="heading">Student Gymnastic Center</h1>
           </div>
 
