@@ -26,7 +26,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/ShSg6dFWVgmEUd5d8',
     venue: 'SGC Auditorium',
-    date: 'December 26, 2024 | 5:30 PM - 8:30 PM',
+    date: 'December 26, 2025 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Finance Club & Lecture Series Club'
   },
   {
@@ -42,7 +42,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/75TYyqEYcaqAnNES8',
     venue: 'Seminar Hall 1 & Campus-wide',
-    date: 'December 27, 2024 | 6:00 PM - 7:00 PM (Round 1) | December 28, 2024 | 2:30 PM - 5:00 PM (Round 2)',
+    date: 'December 27, 2025 | 6:00 PM - 7:00 PM (Round 1) | December 28, 2025 | 2:30 PM - 5:00 PM (Round 2)',
     conductedClubName: 'Linguistic & Personality Development Club'
   },
   {
@@ -58,7 +58,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/Bz6a7dgjPjtwVE3c7',
     venue: 'Campus-wide Stations',
-    date: 'December 27, 2024 | 5:30 PM - 8:30 PM',
+    date: 'December 27, 2025 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Eco Club'
   },
   {
@@ -74,7 +74,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/LHzDUA4GPPNZeGLa8',
     venue: 'Innovation Center',
-    date: 'December 28, 2024 | Round 1: 9:30 AM - 11:30 AM | Round 2: 2:30 PM - 5:00 PM',
+    date: 'December 28, 2025 | Round 1: 9:30 AM - 11:30 AM | Round 2: 2:30 PM - 5:00 PM',
     conductedClubName: 'Internship, Startup & Research Clubs'
   },
   {
@@ -90,7 +90,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/8MgTD4i1vhhWq9pj9',
     venue: 'Academic Block',
-    date: 'December 28, 2024 | Round 1: 11:30 AM - 1:00 PM | Round 2: 2:30 PM - 5:00 PM',
+    date: 'December 28, 2025 | Round 1: 11:30 AM - 1:00 PM | Round 2: 2:30 PM - 5:00 PM',
     conductedClubName: 'Competitive Club & Higher Education Clubs'
   },
   {
@@ -106,7 +106,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/ZgN2ZRphivFVzvfx5',
     venue: 'Engineering Block',
-    date: 'December 29, 2024 | 5:30 PM - 8:30 PM',
+    date: 'December 29, 2025 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Electronics Club & Robotics Club'
   },
   {
@@ -122,7 +122,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/6X37Wf6dUGfzyxex6',
     venue: 'Computer Center',
-    date: 'December 29, 2024 | 5:30 PM - 8:30 PM',
+    date: 'December 29, 2025 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Coding Club'
   },
   {
@@ -138,7 +138,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/ckEEL3DtPmZn3uVN6',
     venue: 'Sports Complex',
-    date: 'December 30, 2024 | 5:30 PM - 8:30 PM',
+    date: 'December 30, 2025 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Sports Club'
   },
   {
@@ -154,7 +154,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1542744095-68b6a2c5cd3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdS71avanOYq_AvBT7WI7N1IRUAXzVP7Y3q8bn5m4xccnGlGg/viewform?usp=publish-editor',
     venue: 'Main Campus Ground',
-    date: 'December 31, 2024 | 6:00 AM - 9:00 AM',
+    date: 'December 31, 2025 | 6:00 AM - 9:00 AM',
     conductedClubName: 'Cultural Club'
   },
   {
@@ -171,7 +171,7 @@ export const eventsData: Event[] = [
     img: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
     registrationLink: 'https://forms.gle/FcZyTTyuHclkRTxp9',
     venue: 'Open Air Theater',
-    date: 'December 31, 2024 | 6:00 PM - 12:00 Midnight',
+    date: 'December 31, 2025 | 6:00 PM - 12:00 Midnight',
     conductedClubName: 'Cultural & Choreography Club'
   }
 ];
