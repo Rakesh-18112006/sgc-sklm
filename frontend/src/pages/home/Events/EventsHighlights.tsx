@@ -366,15 +366,6 @@ const EventsHighlights = () => {
           <div className={styles.headerStats}>
             <div className={styles.stat}>
               <div className={styles.statIcon}>
-                <Calendar size={20} />
-              </div>
-              <div className={styles.statContent}>
-                <span className={styles.statNumber}>{recentEvents.length + trendingEvents.length}</span>
-                <span className={styles.statLabel}>Total Events</span>
-              </div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statIcon}>
                 <TrendingUp size={20} />
               </div>
               <div className={styles.statContent}>

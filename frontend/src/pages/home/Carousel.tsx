@@ -58,7 +58,7 @@ const Carousel: React.FC<CarouselProps> = ({ slides, autoPlay = true, interval =
               >
                 {slide.title}
               </h2>
-              <p 
+              {/* <p 
                 className={`${styles.subtitle} ${currentSlide === index ? styles.animateIn : ''}`}
                 style={{ animationDelay: '0.3s' }}
               >
@@ -70,7 +70,7 @@ const Carousel: React.FC<CarouselProps> = ({ slides, autoPlay = true, interval =
                 style={{ animationDelay: '0.6s' }}
               >
                 {slide.ctaText}
-              </a>
+              </a> */}
             </div>
           </div>
         ))}
