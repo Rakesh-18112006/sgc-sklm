@@ -233,7 +233,7 @@ const EventsHighlights = () => {
         setLoading(true);
         setError(null);
         
-        const response = await axios.get("http://localhost:5000/api/events");
+        const response = await axios.get("https://sgc-sklm-01.onrender.com/api/events");
         
         if (response.data.success) {
           const events: Event[] = response.data.data;

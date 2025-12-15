@@ -60,7 +60,7 @@ const AdminEditEventForm: React.FC = () => {
           success: boolean;
           data: Event[];
           total: number;
-        }>("http://localhost:5000/api/events");
+        }>("https://sgc-sklm-01.onrender.com/api/events");
         const eventData = res.data.data || [];
         setEvents(eventData);
         setFilteredEvents(eventData);
@@ -114,7 +114,7 @@ const AdminEditEventForm: React.FC = () => {
     try {
       setSubmitting(true);
 
-      await axios.put(`http://localhost:5000/api/events/${selectedEventId}`, {
+      await axios.put(`https://sgc-sklm-01.onrender.com/api/events/${selectedEventId}`, {
         summary,
         status,
         registrationLink,

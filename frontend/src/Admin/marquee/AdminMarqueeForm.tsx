@@ -17,11 +17,11 @@ export default function AdminMarqueeForm() {
 
     try {
       console.log(
-        "Sending POST request to: http://localhost:5000/api/marquee/add"
+        "Sending POST request to: https://sgc-sklm-01.onrender.com/api/marquee/add"
       );
       console.log("Payload:", { message });
 
-      const res = await axios.post("http://localhost:5000/api/marquee/add", {
+      const res = await axios.post("https://sgc-sklm-01.onrender.com/api/marquee/add", {
         message,
       });
 

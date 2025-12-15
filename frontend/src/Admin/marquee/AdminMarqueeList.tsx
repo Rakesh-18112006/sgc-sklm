@@ -15,7 +15,7 @@ export default function AdminMarqueeList() {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/marquee/all");
+      const res = await axios.get("https://sgc-sklm-01.onrender.com/api/marquee/all");
       setMessages(res.data.marquee || []);
     } catch (error) {
       console.error(error);
@@ -25,7 +25,7 @@ export default function AdminMarqueeList() {
 
   const deleteMessage = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this message?")) {
-      await axios.delete(`http://localhost:5000/api/marquee/delete/${id}`);
+      await axios.delete(`https://sgc-sklm-01.onrender.com/api/marquee/delete/${id}`);
       fetchMessages();
     }
   };

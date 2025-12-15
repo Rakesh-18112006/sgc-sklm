@@ -58,7 +58,7 @@ const MobileNavbar: React.FC = () => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/marquee/all");
+      const res = await fetch("https://sgc-sklm-01.onrender.com/api/marquee/all");
       const data = await res.json();
 
       if (Array.isArray(data.marquee)) {

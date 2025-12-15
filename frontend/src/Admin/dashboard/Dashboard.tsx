@@ -118,7 +118,7 @@ const Dashboard = () => {
         setLoading(true);
         setError(null);
         
-        const response = await axios.get("http://localhost:5000/api/events");
+        const response = await axios.get("https://sgc-sklm-01.onrender.com/api/events");
         
         if (response.data.success) {
           const events: Event[] = response.data.data;
@@ -712,7 +712,7 @@ const Dashboard = () => {
             </span>
             <span className={styles.dataStatusItem}>
               <ExternalLink size={14} />
-              Connected to: localhost:5000
+              Connected to: SGC
             </span>
           </div>
         </div>

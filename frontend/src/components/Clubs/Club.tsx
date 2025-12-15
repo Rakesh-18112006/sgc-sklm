@@ -58,7 +58,7 @@ const Club: React.FC = () => {
           success: boolean;
           data: ApiEvent[];
           total: number;
-        }>(`http://localhost:5000/api/events?clubId=${id}`);
+        }>(`https://sgc-sklm-01.onrender.com/api/events?clubId=${id}`);
 
         // If no events found with clubId parameter, fetch all events and filter
         let events: ApiEvent[] = [];
@@ -71,7 +71,7 @@ const Club: React.FC = () => {
             success: boolean;
             data: ApiEvent[];
             total: number;
-          }>("http://localhost:5000/api/events");
+          }>("https://sgc-sklm-01.onrender.com/api/events");
           
           if (allEventsResponse.data.success) {
             // Filter events by club name (case-insensitive partial match)
