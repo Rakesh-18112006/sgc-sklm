@@ -47,7 +47,7 @@ const EventsNews: React.FC = () => {
           success: boolean;
           data: any[];
           total: number;
-        }>("http://localhost:5000/api/events");
+        }>("https://sgc-sklm-01.onrender.com/api/events");
 
         if (!response.data.success) {
           setEvents([]);

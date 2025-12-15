@@ -17,7 +17,7 @@ const EventDetail: React.FC = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/events/${id}`);
+        const res = await axios.get(`https://sgc-sklm-01.onrender.com/api/events/${id}`);
         setEvent(res.data);
         setLoading(false);
       } catch (error) {

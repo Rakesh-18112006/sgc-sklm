@@ -1,6 +1,6 @@
 import competative from "../../assets/clubimgs/competative.webp"
 import coding from "../../assets/clubimgs/coding.webp"
-import dp from "../../assets/clubimgs//photography.webp"
+import dp from "../../assets/clubimgs/photography.webp"
 import startup from "../../assets/clubimgs/startup.webp"
 import robotics from "../../assets/clubimgs/robotics.webp"
 import ls from "../../assets/clubimgs/ls.webp"
@@ -11,9 +11,9 @@ import sports from "../../assets/clubimgs/sports.webp"
 import cc from "../../assets/clubimgs/cc.webp"
 import arts from "../../assets/clubimgs/cc.webp"
 import electronics from "../../assets/clubimgs/electronics.webp"
-import eco from "../../assets/clubimgs/competative.webp"
-import yoga from "../../assets/clubimgs/competative.webp"
-import he from "../../assets/clubimgs/competative.webp"
+import eco from "../../assets/clubimgs/eco.webp"
+import yoga from "../../assets/clubimgs/yoga.webp"
+import he from "../../assets/clubimgs/hoe.webp"
 
 import competativeBg from "../../assets/clubBgimgs/competativeBg.webp"
 import codingBg from "../../assets/clubBgimgs/codingBg.webp"
@@ -573,7 +573,7 @@ export const clubsData: ClubType[] = [
       "The Tech Innovators Club is a vibrant community of technology enthusiasts dedicated to exploring cutting-edge innovations, sharing knowledge, and building meaningful connections.",
       "Our mission is to create a platform where students can develop technical skills, work on real-world projects, and connect with industry professionals.",
     ],
-    heroImage: yogaBg,
+    heroImage: yoga,
     backgroundImage: yogaBg,
     events: [
       {
