@@ -15,8 +15,8 @@ export default function AdminMarqueeList() {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/marquee");
-      setMessages(res.data);
+      const res = await axios.get("http://localhost:5000/api/marquee/all");
+      setMessages(res.data.marquee || []);
     } catch (error) {
       console.error(error);
     }
@@ -25,7 +25,7 @@ export default function AdminMarqueeList() {
 
   const deleteMessage = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this message?")) {
-      await axios.delete(`http://localhost:5000/api/marquee/${id}`);
+      await axios.delete(`http://localhost:5000/api/marquee/delete/${id}`);
       fetchMessages();
     }
   };
@@ -47,10 +47,7 @@ export default function AdminMarqueeList() {
       ) : (
         <div className={styles.messageList}>
           {messages.map((msg) => (
-            <div
-              key={msg._id}
-              className={styles.messageItem}
-            >
+            <div key={msg._id} className={styles.messageItem}>
               <span className={styles.messageText}>{msg.message}</span>
               <button
                 onClick={() => deleteMessage(msg._id)}

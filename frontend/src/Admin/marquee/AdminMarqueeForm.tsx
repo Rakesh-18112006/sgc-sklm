@@ -16,34 +16,42 @@ export default function AdminMarqueeForm() {
     setSuccess("");
 
     try {
-      console.log("Sending POST request to: http://localhost:5000/api/marquee");
+      console.log(
+        "Sending POST request to: http://localhost:5000/api/marquee/add"
+      );
       console.log("Payload:", { message });
-      
-      const res = await axios.post("http://localhost:5000/api/marquee", {
+
+      const res = await axios.post("http://localhost:5000/api/marquee/add", {
         message,
       });
-      
+
       console.log("Response:", res.data);
       console.log("Status:", res.status);
-      
+
       setSuccess("🎉 Marquee message added successfully!");
       setMessage("");
-      
+
       // Refresh the list automatically after successful submission
       // You might want to use a callback or context for this in production
-      window.dispatchEvent(new Event('messageAdded'));
+      window.dispatchEvent(new Event("messageAdded"));
     } catch (err: any) {
       console.error("Error adding message:", err);
-      
+
       if (err.response) {
         // Server responded with error status
         console.error("Response data:", err.response.data);
         console.error("Response status:", err.response.status);
-        setError(`❌ Failed to add message: ${err.response.data.message || err.response.statusText}`);
+        setError(
+          `❌ Failed to add message: ${
+            err.response.data.message || err.response.statusText
+          }`
+        );
       } else if (err.request) {
         // Request was made but no response received
         console.error("No response received:", err.request);
-        setError("❌ No response from server. Please check if backend is running.");
+        setError(
+          "❌ No response from server. Please check if backend is running."
+        );
       } else {
         // Something else happened
         console.error("Error:", err.message);
