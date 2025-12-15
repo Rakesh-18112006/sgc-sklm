@@ -17,7 +17,9 @@ const EventDetail: React.FC = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await axios.get(`https://sgc-sklm-01.onrender.com/api/events/${id}`);
+        const res = await axios.get(
+          `https://sgc-sklm-01.onrender.com/api/events/${id}`
+        );
         setEvent(res.data);
         setLoading(false);
       } catch (error) {
@@ -39,26 +41,28 @@ const EventDetail: React.FC = () => {
       // If registration link exists, redirect to it
       if (event?.registrationLink) {
         window.open(event.registrationLink, "_blank", "noopener,noreferrer");
-        
+
         // Also increment interested count in backend
         try {
           await axios.patch(
-            `http://localhost:5000/api/events/${id}/interested`,
+            `https://sgc-sklm-01.onrender.com/api/events/${id}/interested`,
             {
               studentId: localStorage.getItem("studentId") || "",
             }
           );
         } catch (error) {
           // Silently fail for interested count if it fails
-          console.log("Failed to update interest count, but registration successful");
+          console.log(
+            "Failed to update interest count, but registration successful"
+          );
         }
-        
+
         setRegisterMsg("Redirecting to registration form...");
         setHasRegistered(true);
       } else {
         // Fallback to old interested API (if no registration link)
         const response = await axios.patch(
-          `http://localhost:5000/api/events/${id}/interested`,
+          `https://sgc-sklm-01.onrender.com/api/events/${id}/interested`,
           {
             studentId: localStorage.getItem("studentId") || "",
           }
@@ -112,11 +116,11 @@ const EventDetail: React.FC = () => {
     if (hasRegistered) {
       return event.registrationLink ? "Registered ✅" : "Interested ✅";
     }
-    
+
     if (isRegistering) {
       return "Processing...";
     }
-    
+
     return event.registrationLink ? "Register Now" : "Show Interest";
   };
 
@@ -145,9 +149,9 @@ const EventDetail: React.FC = () => {
         >
           <h1 className={styles.heroTitle}>{event.title}</h1>
           <p className={styles.heroSubtitle}>
-            {event.status === "upcoming" 
-              ? event.registrationLink 
-                ? "Register now to secure your spot!" 
+            {event.status === "upcoming"
+              ? event.registrationLink
+                ? "Register now to secure your spot!"
                 : "Show your interest to participate!"
               : "Event has been completed"}
           </p>
@@ -201,15 +205,15 @@ const EventDetail: React.FC = () => {
                 like-minded individuals who share a passion for innovation and
                 creativity.
               </p>
-              
+
               {event.registrationLink && (
                 <div className={styles.registrationLinkInfo}>
                   <h3>Registration Details</h3>
                   <p>
                     <strong>Registration Link:</strong>{" "}
-                    <a 
-                      href={event.registrationLink} 
-                      target="_blank" 
+                    <a
+                      href={event.registrationLink}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className={styles.registrationLink}
                     >
@@ -218,7 +222,8 @@ const EventDetail: React.FC = () => {
                     </a>
                   </p>
                   <p className={styles.registrationNote}>
-                    Click the Register button in the sidebar to access the registration form.
+                    Click the Register button in the sidebar to access the
+                    registration form.
                   </p>
                 </div>
               )}
@@ -328,7 +333,9 @@ const EventDetail: React.FC = () => {
                   <span className={styles.metaIcon}>👥</span>
                   <div>
                     <p className={styles.metaLabel}>Interested</p>
-                    <p className={styles.metaValue}>{event.interestedCount} people</p>
+                    <p className={styles.metaValue}>
+                      {event.interestedCount} people
+                    </p>
                   </div>
                 </div>
 
@@ -353,7 +360,7 @@ const EventDetail: React.FC = () => {
                     {event.registrationLink ? "Register Now" : "Show Interest"}
                   </h3>
                   <p>{getRegistrationSubtitle()}</p>
-                  
+
                   <motion.button
                     className={styles.registerButton}
                     whileHover={{ scale: 1.05 }}
@@ -363,26 +370,33 @@ const EventDetail: React.FC = () => {
                   >
                     <div className={styles.buttonContent}>
                       {getRegistrationButtonText()}
-                      {event.registrationLink && !hasRegistered && !isRegistering && (
-                        <ExternalLink size={18} className={styles.buttonIcon} />
-                      )}
+                      {event.registrationLink &&
+                        !hasRegistered &&
+                        !isRegistering && (
+                          <ExternalLink
+                            size={18}
+                            className={styles.buttonIcon}
+                          />
+                        )}
                     </div>
                   </motion.button>
-                  
+
                   {registerMsg && (
                     <p className={styles.registerMsg}>{registerMsg}</p>
                   )}
-                  
+
                   {event.registrationLink && !hasRegistered && (
                     <p className={styles.registrationHint}>
                       You will be redirected to the registration form
                     </p>
                   )}
-                  
+
                   {!event.registrationLink && (
                     <div className={styles.interestedCountDisplay}>
                       <Users size={16} />
-                      <span>Currently {event.interestedCount} people interested</span>
+                      <span>
+                        Currently {event.interestedCount} people interested
+                      </span>
                     </div>
                   )}
                 </motion.div>
