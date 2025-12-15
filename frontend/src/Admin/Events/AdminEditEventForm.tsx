@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { toast } from "sonner";
 import {
   Search,
@@ -114,11 +114,14 @@ const AdminEditEventForm: React.FC = () => {
     try {
       setSubmitting(true);
 
-      await axios.put(`https://sgc-sklm-01.onrender.com/api/events/${selectedEventId}`, {
-        summary,
-        status,
-        registrationLink,
-      });
+      await axios.put(
+        `https://sgc-sklm-01.onrender.com/api/events/${selectedEventId}`,
+        {
+          summary,
+          status,
+          registrationLink,
+        }
+      );
 
       toast.success("Event updated successfully!", {
         description: "Event details have been updated in the system.",
@@ -128,7 +131,9 @@ const AdminEditEventForm: React.FC = () => {
       // Update local state
       setEvents((prev) =>
         prev.map((ev) =>
-          ev._id === selectedEventId ? { ...ev, summary, status, registrationLink } : ev
+          ev._id === selectedEventId
+            ? { ...ev, summary, status, registrationLink }
+            : ev
         )
       );
     } catch (err) {
@@ -204,7 +209,8 @@ const AdminEditEventForm: React.FC = () => {
               <h2 className="admin-edit-section-title">Update Event Details</h2>
             </div>
             <p className="admin-edit-section-description">
-              Search and select events to update their summary, status, and registration link
+              Search and select events to update their summary, status, and
+              registration link
             </p>
           </div>
         </div>
