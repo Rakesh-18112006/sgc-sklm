@@ -528,3 +528,84 @@
     transform: none;
   }
 }
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.buttonIcon {
+  margin-left: 4px;
+}
+
+.interestedCountDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.registrationLinkInfo {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(129, 140, 248, 0.1);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.registrationLinkInfo h3 {
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.registrationLink {
+  color: var(--accent-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  word-break: break-all;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+.registrationLink:hover {
+  background: rgba(129, 140, 248, 0.1);
+  text-decoration: underline;
+}
+
+.registrationNote {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.registerMsg {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.registrationHint {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5rem;
+  font-style: italic;
+  text-align: center;
+}

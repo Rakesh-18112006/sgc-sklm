@@ -13,10 +13,12 @@ export interface IEvent extends Document {
   views: number;
   imageUrl: string;
   club: Club;
-  interestedCount: number; // how many students clicked interested
-  summary?: string; // event summary after completion
-  status: "upcoming" | "completed"; // event stage
-  
+  interestedCount: number;
+  summary?: string;
+  status: "upcoming" | "completed";
+  registrationLink?: string; // ADDED: Registration form link
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const ClubSchema = new Schema<Club>({
@@ -27,7 +29,7 @@ const ClubSchema = new Schema<Club>({
 const EventSchema = new Schema<IEvent>(
   {
     title: { type: String, required: true },
-    description: { type: String },
+    description: { type: String, required: true },
     date: { type: String, required: true },
     time: { type: String, required: true },
     views: { type: Number, default: 0 },
@@ -40,6 +42,7 @@ const EventSchema = new Schema<IEvent>(
       enum: ["upcoming", "completed"],
       default: "upcoming",
     },
+    registrationLink: { type: String }, // ADDED: Registration form link
   },
   { timestamps: true }
 );

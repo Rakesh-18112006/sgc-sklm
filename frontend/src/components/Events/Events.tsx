@@ -15,6 +15,7 @@ type ApiEvent = EventCardEvent & {
   clubId: string;
   club: ClubData;
   status: "upcoming" | "completed";
+  registrationLink?: string;
 };
 
 const getDefaultClub = (): ClubData => ({
@@ -32,13 +33,16 @@ const EventsNews: React.FC = () => {
     "upcoming"
   );
   const [isLoading, setIsLoading] = useState(true);
-  const [clubs, setClubs] = useState<ClubData[]>([]); // dynamic club filter
+  const [clubs, setClubs] = useState<ClubData[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const eventsPerPage = 6;
 
-  // Fetch events once
   useEffect(() => {
     const fetchEvents = async () => {
       try {
+        setIsLoading(true);
+        setError(null);
+        
         const response = await axios.get<{
           success: boolean;
           data: any[];
@@ -48,6 +52,7 @@ const EventsNews: React.FC = () => {
         if (!response.data.success) {
           setEvents([]);
           setClubs([]);
+          setError("Failed to load events");
           return;
         }
 
@@ -56,37 +61,45 @@ const EventsNews: React.FC = () => {
             ? {
                 name: event.club.name || "Unknown Club",
                 icon: event.club.icon || "/default-club-icon.png",
-                id: event.club._id || "unknown",
+                id: event.club._id || event.club.name || "unknown",
               }
             : getDefaultClub();
 
           return {
             ...event,
             _id: event._id || "",
+            title: event.title || "Untitled Event",
+            description: event.description || "",
+            date: event.date || new Date().toISOString(),
             time: event.time || "00:00",
             views: event.views || 0,
             imageUrl: event.imageUrl || "",
             club: clubData,
             clubId: clubData.id,
             status: event.status || "upcoming",
+            registrationLink: event.registrationLink || "",
+            interestedCount: event.interestedCount || 0,
+            summary: event.summary || "",
           };
         });
 
         setEvents(processedEvents);
+        setFilteredEvents(processedEvents);
 
-        // Generate unique clubs from events dynamically
+        // Extract unique clubs
         const uniqueClubsMap: { [key: string]: ClubData } = {};
         processedEvents.forEach((e) => {
-          if (!uniqueClubsMap[e.clubId]) {
+          if (e.club && !uniqueClubsMap[e.clubId]) {
             uniqueClubsMap[e.clubId] = e.club;
           }
         });
 
         setClubs(Object.values(uniqueClubsMap));
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching events:", error);
         setEvents([]);
         setClubs([]);
+        setError(error.response?.data?.error || "Failed to load events. Please try again.");
       } finally {
         setIsLoading(false);
       }
@@ -95,7 +108,6 @@ const EventsNews: React.FC = () => {
     fetchEvents();
   }, []);
 
-  // Filter events by club and status
   useEffect(() => {
     let filtered = events;
 
@@ -109,7 +121,6 @@ const EventsNews: React.FC = () => {
     setCurrentPage(1);
   }, [events, selectedClub, eventType]);
 
-  // Pagination
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
   const currentEvents = filteredEvents.slice(
@@ -127,6 +138,25 @@ const EventsNews: React.FC = () => {
       <div className={styles.loadingContainer}>
         <div className={styles.spinner}></div>
         <p>Loading exciting events...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.noEvents}>
+          <div className={styles.noEventsIcon}>⚠️</div>
+          <h3>Error Loading Events</h3>
+          <p>{error}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className={styles.eventTypeButton}
+            style={{ marginTop: '1rem' }}
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
@@ -196,7 +226,11 @@ const EventsNews: React.FC = () => {
           <div className={styles.noEvents}>
             <div className={styles.noEventsIcon}>📅</div>
             <h3>No events found</h3>
-            <p>Check back later or try a different filter</p>
+            <p>
+              {selectedClub !== "all" || eventType 
+                ? "Try changing your filters" 
+                : "Check back later for new events"}
+            </p>
           </div>
         )}
       </div>

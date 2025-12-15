@@ -16,6 +16,8 @@ import {
   Clock,
   AlertCircle,
   BarChart,
+  Link as LinkIcon,
+  ExternalLink,
 } from "lucide-react";
 import "./AdminEditEventForm.css";
 
@@ -36,6 +38,7 @@ interface Event {
   interestedCount: number;
   summary?: string;
   status: "upcoming" | "completed";
+  registrationLink?: string;
 }
 
 const AdminEditEventForm: React.FC = () => {
@@ -44,6 +47,7 @@ const AdminEditEventForm: React.FC = () => {
   const [selectedEventId, setSelectedEventId] = useState<string>("");
   const [summary, setSummary] = useState<string>("");
   const [status, setStatus] = useState<"upcoming" | "completed">("upcoming");
+  const [registrationLink, setRegistrationLink] = useState<string>("");
   const [submitting, setSubmitting] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -96,6 +100,7 @@ const AdminEditEventForm: React.FC = () => {
     if (event) {
       setSummary(event.summary || "");
       setStatus(event.status);
+      setRegistrationLink(event.registrationLink || "");
     }
   }, [selectedEventId, events]);
 
@@ -112,6 +117,7 @@ const AdminEditEventForm: React.FC = () => {
       await axios.put(`http://localhost:5000/api/events/${selectedEventId}`, {
         summary,
         status,
+        registrationLink,
       });
 
       toast.success("Event updated successfully!", {
@@ -122,7 +128,7 @@ const AdminEditEventForm: React.FC = () => {
       // Update local state
       setEvents((prev) =>
         prev.map((ev) =>
-          ev._id === selectedEventId ? { ...ev, summary, status } : ev
+          ev._id === selectedEventId ? { ...ev, summary, status, registrationLink } : ev
         )
       );
     } catch (err) {
@@ -155,6 +161,7 @@ const AdminEditEventForm: React.FC = () => {
     setSelectedEventId("");
     setSummary("");
     setStatus("upcoming");
+    setRegistrationLink("");
     setSearchTerm("");
     toast.info("Form cleared");
   };
@@ -197,7 +204,7 @@ const AdminEditEventForm: React.FC = () => {
               <h2 className="admin-edit-section-title">Update Event Details</h2>
             </div>
             <p className="admin-edit-section-description">
-              Search and select events to update their summary and status
+              Search and select events to update their summary, status, and registration link
             </p>
           </div>
         </div>
@@ -300,6 +307,12 @@ const AdminEditEventForm: React.FC = () => {
                           <Eye size={12} />
                           {event.views}
                         </span>
+                        {event.registrationLink && (
+                          <span className="admin-edit-meta-item">
+                            <LinkIcon size={12} />
+                            Has Link
+                          </span>
+                        )}
                       </div>
                     </div>
                     <div
@@ -363,6 +376,12 @@ const AdminEditEventForm: React.FC = () => {
                               <Users size={12} />
                               {selectedEvent.interestedCount} interested
                             </span>
+                            {selectedEvent.registrationLink && (
+                              <span className="admin-edit-detail-item">
+                                <LinkIcon size={12} />
+                                Registration Link Available
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -407,6 +426,42 @@ const AdminEditEventForm: React.FC = () => {
                       <span>Post-event report and outcomes</span>
                       <span>{summary.length}/1000</span>
                     </div>
+                  </div>
+
+                  {/* Registration Link Input */}
+                  <div className="admin-edit-form-section">
+                    <label className="admin-edit-label">
+                      <LinkIcon size={16} />
+                      <span>Registration Form Link</span>
+                      <span className="admin-edit-label-optional">
+                        (Optional)
+                      </span>
+                    </label>
+                    <input
+                      type="url"
+                      value={registrationLink}
+                      onChange={(e) => setRegistrationLink(e.target.value)}
+                      placeholder="https://forms.google.com/..."
+                      className="admin-edit-textarea"
+                      style={{ height: "auto", padding: "0.75rem 1rem" }}
+                    />
+                    <div className="admin-edit-char-count">
+                      <span>External registration form URL</span>
+                      <span>{registrationLink.length}/500</span>
+                    </div>
+                    {registrationLink && (
+                      <div className="admin-edit-link-preview">
+                        <a
+                          href={registrationLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="admin-edit-link-test"
+                        >
+                          <ExternalLink size={14} />
+                          Test Registration Link
+                        </a>
+                      </div>
+                    )}
                   </div>
 
                   {/* Status Selection */}

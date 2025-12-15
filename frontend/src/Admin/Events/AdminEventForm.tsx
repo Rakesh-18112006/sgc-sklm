@@ -11,8 +11,8 @@ import {
   Send,
   Building2,
   FileText,
-  MapPin,
   Users,
+  Link as LinkIcon,
 } from "lucide-react";
 
 // Import club icons
@@ -40,6 +40,7 @@ interface FormData {
   time: string;
   status: "upcoming";
   club: { name: string; icon: string };
+  registrationLink: string;
 }
 
 const AdminEventForm: React.FC = () => {
@@ -50,6 +51,7 @@ const AdminEventForm: React.FC = () => {
     time: "",
     status: "upcoming",
     club: { name: "", icon: "" },
+    registrationLink: "",
   });
 
   const [image, setImage] = useState<File | null>(null);
@@ -91,6 +93,13 @@ const AdminEventForm: React.FC = () => {
     if (!formData.time) errors.time = "Event time is required";
     if (!formData.club.name) errors.club = "Please select a club";
     if (!image) errors.image = "Event image is required";
+    
+    // Registration link is now mandatory
+    if (!formData.registrationLink.trim()) {
+      errors.registrationLink = "Registration form link is required";
+    } else if (!isValidUrl(formData.registrationLink)) {
+      errors.registrationLink = "Please enter a valid URL (e.g., https://forms.google.com/...)";
+    }
 
     if (formData.date) {
       const selectedDate = new Date(formData.date);
@@ -100,6 +109,15 @@ const AdminEventForm: React.FC = () => {
     }
 
     return errors;
+  };
+
+  const isValidUrl = (url: string) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
   };
 
   const handleChange = (
@@ -164,13 +182,14 @@ const AdminEventForm: React.FC = () => {
     }
 
     const payload = new FormData();
-    payload.append("title", formData.title);
-    payload.append("description", formData.description);
-    payload.append("date", formData.date);
-    payload.append("time", formData.time);
-    payload.append("status", formData.status);
-    payload.append("club", JSON.stringify(formData.club));
-    payload.append("image", image);
+  payload.append("title", formData.title);
+  payload.append("description", formData.description);
+  payload.append("date", formData.date);
+  payload.append("time", formData.time);
+  payload.append("status", formData.status);
+  payload.append("club", JSON.stringify(formData.club));
+  payload.append("registrationLink", formData.registrationLink); // Already here
+  payload.append("image", image);
 
     try {
       setSubmitting(true);
@@ -193,6 +212,7 @@ const AdminEventForm: React.FC = () => {
         time: "",
         status: "upcoming",
         club: { name: "", icon: "" },
+        registrationLink: "",
       });
       setImage(null);
       setImagePreview(null);
@@ -208,17 +228,17 @@ const AdminEventForm: React.FC = () => {
     }
   };
 
-  // Inline styles object
+  // Inline styles object with proper CSSProperties typing
   const styles = {
     page: {
       minHeight: "100vh",
       background: "linear-gradient(to bottom, #f9fafb 0%, #f3f4f6 100%)",
       padding: "2rem 1rem",
-    },
+    } as React.CSSProperties,
     container: {
       maxWidth: "56rem",
       margin: "0 auto",
-    },
+    } as React.CSSProperties,
     headerCard: {
       background: "#ffffff",
       borderRadius: "1rem",
@@ -226,14 +246,14 @@ const AdminEventForm: React.FC = () => {
       border: "1px solid #e5e7eb",
       overflow: "hidden",
       marginBottom: "2rem",
-    },
+    } as React.CSSProperties,
     headerGradient: {
       background: "linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)",
       padding: "1.5rem 2rem",
-    },
+    } as React.CSSProperties,
     headerContent: {
       padding: "1.5rem 2rem",
-    },
+    } as React.CSSProperties,
     formCard: {
       background: "#ffffff",
       borderRadius: "1rem",
@@ -241,7 +261,7 @@ const AdminEventForm: React.FC = () => {
       border: "1px solid #e5e7eb",
       padding: "1.5rem",
       marginBottom: "1.5rem",
-    },
+    } as React.CSSProperties,
     input: {
       width: "100%",
       padding: "0.75rem 1rem",
@@ -250,15 +270,15 @@ const AdminEventForm: React.FC = () => {
       fontSize: "0.875rem",
       outline: "none",
       transition: "all 0.2s",
-    },
+    } as React.CSSProperties,
     inputError: {
       borderColor: "#ef4444",
       backgroundColor: "#fef2f2",
-    },
+    } as React.CSSProperties,
     inputFocus: {
       borderColor: "#3b82f6",
       boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.1)",
-    },
+    } as React.CSSProperties,
     textarea: {
       width: "100%",
       padding: "0.75rem 1rem",
@@ -266,10 +286,10 @@ const AdminEventForm: React.FC = () => {
       border: "1px solid #d1d5db",
       fontSize: "0.875rem",
       minHeight: "120px",
-      resize: "vertical",
+      resize: "vertical" as "vertical",
       outline: "none",
       transition: "all 0.2s",
-    },
+    } as React.CSSProperties,
     select: {
       width: "100%",
       padding: "0.75rem 1rem",
@@ -279,7 +299,7 @@ const AdminEventForm: React.FC = () => {
       backgroundColor: "#ffffff",
       outline: "none",
       transition: "all 0.2s",
-    },
+    } as React.CSSProperties,
     button: {
       background: "linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)",
       color: "#ffffff",
@@ -294,15 +314,15 @@ const AdminEventForm: React.FC = () => {
       alignItems: "center",
       justifyContent: "center",
       gap: "0.5rem",
-    },
+    } as React.CSSProperties,
     buttonHover: {
       background: "linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%)",
       boxShadow: "0 4px 12px rgba(30, 64, 175, 0.3)",
-    },
+    } as React.CSSProperties,
     buttonDisabled: {
       opacity: "0.5",
       cursor: "not-allowed",
-    },
+    } as React.CSSProperties,
     label: {
       display: "flex",
       alignItems: "center",
@@ -311,34 +331,34 @@ const AdminEventForm: React.FC = () => {
       fontSize: "0.875rem",
       color: "#374151",
       marginBottom: "0.5rem",
-    },
+    } as React.CSSProperties,
     errorText: {
       color: "#ef4444",
       fontSize: "0.75rem",
       marginTop: "0.25rem",
-    },
+    } as React.CSSProperties,
     gridContainer: {
       display: "grid",
       gap: "1rem",
-    },
+    } as React.CSSProperties,
     fileUpload: {
       border: "2px dashed #d1d5db",
       borderRadius: "0.75rem",
       padding: "2rem",
-      textAlign: "center",
+      textAlign: "center" as "center",
       cursor: "pointer",
       transition: "all 0.2s",
-    },
+    } as React.CSSProperties,
     fileUploadHover: {
       borderColor: "#3b82f6",
       backgroundColor: "#f0f9ff",
-    },
+    } as React.CSSProperties,
     previewImage: {
       width: "100%",
       height: "16rem",
-      objectFit: "cover",
+      objectFit: "cover" as "cover",
       borderRadius: "0.5rem",
-    },
+    } as React.CSSProperties,
     spinner: {
       width: "1.25rem",
       height: "1.25rem",
@@ -346,7 +366,7 @@ const AdminEventForm: React.FC = () => {
       borderTopColor: "#ffffff",
       borderRadius: "50%",
       animation: "spin 1s linear infinite",
-    },
+    } as React.CSSProperties,
   };
 
   return (
@@ -366,7 +386,7 @@ const AdminEventForm: React.FC = () => {
                 padding: "0.75rem",
                 borderRadius: "0.75rem",
                 backdropFilter: "blur(8px)",
-              }}>
+              } as React.CSSProperties}>
                 <Building2 style={{ width: "2rem", height: "2rem", color: "#ffffff" }} />
               </div>
               <div>
@@ -395,9 +415,9 @@ const AdminEventForm: React.FC = () => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" } as React.CSSProperties}>
           {/* Event Title & Club */}
-          <div style={{ ...styles.gridContainer, gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+          <div style={{ ...styles.gridContainer, gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" } as React.CSSProperties}>
             <div style={styles.formCard}>
               <label style={styles.label}>
                 <Tag style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
@@ -453,7 +473,7 @@ const AdminEventForm: React.FC = () => {
                   <img
                     src={formData.club.icon}
                     alt="Club Icon"
-                    style={{ width: "2.5rem", height: "2.5rem", borderRadius: "0.5rem", objectFit: "cover", border: "1px solid #d1d5db" }}
+                    style={{ width: "2.5rem", height: "2.5rem", borderRadius: "0.5rem", objectFit: "cover" as "cover", border: "1px solid #d1d5db" }}
                   />
                   <span style={{ fontSize: "0.875rem", fontWeight: "500", color: "#374151" }}>
                     {formData.club.name}
@@ -484,14 +504,14 @@ const AdminEventForm: React.FC = () => {
             {formErrors.description && (
               <p style={styles.errorText}>{formErrors.description}</p>
             )}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.5rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.5rem" } as React.CSSProperties}>
               <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>Detailed official description</span>
               <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>{formData.description.length}/500</span>
             </div>
           </div>
 
-          {/* Date, Time, Location & Participants */}
-          <div style={{ ...styles.gridContainer, gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+          {/* Date, Time, and Registration Link */}
+          <div style={{ ...styles.gridContainer, gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))" } as React.CSSProperties}>
             <div style={styles.formCard}>
               <label style={styles.label}>
                 <Calendar style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
@@ -532,6 +552,31 @@ const AdminEventForm: React.FC = () => {
               )}
             </div>
 
+            <div style={styles.formCard}>
+              <label style={styles.label}>
+                <LinkIcon style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
+                <span>Registration Form Link *</span>
+              </label>
+              <input
+                type="url"
+                name="registrationLink"
+                value={formData.registrationLink}
+                onChange={handleChange}
+                placeholder="https://forms.google.com/..."
+                style={{
+                  ...styles.input,
+                  ...(formErrors.registrationLink && styles.inputError),
+                }}
+              />
+              {formErrors.registrationLink && (
+                <p style={styles.errorText}>{formErrors.registrationLink}</p>
+              )}
+              <div style={{ marginTop: "0.5rem" }}>
+                <span style={{ fontSize: "0.75rem", color: "#6b7280" }}>
+                  Google Forms, Microsoft Forms, or custom registration page
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Image Upload */}
@@ -539,13 +584,13 @@ const AdminEventForm: React.FC = () => {
             <label style={styles.label}>
               <ImageIcon style={{ width: "1rem", height: "1rem", color: "#2563eb" }} />
               <span>Event Image *</span>
-              <span style={{ fontSize: "0.75rem", fontWeight: "normal", color: "#6b7280" }}>
+              <span style={{ fontSize: "0.75rem", fontWeight: "normal", color: "#6b7280" } as React.CSSProperties}>
                 (PNG, JPG up to 5MB)
               </span>
             </label>
 
             {imagePreview ? (
-              <div style={{ position: "relative", borderRadius: "0.75rem", overflow: "hidden", border: "1px solid #d1d5db" }}>
+              <div style={{ position: "relative", borderRadius: "0.75rem", overflow: "hidden", border: "1px solid #d1d5db" } as React.CSSProperties}>
                 <img
                   src={imagePreview}
                   alt="Event Preview"
@@ -570,7 +615,7 @@ const AdminEventForm: React.FC = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                  }}
+                  } as React.CSSProperties}
                 >
                   <Upload style={{ width: "1rem", height: "1rem" }} />
                 </button>
@@ -592,16 +637,16 @@ const AdminEventForm: React.FC = () => {
                   style={{ display: "none" }}
                   id="event-image"
                 />
-                <label htmlFor="event-image" style={{ cursor: "pointer" }}>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+                <label htmlFor="event-image" style={{ cursor: "pointer" } as React.CSSProperties}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem" } as React.CSSProperties}>
                     <div style={{ background: "#dbeafe", padding: "1rem", borderRadius: "50%" }}>
                       <Upload style={{ width: "2rem", height: "2rem", color: "#2563eb" }} />
                     </div>
                     <div>
-                      <p style={{ color: "#374151", fontWeight: "500", margin: 0 }}>
+                      <p style={{ color: "#374151", fontWeight: "500", margin: 0 } as React.CSSProperties}>
                         Click to upload event image
                       </p>
-                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginTop: "0.25rem", margin: 0 }}>
+                      <p style={{ fontSize: "0.875rem", color: "#6b7280", marginTop: "0.25rem", margin: 0 } as React.CSSProperties}>
                         Recommended: 1200x600 pixels
                       </p>
                     </div>
@@ -622,12 +667,12 @@ const AdminEventForm: React.FC = () => {
               gap: "1rem",
               alignItems: "center",
               justifyContent: "space-between",
-            }}>
-              <div style={{ textAlign: "center" }}>
-                <p style={{ fontSize: "0.875rem", color: "#6b7280", margin: 0 }}>
+            } as React.CSSProperties}>
+              <div style={{ textAlign: "center" } as React.CSSProperties}>
+                <p style={{ fontSize: "0.875rem", color: "#6b7280", margin: 0 } as React.CSSProperties}>
                   <span style={{ fontWeight: "600" }}>Note:</span> All events will be published as "Upcoming"
                 </p>
-                <p style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.25rem", margin: 0 }}>
+                <p style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.25rem", margin: 0 } as React.CSSProperties}>
                   Status can be updated later through Edit Event section
                 </p>
               </div>
@@ -644,12 +689,12 @@ const AdminEventForm: React.FC = () => {
                 disabled={submitting}
               >
                 {submitting ? (
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" } as React.CSSProperties}>
                     <div style={styles.spinner}></div>
                     <span>Publishing...</span>
                   </div>
                 ) : (
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem" } as React.CSSProperties}>
                     <Send style={{ width: "1.25rem", height: "1.25rem" }} />
                     <span>Publish Official Event</span>
                   </div>
@@ -660,12 +705,12 @@ const AdminEventForm: React.FC = () => {
         </form>
 
         {/* Footer Note */}
-        <div style={{ marginTop: "2rem", textAlign: "center" }}>
-          <p style={{ fontSize: "0.875rem", color: "#6b7280", margin: 0 }}>
+        <div style={{ marginTop: "2rem", textAlign: "center" } as React.CSSProperties}>
+          <p style={{ fontSize: "0.875rem", color: "#6b7280", margin: 0 } as React.CSSProperties}>
             This is an official government portal. All events will be reviewed
             and published as per government guidelines.
           </p>
-          <p style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.5rem", margin: 0 }}>
+          <p style={{ fontSize: "0.75rem", color: "#9ca3af", marginTop: "0.5rem", margin: 0 } as React.CSSProperties}>
             © {new Date().getFullYear()} Government Event Management System. All
             rights reserved.
           </p>
