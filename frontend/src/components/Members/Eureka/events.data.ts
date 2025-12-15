@@ -24,7 +24,7 @@ export const eventsData: Event[] = [
       'Final round focuses on practical personal finance decisions like saving, investing, borrowing, and emergencies'
     ],
     img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSeJE7giVXsPhBfgTPMNGnyyLQBTNk0ZrPJGT8RxUVS9kyUDtw/viewform?usp=preview',
+    registrationLink: 'https://forms.gle/ShSg6dFWVgmEUd5d8',
     venue: 'SGC Auditorium',
     date: 'December 26, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Finance Club & Lecture Series Club'
@@ -40,7 +40,7 @@ export const eventsData: Event[] = [
       'Winners are decided by fastest completion time, with penalties for wrong answers or extra clues'
     ],
     img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/lexihunt-arena',
+    registrationLink: 'https://forms.gle/75TYyqEYcaqAnNES8',
     venue: 'Seminar Hall 1 & Campus-wide',
     date: 'December 27, 2024 | 6:00 PM - 7:00 PM (Round 1) | December 28, 2024 | 2:30 PM - 5:00 PM (Round 2)',
     conductedClubName: 'Linguistic & Personality Development Club'
@@ -56,7 +56,7 @@ export const eventsData: Event[] = [
       'Team Activity: 2–5 members per team, promoting teamwork, quick thinking, and eco-awareness'
     ],
     img: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.gle/m2aUvFyktL2NaVu28',
+    registrationLink: 'https://forms.gle/Bz6a7dgjPjtwVE3c7',
     venue: 'Campus-wide Stations',
     date: 'December 27, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Eco Club'
@@ -72,7 +72,7 @@ export const eventsData: Event[] = [
       'Focus on innovation, teamwork, communication, and career-oriented learning at a minimal entry fee'
     ],
     img: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.gle/v5p7TGLvhdwXJymDA',
+    registrationLink: 'https://forms.gle/LHzDUA4GPPNZeGLa8',
     venue: 'Innovation Center',
     date: 'December 28, 2024 | Round 1: 9:30 AM - 11:30 AM | Round 2: 2:30 PM - 5:00 PM',
     conductedClubName: 'Internship, Startup & Research Clubs'
@@ -88,7 +88,7 @@ export const eventsData: Event[] = [
       'Competitive & Strategic: Winners are decided based on overall district stability, fund management, and crisis handling ability'
     ],
     img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdfqsMX9VDjhj2vBsdPUdQmqwgrDCImMrfwiUYvvpl99V2G9w/viewform?usp=dialog',
+    registrationLink: 'https://forms.gle/8MgTD4i1vhhWq9pj9',
     venue: 'Academic Block',
     date: 'December 28, 2024 | Round 1: 11:30 AM - 1:00 PM | Round 2: 2:30 PM - 5:00 PM',
     conductedClubName: 'Competitive Club & Higher Education Clubs'
@@ -104,7 +104,7 @@ export const eventsData: Event[] = [
       'Skill Development: Promotes problem-solving, teamwork, speed, and accuracy using minimal resources'
     ],
     img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.google.com/synergy-event',
+    registrationLink: 'https://forms.gle/ZgN2ZRphivFVzvfx5',
     venue: 'Engineering Block',
     date: 'December 29, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Electronics Club & Robotics Club'
@@ -120,7 +120,7 @@ export const eventsData: Event[] = [
       'Exciting Rewards: Cash prizes/goodies with winner e-certificates make the competition rewarding and memorable'
     ],
     img: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSfBSE2CodvOmGA-n-400dpFNwJrDkb5Mi8imRbdQF74GACcsQ/viewform?usp=publish-editor',
+    registrationLink: 'https://forms.gle/6X37Wf6dUGfzyxex6',
     venue: 'Computer Center',
     date: 'December 29, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Coding Club'
@@ -136,7 +136,7 @@ export const eventsData: Event[] = [
       'Performance-Based Scoring: Teams are ranked based on players\' overall T20 statistics to decide winners and runners-up'
     ],
     img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    registrationLink: 'https://forms.gle/a1tpmAhvFCfd6rid6',
+    registrationLink: 'https://forms.gle/ckEEL3DtPmZn3uVN6',
     venue: 'Sports Complex',
     date: 'December 30, 2024 | 5:30 PM - 8:30 PM',
     conductedClubName: 'Sports Club'

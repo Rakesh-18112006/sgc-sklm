@@ -8,7 +8,7 @@ dotenv.config();
 
 const admins = [
   { email: 'admin1@example.com', password: 'password123' },
-  { email: 'admin2@example.com', password: 'password456' },
+  { email:   'admin2@example.com', password: 'password456' },
   { email: 'admin3@example.com', password: 'password789' },
 ];
 
