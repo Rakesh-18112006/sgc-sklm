@@ -116,7 +116,7 @@ const Navbar = () => {
               className="college-logo"
             />
             <img src={sgc} alt="Organization Logo" className="h-7 w-auto" />
-            <h1 className="heading">Student Gymnastic Center</h1>
+            <h1 className="heading">Student Gymkhana Center</h1>
           </div>
 
           {/* Desktop Navigation */}
