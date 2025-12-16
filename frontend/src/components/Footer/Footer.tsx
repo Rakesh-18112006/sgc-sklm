@@ -71,6 +71,11 @@ const Footer = () => {
                   Clubs
                 </a>
               </li>
+              <li>
+                <a href="/admin/login" className="footer-link">
+                  Admin Login
+                </a>
+              </li>
             </ul>
           </div>
 

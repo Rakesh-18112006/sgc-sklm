@@ -237,6 +237,13 @@ const MobileNavbar: React.FC = () => {
               </Link>
             </li>
             <li>
+              <li>
+              <Link to="/admin/login" onClick={toggleNav}>
+                <span className="flex gap-2">
+                  <FaUsers className="nav-icon" /> Admin Login
+                </span>
+              </Link>
+            </li>
               <Link to="/web-team" onClick={toggleNav}>
                 <span className="flex gap-2">
                   <FaUsers className="nav-icon" /> Web Team
