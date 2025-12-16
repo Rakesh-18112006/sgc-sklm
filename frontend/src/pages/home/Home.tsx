@@ -49,7 +49,7 @@ const Home: React.FC = () => {
       
       <AboutSGC />  
 
-      <EventsHighlights />
+      {/* <EventsHighlights /> */}
 
       {/* Counter section */}
       <div className="w-full bg-white pt-10 pb-20">
