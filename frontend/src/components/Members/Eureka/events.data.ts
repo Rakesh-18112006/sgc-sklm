@@ -209,8 +209,6 @@ export const eventsData: Event[] = [
       'Student Achievement Video Presentation: Heartwarming showcase of talented students, celebrating student excellence and diversity',
       'Award Ceremony: Recognition of competition winners and outstanding participants',
       'Fireworks Display & Celebrations',
-      'Team Size: 3 to 5',
-      'Registration Fee: 10/- per head'
     ],
     img: eurekaNightIcon,
     icon: eurekaNightIcon, // Add icon
