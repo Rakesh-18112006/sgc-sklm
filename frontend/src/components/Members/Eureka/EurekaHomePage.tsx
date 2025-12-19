@@ -25,15 +25,15 @@ const EurekaHomePage: React.FC = () => {
   const truncateDescription = (description: string): string => {
     // Get first 150 characters or less
     if (description.length <= 150) return description;
-    
+
     // Truncate to the last complete sentence within 150 characters
     const truncated = description.substring(0, 150);
-    const lastPeriod = truncated.lastIndexOf('.');
-    
+    const lastPeriod = truncated.lastIndexOf(".");
+
     if (lastPeriod > 100) {
       return truncated.substring(0, lastPeriod + 1);
     } else {
-      return truncated + '...';
+      return truncated + "...";
     }
   };
 
@@ -115,7 +115,6 @@ const EurekaHomePage: React.FC = () => {
         </div>
       </section>
 
-
       {/* Club Events Section */}
       <section className={styles.clubEventsSection} id="events">
         <div className={styles.sectionHeader}>
@@ -130,8 +129,8 @@ const EurekaHomePage: React.FC = () => {
             <div key={event.id} className={styles.clubEventCard}>
               <div className={styles.cardHeader}>
                 <div className={styles.eventIconContainer}>
-                  <img 
-                    src={event.icon} 
+                  <img
+                    src={event.icon}
                     alt={`${event.name} icon`}
                     className={styles.eventIcon}
                   />
