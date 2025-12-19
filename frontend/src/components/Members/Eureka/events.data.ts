@@ -1,7 +1,5 @@
 import innovation from "../../../assets/erueka/innovation-hackathon.webp";
-import art from "../../../assets/erueka/art-exibition.webp";
 import cash from "../../../assets/erueka/cash-crash.webp";
-import tech from "../../../assets/erueka/tech-expo.webp";
 
 // Import icon images
 import tedxIcon from "../../../assets/erueka/tedxIcon.webp";

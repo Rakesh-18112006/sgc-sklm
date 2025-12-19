@@ -3,7 +3,6 @@ import Carousel from './Carousel';
 import CollegeInfoCards from "./CollegeInfoCards";
 import Counter from "./Numbers/Counter";
 import AboutSGC from './Constitution/AboutSGC';
-import EventsHighlights from './Events/EventsHighlights';
 
 import img3 from '../../assets/main/img3.webp';
 import img1 from '../../assets/rguktBlocks/img1.webp'
