@@ -14,14 +14,6 @@ const EurekaHomePage: React.FC = () => {
   // Get all events for club events section
   const clubEvents = eventsData;
 
-  // Function to extract first sentence from description for marquee
-  const getShortDescription = (description: string): string => {
-    const firstSentence = description.split(".")[0];
-    return firstSentence.length > 60
-      ? firstSentence.substring(0, 57) + "..."
-      : firstSentence;
-  };
-
   // Function to format date for display (extract just the date part)
   const formatDateForDisplay = (dateString: string): string => {
     // Extract just the date part before the pipe
