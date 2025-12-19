@@ -9,7 +9,7 @@ import linquistic from "../../assets/clubimgs/linguistic.webp";
 import Finance from "../../assets/clubimgs/finance.webp";
 import sports from "../../assets/clubimgs/sports.webp";
 import cc from "../../assets/clubimgs/cc.webp";
-import arts from "../../assets/clubimgs/cc.webp";
+import arts from "../../assets/clubimgs/arts.webp";
 import electronics from "../../assets/clubimgs/electronics.webp";
 import eco from "../../assets/clubimgs/eco.webp";
 import yoga from "../../assets/clubimgs/yoga.webp";
@@ -69,8 +69,8 @@ export const clubsData: ClubType[] = [
       "The Tech Innovators Club is a vibrant community of technology enthusiasts dedicated to exploring cutting-edge innovations, sharing knowledge, and building meaningful connections.",
       "Our mission is to create a platform where students can develop technical skills, work on real-world projects, and connect with industry professionals.",
     ],
-    backgroundImage: arts,
-    heroImage: artsBg,
+    backgroundImage: artsBg,
+    heroImage: arts,
     events: [
       {
         id: "1",

@@ -172,17 +172,6 @@ const Club: React.FC = () => {
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           />
-
-          {/* Club Info */}
-          <motion.div
-            className={styles.clubInfo}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <p className={styles.foundedYear}>Founded in {club.founded}</p>
-            <p className={styles.clubDescription}>{club.description}</p>
-          </motion.div>
         </div>
 
         {/* About Section */}
