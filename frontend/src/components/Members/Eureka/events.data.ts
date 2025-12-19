@@ -150,7 +150,7 @@ export const eventsData: Event[] = [
   },
   {
     id: 'clash-bid',
-    name: 'CLASH BID',
+    name: 'CLASH TO BID',
     description: 'An exciting two-round team event that blends cricket knowledge with strategy and decision-making. Teams first compete in a quiz-based screening round to earn their way into a Mini IPL–style auction, where smart bidding and team planning decide the winners.',
     highlights: [
       'Khaansar Clash (Round 1): A quiz round testing cricket knowledge with MCQs and fill-in-the-blanks; top 8 teams qualify',
@@ -163,7 +163,7 @@ export const eventsData: Event[] = [
     registrationLink: 'https://forms.gle/ckEEL3DtPmZn3uVN6',
     venue: 'Suvarnamukhi',
     date: 'December 30, 2025 | 5:30 PM - 8:30 PM',
-    conductedClubName: 'Sports Club'
+    conductedClubName: 'Sports & Games Club'
   },
   {
     id: 'rangoli-competition',

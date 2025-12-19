@@ -143,8 +143,8 @@ const Footer = () => {
           </p>
           <p className="contact-info">
             For queries contact{" "}
-            <a href="mailto:help@sgorguktskim.org" className="contact-link">
-              help@sgcrguktskim.org
+            <a href="mailto:contact@sgcrguktsklm.org.in" className="contact-link">
+              contact@sgcrguktskim.org.in
             </a>{" "}
             | Design and Maintained By SGC Web Team
           </p>
