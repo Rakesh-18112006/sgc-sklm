@@ -93,7 +93,7 @@ const ExecutiveBoard: React.FC = () => {
       id: 6,
       name: "K. Jai Sheel",
       position: "Vice President (CSE)",
-      image: cseVp,
+      image: "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
       department: "CSE",
       social: {
         linkedin:
@@ -104,7 +104,7 @@ const ExecutiveBoard: React.FC = () => {
       id: 7,
       name: "K. Pavan Kumar",
       position: "Vice President (ECE)",
-      image: "https://randomuser.me/api/portraits/men/4.jpg",
+      image: "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
       department: "ECE",
       social: {
         linkedin: "https://www.linkedin.com/in/kyvpkr/",
@@ -125,7 +125,7 @@ const ExecutiveBoard: React.FC = () => {
       id: 9,
       name: "G. Rakesh",
       position: "Vice President (MECH)",
-      image: "https://randomuser.me/api/portraits/men/5.jpg",
+      image: "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
       department: "MECH",
       social: {
         linkedin: "https://www.linkedin.com/in/g-rakesh-123456789/",
@@ -190,7 +190,7 @@ const ExecutiveBoard: React.FC = () => {
       id: 15,
       name: "N. Govardhan",
       position: "Associate Public Realtions Manager",
-      image: apr2,
+      image: "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
       department: "ECE",
       social: {
         linkedin:
