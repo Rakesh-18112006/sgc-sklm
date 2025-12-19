@@ -177,7 +177,7 @@ export const eventsData: Event[] = [
     ],
     img: rangoliIcon,
     icon: rangoliIcon, // Add icon
-    registrationLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdS71avanOYq_AvBT7WI7N1IRUAXzVP7Y3q8bn5m4xccnGlGg/viewform?usp=publish-editor',
+    registrationLink: 'https://forms.gle/H8tQZF8YUikt2VDLA',
     venue: 'Suvarnamukhi',
     date: 'December 31, 2025 | 6:00 AM - 9:00 AM',
     conductedClubName: 'Cultural Club'

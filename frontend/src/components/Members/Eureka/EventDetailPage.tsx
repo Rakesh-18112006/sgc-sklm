@@ -232,8 +232,6 @@ const EventDetailPage: React.FC = () => {
               <a href="mailto:contact@sgcrguktsklm.org.in" className={styles.contactEmail}>
                 contact@sgcrguktsklm.org.in
               </a>
-              <span className={styles.contactPhone}>Contact: +91 98765 43210</span>
-              <small className={styles.contactNote}>Please mention the event name in your query</small>
             </div>
           </div>
         </aside>
