@@ -102,7 +102,7 @@ function Members() {
 
     // Sort members by position (GS first, then JS, then Member, then Volunteer)
     const sortedMembers = clubMembers.sort((a, b) => {
-      const positionOrder = ["GS", "JS", "Member", "Volunteer"];
+      const positionOrder = ["General Secretary", "Joint Secratery", "Executive Member", "Volunteer"];
       return (
         positionOrder.indexOf(a.position) - positionOrder.indexOf(b.position)
       );

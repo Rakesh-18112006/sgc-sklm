@@ -2,19 +2,48 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import styles from './EventDetailPage.module.css';
 import { getEventById, type Event } from './events.data';
+import useScrollToTop from './useScrollToTop';
 
 const EventDetailPage: React.FC = () => {
   const { eventId } = useParams<{ eventId: string }>();
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Use the scroll to top hook
+  useScrollToTop();
 
   useEffect(() => {
+    // Scroll to top when component mounts or event changes
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+
     if (eventId) {
       const foundEvent = getEventById(eventId);
       setEvent(foundEvent || null);
       setLoading(false);
     }
   }, [eventId]);
+
+  // Additional effect to handle initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+      });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
 
   if (loading) {
     return (
@@ -49,21 +78,31 @@ const EventDetailPage: React.FC = () => {
     <div className={styles.container}>
       {/* Back Navigation */}
       <div className={styles.navigation}>
-        <Link to="/eureka" className={styles.backLink}>
+        <Link 
+          to="/eureka" 
+          className={styles.backLink}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
           ← Back to All Events
         </Link>
         <span className={styles.clubTag}>{event.conductedClubName}</span>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section with full-width image */}
       <div className={styles.heroSection}>
         <div className={styles.heroImageContainer}>
           <img 
             src={event.img} 
             alt={event.name} 
             className={styles.heroImage}
+            loading="eager"
+            onLoad={handleImageLoad}
+            style={{ 
+              opacity: imageLoaded ? 1 : 0.7,
+              transition: 'opacity 0.3s ease'
+            }}
           />
-          <div className={styles.heroOverlay}>
+          {/* <div className={styles.heroOverlay}>
             <div className={styles.eventMeta}>
               <span className={styles.eventDate}>
                 <span dangerouslySetInnerHTML={{ __html: formatEventDate(event.date) }} />
@@ -71,7 +110,7 @@ const EventDetailPage: React.FC = () => {
               <span className={styles.eventVenue}>{event.venue}</span>
             </div>
             <h1 className={styles.heroTitle}>{event.name}</h1>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -123,14 +162,7 @@ const EventDetailPage: React.FC = () => {
                   <p className={styles.detailValue}>{event.conductedClubName}</p>
                 </div>
               </div>
-              
-              <div className={styles.detailCard}>
-                <div className={styles.detailIcon}>🎯</div>
-                <div className={styles.detailContent}>
-                  <h3 className={styles.detailTitle}>Eligibility</h3>
-                  <p className={styles.detailValue}>Open to All RGUKT Students</p>
-                </div>
-              </div>
+            
             </div>
           </section>
         </div>
@@ -156,13 +188,32 @@ const EventDetailPage: React.FC = () => {
               <div className={styles.shareSection}>
                 <p className={styles.shareText}>Share this event:</p>
                 <div className={styles.shareButtons}>
-                  <button className={styles.shareButton} onClick={() => navigator.share?.({ title: event.name, url: window.location.href })}>
+                  <button 
+                    className={styles.shareButton} 
+                    onClick={() => navigator.share?.({ 
+                      title: event.name, 
+                      text: `Check out ${event.name} at Eureka 2025!`,
+                      url: window.location.href 
+                    })}
+                    title="Share via native share"
+                  >
                     📱
                   </button>
-                  <button className={styles.shareButton} onClick={() => window.open(`mailto:?subject=${encodeURIComponent(event.name)}&body=${encodeURIComponent(window.location.href)}`)}>
-                    📧
+                  <button 
+                    className={styles.shareButton} 
+                    onClick={() => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Check out ${event.name} at Eureka 2025!`)}&url=${encodeURIComponent(window.location.href)}`, '_blank')}
+                    title="Share on Twitter"
+                  >
+                    🐦
                   </button>
-                  <button className={styles.shareButton} onClick={() => navigator.clipboard.writeText(window.location.href)}>
+                  <button 
+                    className={styles.shareButton} 
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href);
+                      alert('Link copied to clipboard!');
+                    }}
+                    title="Copy link to clipboard"
+                  >
                     🔗
                   </button>
                 </div>
@@ -178,8 +229,8 @@ const EventDetailPage: React.FC = () => {
             </p>
             <div className={styles.contactInfo}>
               <span className={styles.contactClub}>{event.conductedClubName}</span>
-              <a href="mailto:eureka2024@rgukt.in" className={styles.contactEmail}>
-                eureka2024@rgukt.in
+              <a href="mailto:eureka2025@rgukt.in" className={styles.contactEmail}>
+                eureka2025@rgukt.in
               </a>
               <span className={styles.contactPhone}>Contact: +91 98765 43210</span>
               <small className={styles.contactNote}>Please mention the event name in your query</small>
@@ -191,21 +242,25 @@ const EventDetailPage: React.FC = () => {
       {/* Similar Events Section */}
       <section className={styles.similarEventsSection}>
         <h2 className={styles.sectionTitle}>Explore More Events</h2>
-        <p className={styles.sectionSubtitle}>Check out other exciting events happening during Eureka 2024</p>
+        <p className={styles.sectionSubtitle}>Check out other exciting events happening during Eureka 2025</p>
         
-        <Link to="/eureka" className={styles.exploreButton}>
+        <Link 
+          to="/eureka" 
+          className={styles.exploreButton}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
           View All Events →
         </Link>
       </section>
 
-      {/* Footer */}
+      {/* Footer
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <h3 className={styles.footerTitle}>EUREKA 2024</h3>
+          <h3 className={styles.footerTitle}>EUREKA 2025</h3>
           <p className={styles.footerText}>Where Technical Brilliance Meets Cultural Rhythms | Students' Gymkhana Center, RGUKT</p>
-          <p className={styles.copyright}>© 2024 EUREKA Innovation Festival. All rights reserved.</p>
+          <p className={styles.copyright}>© 2025 EUREKA Innovation Festival. All rights reserved.</p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

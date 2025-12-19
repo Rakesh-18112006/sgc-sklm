@@ -3,6 +3,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0f29 0%, #1a1f3a 100%);
   color: #ffffff;
+  padding-top: 0.5rem; /* Base padding */
 }
 
 .loadingContainer,
@@ -15,6 +16,7 @@
   background: linear-gradient(135deg, #0a0f29 0%, #1a1f3a 100%);
   color: #ffffff;
   text-align: center;
+  padding: 2rem;
 }
 
 .spinner {
@@ -43,15 +45,19 @@
   opacity: 0.9;
 }
 
-/* Navigation */
+/* Navigation - Improved for mobile */
 .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 1.2rem 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .backLink {
@@ -63,6 +69,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 .backLink:hover {
@@ -93,26 +100,40 @@
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 
-/* Hero Section */
+/* UPDATED Hero Section - Full width image without background overlay */
 .heroSection {
   position: relative;
   margin-bottom: 3rem;
+  margin-top: 1rem; /* Increased margin top */
+  width: 100%;
 }
 
 .heroImageContainer {
   position: relative;
-  height: 500px;
+  width: 100%;
+  max-height: 600px;
+  min-height: 400px;
   overflow: hidden;
-  border-radius: 0 0 30px 30px;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .heroImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7);
+  object-position: center;
+  display: block;
 }
 
 .heroOverlay {
@@ -120,8 +141,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 3rem 4rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  padding: 2.5rem 3rem;
+  background: linear-gradient(transparent, rgba(10, 15, 41, 0.95));
+  backdrop-filter: blur(5px);
 }
 
 .eventMeta {
@@ -140,6 +162,10 @@
   font-size: 1rem;
   opacity: 0.9;
   line-height: 1.4;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
 }
 
 .eventDate br {
@@ -149,10 +175,10 @@
 }
 
 .heroTitle {
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 800;
   line-height: 1.1;
-  margin: 0;
+  margin: 0.5rem 0 0 0;
   background: linear-gradient(135deg, #ffffff, #a5b4fc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -166,7 +192,7 @@
   gap: 3rem;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2rem 3rem;
 }
 
 /* Main Content */
@@ -267,6 +293,8 @@
 
 .detailIcon {
   font-size: 1.5rem;
+  min-width: 32px;
+  text-align: center;
 }
 
 .detailContent {
@@ -430,7 +458,7 @@
 .similarEventsSection {
   text-align: center;
   padding: 4rem 2rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -464,6 +492,7 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 3rem 2rem;
   text-align: center;
+  margin-top: 2rem;
 }
 
 .footerContent {
@@ -511,44 +540,85 @@
   }
 }
 
-@media (max-width: 768px) {
-  .navigation {
-    padding: 1rem;
-  }
-  
+@media (max-width: 992px) {
   .heroImageContainer {
-    height: 400px;
+    min-height: 400px;
+    max-height: 500px;
   }
   
   .heroOverlay {
     padding: 2rem;
   }
   
+  .eventMeta {
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-top: 2rem; /* SIGNIFICANTLY INCREASED for mobile */
+  }
+  
+  .navigation {
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .heroSection {
+    margin-top: 1.5rem; /* Increased margin for mobile */
+    margin-bottom: 2rem;
+  }
+  
+  .heroImageContainer {
+    min-height: 350px;
+    max-height: 450px;
+    border-radius: 0 0 15px 15px;
+    margin-top: 0.5rem;
+  }
+  
+  .heroOverlay {
+    padding: 1.5rem;
+  }
+  
   .heroTitle {
     font-size: 2.2rem;
+    margin-top: 0.5rem;
   }
   
   .eventMeta {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
+  }
+  
+  .eventDate,
+  .eventVenue {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    width: 100%;
   }
   
   .contentWrapper {
-    padding: 0 1rem;
+    padding: 0 1.5rem 2rem;
   }
   
   .section {
     padding: 1.5rem;
+    border-radius: 15px;
   }
   
   .highlightsGrid,
   .detailsGrid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
   
   .clubTag {
     font-size: 0.8rem;
     padding: 6px 12px;
+    max-width: 150px;
   }
   
   .eventDate,
@@ -558,8 +628,31 @@
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding-top: 3rem; /* EVEN MORE padding for very small screens */
+  }
+  
+  .navigation {
+    padding: 0.8rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heroSection {
+    margin-top: 2rem; /* Maximum margin for small screens */
+    margin-bottom: 2rem;
+  }
+  
+  .heroImageContainer {
+    min-height: 300px;
+    max-height: 400px;
+    border-radius: 0 0 12px 12px;
+    margin-top: 1rem;
+  }
+  
   .heroTitle {
     font-size: 1.8rem;
+    margin-top: 0.5rem;
   }
   
   .sectionTitle {
@@ -569,13 +662,68 @@
   .registrationCard,
   .contactCard {
     padding: 1.5rem;
+    border-radius: 15px;
   }
   
   .similarEventsSection {
     padding: 3rem 1rem;
+    margin-top: 1rem;
   }
   
   .eventDate br {
     margin: 0.15rem 0;
+  }
+  
+  .heroOverlay {
+    padding: 1.25rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .eventMeta {
+    gap: 0.5rem;
+  }
+  
+  .eventDate,
+  .eventVenue {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .heroImageContainer {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Image optimization for different screen sizes */
+@media (min-width: 1400px) {
+  .heroImageContainer {
+    max-height: 650px;
+  }
+}
+
+/* Ensure images maintain aspect ratio and full width */
+.heroImageContainer img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Better image handling for all devices */
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+}
+
+/* Fix for very tall screens */
+@media (min-height: 800px) and (max-width: 768px) {
+  .heroImageContainer {
+    max-height: 500px;
   }
 }

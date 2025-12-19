@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./EurekaHomePage.module.css";
 import { eventsData } from "./events.data";
+import poster from "../../../assets/erueka/mainposter.webp";
 
 const EurekaHomePage: React.FC = () => {
   // Main event poster - updated with Eureka theme
-  const mainEventPoster =
-    "https://images.unsplash.com/photo-1492684223066-e9e3a5c6e029?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80";
+  const mainEventPoster = poster;
 
   // Get first 6 events for marquee
-  const marqueeEvents = eventsData.slice(0, 6);
+  // const marqueeEvents = eventsData.slice(0, 6);
 
   // Get all events for club events section
   const clubEvents = eventsData;
@@ -29,6 +29,22 @@ const EurekaHomePage: React.FC = () => {
     return datePart;
   };
 
+  // Function to truncate description to 2-3 lines
+  const truncateDescription = (description: string): string => {
+    // Get first 150 characters or less
+    if (description.length <= 150) return description;
+    
+    // Truncate to the last complete sentence within 150 characters
+    const truncated = description.substring(0, 150);
+    const lastPeriod = truncated.lastIndexOf('.');
+    
+    if (lastPeriod > 100) {
+      return truncated.substring(0, lastPeriod + 1);
+    } else {
+      return truncated + '...';
+    }
+  };
+
   // Event Highlights from PDF
   const eventHighlights = [
     {
@@ -42,7 +58,7 @@ const EurekaHomePage: React.FC = () => {
         "Well-structured multi-round events encouraging teamwork, innovation, and healthy competition across domains.",
     },
     {
-      title: "Grand Finale – EUREKA Night",
+      title: "EUREKA Night",
       description:
         "A vibrant cultural evening celebrating talent, achievements, and the spirit of campus unity.",
     },
@@ -50,15 +66,17 @@ const EurekaHomePage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {/* Hero Section */}
+      {/* Hero Section - Updated with clear visible image */}
       <section className={styles.heroSection}>
-        <div className={styles.heroImageContainer}>
-          <img
-            src={mainEventPoster}
-            alt="Eureka 2025 - Innovation Festival"
-            className={styles.heroImage}
-          />
-          <div className={styles.heroOverlay}>
+        <div className={styles.heroContent}>
+          <div className={styles.heroImageContainer}>
+            <img
+              src={mainEventPoster}
+              alt="Eureka 2025 - Innovation Festival"
+              className={styles.heroImage}
+            />
+          </div>
+          <div className={styles.heroText}>
             <h1 className={styles.heroTitle}>EUREKA 2025</h1>
             <p className={styles.heroSubtitle}>
               Where Technical Brilliance Meets Cultural Rhythms
@@ -69,12 +87,20 @@ const EurekaHomePage: React.FC = () => {
             <p className={styles.heroTagline}>
               Innovate the Mind, Celebrate the Spirit
             </p>
+            <div className={styles.heroButtons}>
+              <a href="#events" className={styles.primaryButton}>
+                Explore Events
+              </a>
+              <a href="#highlights" className={styles.secondaryButton}>
+                View Highlights
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Event Highlights Section */}
-      <section className={styles.highlightsOverviewSection}>
+      <section className={styles.highlightsOverviewSection} id="highlights">
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Event Highlights</h2>
           <p className={styles.sectionSubtitle}>
@@ -97,36 +123,9 @@ const EurekaHomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Marquee Section for Sub-events */}
-      <section className={styles.marqueeSection}>
-        <h2 className={styles.sectionTitle}>Featured Events</h2>
-        <p className={styles.sectionSubtitle}>
-          Scroll through our exciting 6-day lineup
-        </p>
-
-        <div className={styles.marqueeContainer}>
-          <div className={styles.marquee}>
-            {marqueeEvents.concat(marqueeEvents).map((event, index) => (
-              <div key={`${event.id}-${index}`} className={styles.marqueeItem}>
-                <img
-                  src={event.img}
-                  alt={event.name}
-                  className={styles.marqueeImage}
-                />
-                <div className={styles.marqueeOverlay}>
-                  <h3 className={styles.marqueeEventName}>{event.name}</h3>
-                  <p className={styles.marqueeDescription}>
-                    {getShortDescription(event.description)}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Club Events Section */}
-      <section className={styles.clubEventsSection}>
+      <section className={styles.clubEventsSection} id="events">
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Eureka 2025 Event Schedule</h2>
           <p className={styles.sectionSubtitle}>
@@ -138,39 +137,29 @@ const EurekaHomePage: React.FC = () => {
           {clubEvents.map((event) => (
             <div key={event.id} className={styles.clubEventCard}>
               <div className={styles.cardHeader}>
-                <div className={styles.clubLogoPlaceholder}>
-                  <span className={styles.clubInitial}>
-                    {event.conductedClubName.charAt(0)}
-                  </span>
+                <div className={styles.eventIconContainer}>
+                  <img 
+                    src={event.icon} 
+                    alt={`${event.name} icon`}
+                    className={styles.eventIcon}
+                  />
                 </div>
-                <div className={styles.clubInfo}>
-                  <span className={styles.clubName}>
-                    {event.conductedClubName}
-                  </span>
+                <div className={styles.eventInfo}>
                   <h3 className={styles.eventName}>{event.name}</h3>
+                  <div className={styles.clubInfo}>
+                    <span className={styles.clubBadge}>
+                      {event.conductedClubName}
+                    </span>
+                    <span className={styles.clubName}>
+                      Organized by {event.conductedClubName}
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              <p className={styles.eventDescription}>{event.description}</p>
-
-              {/* Highlights */}
-              <div className={styles.highlightsSection}>
-                <h4 className={styles.highlightsTitle}>Key Highlights:</h4>
-                <ul className={styles.highlightsList}>
-                  {event.highlights.slice(0, 3).map((highlight, index) => (
-                    <li key={index} className={styles.highlightItem}>
-                      <span className={styles.bullet}>•</span>
-                      {highlight}
-                    </li>
-                  ))}
-                  {event.highlights.length > 3 && (
-                    <li className={styles.highlightItem}>
-                      <span className={styles.bullet}>•</span>+
-                      {event.highlights.length - 3} more highlights
-                    </li>
-                  )}
-                </ul>
-              </div>
+              <p className={styles.eventDescription}>
+                {truncateDescription(event.description)}
+              </p>
 
               <div className={styles.eventDetails}>
                 <div className={styles.detailItem}>
@@ -207,7 +196,7 @@ const EurekaHomePage: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className={styles.footer}>
+      {/* <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <h3 className={styles.footerTitle}>EUREKA 2025</h3>
           <p className={styles.footerText}>
@@ -221,7 +210,7 @@ const EurekaHomePage: React.FC = () => {
             <Link to="/eureka" className={styles.footerLink}>
               All Events
             </Link>
-            <a href="#" className={styles.footerLink}>
+            <a href="#events" className={styles.footerLink}>
               Schedule
             </a>
             <a href="#" className={styles.footerLink}>
@@ -232,7 +221,7 @@ const EurekaHomePage: React.FC = () => {
             © 2025 EUREKA - Students' Gymkhana Center. All rights reserved.
           </p>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };
