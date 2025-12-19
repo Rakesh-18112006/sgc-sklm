@@ -9,14 +9,12 @@ import vc1 from "../../assets/advisoryBoardimgs/vc1.webp";
 import vc2 from "../../assets/advisoryBoardimgs/vc2.webp";
 import vc3 from "../../assets/advisoryBoardimgs/vc3.webp";
 import president from "../../assets/executiveimgs/president.webp";
-import cseVp from "../../assets/executiveimgs/cseVp.webp";
 import pucVp1 from "../../assets/executiveimgs/pucVp1.webp";
 import pucvp2 from "../../assets/executiveimgs/pucvp2.webp";
 import civilvp from "../../assets/executiveimgs/civilvp.webp";
 import eeeVp from "../../assets/executiveimgs/eeeVp.webp";
 import pr from "../../assets/executiveimgs/pr.webp";
 import apr1 from "../../assets/executiveimgs/apr1.webp";
-import apr2 from "../../assets/executiveimgs/apr2.webp";
 import sm from "../../assets/executiveimgs/sm.webp";
 import asm1 from "../../assets/executiveimgs/asm1.webp";
 import asm2 from "../../assets/executiveimgs/asm2.webp";
@@ -93,7 +91,8 @@ const ExecutiveBoard: React.FC = () => {
       id: 6,
       name: "K. Jai Sheel",
       position: "Vice President (CSE)",
-      image: "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
+      image:
+        "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
       department: "CSE",
       social: {
         linkedin:
@@ -104,7 +103,8 @@ const ExecutiveBoard: React.FC = () => {
       id: 7,
       name: "K. Pavan Kumar",
       position: "Vice President (ECE)",
-      image: "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
+      image:
+        "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
       department: "ECE",
       social: {
         linkedin: "https://www.linkedin.com/in/kyvpkr/",
@@ -125,7 +125,8 @@ const ExecutiveBoard: React.FC = () => {
       id: 9,
       name: "G. Rakesh",
       position: "Vice President (MECH)",
-      image: "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
+      image:
+        "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
       department: "MECH",
       social: {
         linkedin: "https://www.linkedin.com/in/g-rakesh-123456789/",
@@ -190,7 +191,8 @@ const ExecutiveBoard: React.FC = () => {
       id: 15,
       name: "N. Govardhan",
       position: "Associate Public Realtions Manager",
-      image: "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
+      image:
+        "https://thumbs.dreamstime.com/b/person-line-icon-outline-vector-sign-linear-style-pictogram-isolated-white-user-account-member-symbol-logo-illustration-88294009.jpg",
       department: "ECE",
       social: {
         linkedin:
@@ -360,24 +362,31 @@ const ExecutiveBoard: React.FC = () => {
   };
 
   // Separate members by position
-  const chairmanMember = boardMembers.find(m => m.position === "Chairman");
-  const viceChairmen = boardMembers.filter(m => m.position === "Vice Chairman");
-  const presidentMember = boardMembers.find(m => m.position === "President");
-  
+  const chairmanMember = boardMembers.find((m) => m.position === "Chairman");
+  const viceChairmen = boardMembers.filter(
+    (m) => m.position === "Vice Chairman"
+  );
+  const presidentMember = boardMembers.find((m) => m.position === "President");
+
   // All other members (excluding chairman, vice chairmen, and president)
-  const otherMembers = boardMembers.filter(m => 
-    m.position !== "Chairman" && 
-    m.position !== "Vice Chairman" && 
-    m.position !== "President"
+  const otherMembers = boardMembers.filter(
+    (m) =>
+      m.position !== "Chairman" &&
+      m.position !== "Vice Chairman" &&
+      m.position !== "President"
   );
 
   const renderMemberCard = (member: BoardMember) => (
     <motion.div
       key={member.id}
       className={`board-card ${getCardClass(member.position)} ${
-        member.position === "Chairman" ? "chairman-card" : 
-        member.position === "President" ? "president-card" :
-        member.position === "Vice Chairman" ? "vice-chairman-card" : ""
+        member.position === "Chairman"
+          ? "chairman-card"
+          : member.position === "President"
+          ? "president-card"
+          : member.position === "Vice Chairman"
+          ? "vice-chairman-card"
+          : ""
       }`}
       variants={cardVariants}
       whileHover="hover"
