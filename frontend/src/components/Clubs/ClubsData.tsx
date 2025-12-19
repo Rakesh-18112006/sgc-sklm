@@ -14,6 +14,7 @@ import electronics from "../../assets/clubimgs/electronics.webp";
 import eco from "../../assets/clubimgs/eco.webp";
 import yoga from "../../assets/clubimgs/yoga.webp";
 import he from "../../assets/clubimgs/hoe.webp";
+import research from "../../assets/clubimgs/research.webp"
 
 import competativeBg from "../../assets/clubBgimgs/competativeBg.webp";
 import codingBg from "../../assets/clubBgimgs/codingBg.webp";
@@ -30,6 +31,7 @@ import electronicsBg from "../../assets/clubBgimgs/electronics.webp";
 import ecoBg from "../../assets/clubBgimgs/ecoBg.webp";
 import yogaBg from "../../assets/clubBgimgs/yogaBg.webp";
 import heBg from "../../assets/clubBgimgs/heBg.webp";
+import researchBg from "../../assets/clubBgimgs/researchBg.webp"
 
 export interface ClubEventType {
   id: string;
@@ -477,6 +479,39 @@ export const clubsData: ClubType[] = [
     ],
     heroImage: linquistic,
     backgroundImage: linquisticBg,
+    events: [
+      {
+        id: "1",
+        title: "Tech Conference 2023",
+        date: "Oct 15, 2023",
+        description: "Annual technology conference featuring industry leaders",
+      },
+      {
+        id: "2",
+        title: "Hackathon",
+        date: "Nov 20, 2023",
+        description: "24-hour coding competition with exciting prizes",
+      },
+    ],
+    members: Array.from({ length: 12 }, (_, i) => ({
+      id: i + 1,
+      name: `Member ${i + 1}`,
+      role: i % 3 === 0 ? "President" : i % 2 === 0 ? "Coordinator" : "Member",
+      linkedin: `https://linkedin.com/in/member${i + 1}`,
+      image: `https://i.pravatar.cc/150?img=${i + 120}`,
+    })),
+  },
+   {
+    id: "research-club",
+    name1: "Research",
+    founded: 2015,
+    about: [
+      "The Tech Innovators Club is a vibrant community of technology enthusiasts dedicated to exploring cutting-edge innovations, sharing knowledge, and building meaningful connections.",
+      "Our mission is to create a platform where students can develop technical skills, work on real-world projects, and connect with industry professionals.",
+    ],
+    heroImage: research,
+    backgroundImage: researchBg,
+    description: "Annual technology conference featuring industry leaders",
     events: [
       {
         id: "1",

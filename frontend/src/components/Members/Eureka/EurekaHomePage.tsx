@@ -142,9 +142,7 @@ const EurekaHomePage: React.FC = () => {
                     <span className={styles.clubBadge}>
                       {event.conductedClubName}
                     </span>
-                    <span className={styles.clubName}>
-                      Organized by {event.conductedClubName}
-                    </span>
+                
                   </div>
                 </div>
               </div>

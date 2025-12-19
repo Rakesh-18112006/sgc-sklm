@@ -37,7 +37,9 @@ export const eventsData: Event[] = [
       'Two-round event featuring a fast-paced Kahoot quiz followed by a real-life finance decision round',
       'Kahoot round tests finance and lecture-based knowledge, scoring based on accuracy and speed',
       'Top 10 teams qualify for the final "Money Moves" round',
-      'Final round focuses on practical personal finance decisions like saving, investing, borrowing, and emergencies'
+      'Final round focuses on practical personal finance decisions like saving, investing, borrowing, and emergencies',
+      'Team Size: 3 to 5',
+      'Registration Fee: 10/- per head'
     ],
     img: tedxIcon,
     icon: tedxIcon, // Add icon
@@ -54,7 +56,9 @@ export const eventsData: Event[] = [
       'Team-based linguistic competition with 3–5 members, featuring live scoring and increasing difficulty levels',
       'Rush Hour round includes jumbled words, sentence rearrangement, foreign phrases, one-word substitutes, and emoji-based questions',
       'Top teams qualify for the final Cipher Hunt, a clue-based treasure hunt using riddles and campus hints',
-      'Winners are decided by fastest completion time, with penalties for wrong answers or extra clues'
+      'Winners are decided by fastest completion time, with penalties for wrong answers or extra clues',
+      'Team Size: 3 to 5',
+      'Registration Fee: 10/- per head'
     ],
     img: lexihuntIcon,
     icon: lexihuntIcon, // Add icon
@@ -71,7 +75,8 @@ export const eventsData: Event[] = [
       'Eco Challenge Stations: Four engaging stations with sounds, images, riddles, taboo-style guessing, and quizzes based on environmental themes',
       'Race Against Time: Final score is based on total time taken, including penalties for wrong answers or skipped stations',
       'Signature-Based Progress: Teams must collect the Station Master\'s signature at each station to move ahead',
-      'Team Activity: 2–5 members per team, promoting teamwork, quick thinking, and eco-awareness'
+      'Team Activity: 3–5 members per team, promoting teamwork, quick thinking, and eco-awareness',
+      'Registration Fee: 10/- per head'
     ],
     img: rapidRushIcon,
     icon: rapidRushIcon, // Add icon
@@ -88,7 +93,9 @@ export const eventsData: Event[] = [
       'Teams tackle real-world technical and social problem statements through a research-based mini hackathon',
       'Guided mentorship from Startup, Research, and Career clubs covering research, market analysis, and industry expectations',
       'Role-based corporate pitching where participants act as CEO, CTO, Marketing, HR, etc., evaluated by role-specific judges',
-      'Focus on innovation, teamwork, communication, and career-oriented learning at a minimal entry fee'
+      'Focus on innovation, teamwork, communication, and career-oriented learning at a minimal entry fee',
+      'Team Size: 3 to 5',
+      'Registration Fee: 10/- per head'
     ],
     img: innovation, // Use imported image
     icon: hackathonIcon, // Add icon
@@ -105,7 +112,9 @@ export const eventsData: Event[] = [
       'Two-Level Challenge: A fast-paced screening round followed by an in-depth District Collector–style administrative simulation',
       'Realistic Governance Experience: Teams earn and manage development funds, build district zones, and handle real-life crisis scenarios',
       'Skill-Focused Evaluation: Tests speed, accuracy, leadership, teamwork, and decision-making under pressure',
-      'Competitive & Strategic: Winners are decided based on overall district stability, fund management, and crisis handling ability'
+      'Competitive & Strategic: Winners are decided based on overall district stability, fund management, and crisis handling ability',
+      'Team Size: 3 to 4',
+      'Registration Fee: 10/- per head'
     ],
     img: iqArenaIcon,
     icon: iqArenaIcon, // Add icon
@@ -122,7 +131,9 @@ export const eventsData: Event[] = [
       'Two-Round Format: Round 1 includes parallel practical and quiz-based challenges; top 4 teams advance to the final round',
       'Hands-on Learning: Activities like breadboard circuit building, component puzzles, IoT identification, and sensor recognition',
       'Final F1 Race: Qualified teams build and race IoT-enabled car models within a fixed time',
-      'Skill Development: Promotes problem-solving, teamwork, speed, and accuracy using minimal resources'
+      'Skill Development: Promotes problem-solving, teamwork, speed, and accuracy using minimal resources',
+      'Team Size: 3 to 5',
+      'Registration Fee: 10/- per head'
     ],
     img: synergyIcon,
     icon: synergyIcon, // Add icon
@@ -139,7 +150,9 @@ export const eventsData: Event[] = [
       'Unique Bidding Format: Teams bid virtual money to unlock questions; correct answers double the bid, while wrong answers result in a loss',
       'Mixed Question Categories: Coding & tech, GK, fun puzzles, tasks, games, and surprise rounds ensure excitement for everyone',
       'Strategic Lifelines: Limited lifeline options add an extra layer of planning and risk management',
-      'Exciting Rewards: Cash prizes/goodies with winner e-certificates make the competition rewarding and memorable'
+      'Exciting Rewards: Cash prizes/goodies with winner e-certificates make the competition rewarding and memorable',
+      'Team Size: 3 to 5',
+      'Registration Fee: 10/- per head'
     ],
     img: cash,
     icon: cashCrashIcon, // Add icon
@@ -151,12 +164,14 @@ export const eventsData: Event[] = [
   {
     id: 'clash-bid',
     name: 'CLASH TO BID',
-    description: 'An exciting two-round team event that blends cricket knowledge with strategy and decision-making. Teams first compete in a quiz-based screening round to earn their way into a Mini IPL–style auction, where smart bidding and team planning decide the winners.',
+    description: 'An exciting two-round team event that blends cricket knowledge with strategy and decision-making. Teams first compete in a quiz-based screening round to earn their way into a Mini IPL-style auction, where smart bidding and team planning decide the winners.',
     highlights: [
       'Khaansar Clash (Round 1): A quiz round testing cricket knowledge with MCQs and fill-in-the-blanks; top 8 teams qualify',
       'Mini IPL Auction (Final Round): Qualified teams bid for retired T20 players to build a balanced squad',
       'Strategy & Planning: Winning depends on smart budgeting, role balance, and captain/vice-captain selection',
-      'Performance-Based Scoring: Teams are ranked based on players\' overall T20 statistics to decide winners and runners-up'
+      'Performance-Based Scoring: Teams are ranked based on players\' overall T20 statistics to decide winners and runners-up',
+      'Team Size: 3 to 5',
+      'Registration Fee: 10/- per head'
     ],
     img: clashBidIcon,
     icon: clashBidIcon, // Add icon
@@ -173,7 +188,9 @@ export const eventsData: Event[] = [
       'Encourages creativity and artistic expression rooted in Indian culture',
       'Focus on themes such as festivals, unity, nature, or social messages',
       'Judged on creativity, color combination, neatness, and overall presentation',
-      'Promotes teamwork, time management, and cultural appreciation'
+      'Promotes teamwork, time management, and cultural appreciation',
+      'Team Size: 3 to 4',
+      'Registration Fee: 40/- per group' ,
     ],
     img: rangoliIcon,
     icon: rangoliIcon, // Add icon
@@ -191,7 +208,9 @@ export const eventsData: Event[] = [
       'Student Ramp Walk: Creative and dazzling costumes, spectacular display of style and confidence',
       'Student Achievement Video Presentation: Heartwarming showcase of talented students, celebrating student excellence and diversity',
       'Award Ceremony: Recognition of competition winners and outstanding participants',
-      'Fireworks Display & Celebrations'
+      'Fireworks Display & Celebrations',
+      'Team Size: 3 to 5',
+      'Registration Fee: 10/- per head'
     ],
     img: eurekaNightIcon,
     icon: eurekaNightIcon, // Add icon
