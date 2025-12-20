@@ -273,10 +273,9 @@ const MobileNavbar: React.FC = () => {
           <div className="section-title">CONTACT INFO</div>
           <div className="flex flex-col gap-3">
             <p>Suvarnamuki, Srikakulam.</p>
-            <p>+91 99999 99999</p>
-            <p>help@sgcrguktskim.org</p>
-            <p>Office Hours: 8AM - 6PM</p>
-            <p>Monday to Saturday</p>
+            <a href="mailto:contact@sgcrguktsklm.org.in">
+                contact@sgcrguktsklm.org.in
+              </a>
           </div>
         </div>
 

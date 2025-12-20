@@ -197,7 +197,7 @@ export const eventsData: Event[] = [
     registrationLink: 'https://forms.gle/H8tQZF8YUikt2VDLA',
     venue: 'Suvarnamukhi',
     date: 'December 31, 2025 | 6:00 AM - 9:00 AM',
-    conductedClubName: 'Cultural Club'
+    conductedClubName: 'Arts & Crafts Club'
   },
   {
     id: 'eureka-night',
