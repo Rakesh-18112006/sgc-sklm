@@ -1,8 +1,9 @@
 import React from "react";
 import Carousel from "./Carousel";
-import CollegeInfoCards from "./CollegeInfoCards";
+// import CollegeInfoCards from "./CollegeInfoCards";
 import Counter from "./Numbers/Counter";
 import AboutSGC from "./Constitution/AboutSGC";
+import Eureka from "./Eureka/Eureka";
 
 import img3 from "../../assets/main/img3.webp";
 import img1 from "../../assets/rguktBlocks/img1.webp";
@@ -40,11 +41,12 @@ const Home: React.FC = () => {
       <Carousel slides={slides} autoPlay={true} interval={6000} />
 
       {/* Cards positioned relative to the carousel */}
-      <div className="relative w-full">
+      {/* <div className="relative w-full">
         <div className="container mx-auto px-4">
           <CollegeInfoCards />
         </div>
-      </div>
+      </div> */}
+      <Eureka />
 
       <AboutSGC />
 

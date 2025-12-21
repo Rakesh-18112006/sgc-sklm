@@ -1,0 +1,271 @@
+.eurekaContainer {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.eurekaContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  gap: 4rem;
+  z-index: 1;
+}
+
+/* Text Section */
+.textSection {
+  flex: 1;
+  max-width: 500px;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleMain {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.titleSub {
+  color: #1a202c;
+  font-weight: 300;
+  font-size: 3rem;
+}
+
+.description {
+  color: #4a5568;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 90%;
+}
+
+/* CTA Button */
+.ctaButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+.buttonText {
+  letter-spacing: 0.5px;
+}
+
+.buttonIcon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.ctaButton:hover .buttonIcon {
+  transform: translateX(5px);
+}
+
+/* Image Section */
+.imageSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.eurekaImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.imageWrapper:hover .eurekaImage {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.2), transparent);
+  pointer-events: none;
+}
+
+/* Decorative Elements */
+.decorativeElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+}
+
+.circle:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -100px;
+}
+
+.circle:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  bottom: 50px;
+  left: -50px;
+}
+
+.circle:nth-child(3) {
+  width: 150px;
+  height: 150px;
+  bottom: -50px;
+  right: 20%;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .eurekaContent {
+    gap: 3rem;
+  }
+  
+  .title {
+    font-size: 3.5rem;
+  }
+  
+  .titleSub {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .eurekaContainer {
+    padding: 1.5rem;
+    min-height: auto;
+  }
+  
+  .eurekaContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+  
+  .textSection {
+    max-width: 100%;
+  }
+  
+  .description {
+    max-width: 100%;
+  }
+  
+  .ctaButton {
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-size: 3rem;
+  }
+  
+  .titleSub {
+    font-size: 2.2rem;
+  }
+  
+  .imageWrapper {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .eurekaContainer {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .titleSub {
+    font-size: 1.8rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .ctaButton {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .imageWrapper {
+    border-radius: 15px;
+  }
+  
+  .circle:nth-child(1),
+  .circle:nth-child(2),
+  .circle:nth-child(3) {
+    display: none;
+  }
+}
+
+/* Animation for initial load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eurekaContent {
+  animation: fadeInUp 0.8s ease-out;
+}
