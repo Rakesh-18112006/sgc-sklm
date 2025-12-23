@@ -1,0 +1,574 @@
+/* SponsorSection.module.css - BUREKA 2025 Theme */
+
+.sponsorSection {
+  width: 100%;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 100%);
+  color: #ffffff;
+  margin: 3rem 0;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.sponsorSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    #ff6b6b 0%,
+    #4ecdc4 25%,
+    #45b7d1 50%,
+    #96ceb4 75%,
+    #ff6b6b 100%);
+  background-size: 200% 100%;
+  animation: gradientShift 3s linear infinite;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.headerDecoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.decorationLine {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4ecdc4, transparent);
+}
+
+.decorationIcon {
+  font-size: 1.5rem;
+  animation: pulse 2s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decorationIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #4ecdc4;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #4ecdc4, #45b7d1, #96ceb4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: #a0a0d8;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Sponsor Card */
+.sponsorCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  display: flex;
+  gap: 3rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Area */
+.logoArea {
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.logoContainer {
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 2px solid rgba(78, 205, 196, 0.3);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.logoContainer:hover {
+  transform: translateY(-4px);
+  border-color: #4ecdc4;
+  box-shadow: 0 10px 30px rgba(78, 205, 196, 0.2);
+}
+
+.logoImage {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.logoFallback {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+  border-radius: 12px;
+}
+
+.logoText {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 3px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.logoBadge {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.badgeText {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.sponsorTagline {
+  background: rgba(78, 205, 196, 0.1);
+  border-left: 4px solid #4ecdc4;
+  padding: 1.25rem;
+  border-radius: 0 12px 12px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.taglineIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taglineIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #4ecdc4;
+}
+
+.sponsorTagline p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #e0e0ff;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Social Media Section */
+.socialMediaSection {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.socialMediaTitle {
+  font-size: 0.9rem;
+  color: #a0a0d8;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.socialMediaIcons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.socialMediaButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e0e0ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.socialMediaButton:hover {
+  background: rgba(78, 205, 196, 0.15);
+  border-color: rgba(78, 205, 196, 0.3);
+  transform: translateX(4px);
+}
+
+.socialMediaIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialMediaIcon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #4ecdc4;
+}
+
+.socialMediaLabel {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Details Area */
+.detailsArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sponsorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.sponsorName {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.sponsorTypeBadge {
+  padding: 6px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(78, 205, 196, 0.5);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4ecdc4;
+  letter-spacing: 1px;
+}
+
+.description {
+  color: #d0d0f0;
+  line-height: 1.7;
+}
+
+.description p {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.05rem;
+}
+
+.missionStatement {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(150, 206, 180, 0.1);
+  padding: 1.25rem;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  border-left: 4px solid #96ceb4;
+}
+
+.missionIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.missionIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #96ceb4;
+}
+
+.missionText {
+  margin: 0;
+  font-style: italic;
+  color: #e0ffe0;
+  font-weight: 500;
+}
+
+/* CTA Section */
+.ctaSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  margin-top: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.websiteInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.websiteLabel {
+  font-size: 0.85rem;
+  color: #a0a0d8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.websiteLink {
+  font-size: 1.1rem;
+  color: #4ecdc4;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.websiteLink:hover {
+  color: #96ceb4;
+  text-decoration: underline;
+}
+
+.visitButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 2rem;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.visitButton:hover {
+  background: linear-gradient(45deg, #ff8e8e, #ff6b6b);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+.visitButton:active {
+  transform: translateY(0);
+}
+
+.buttonArrow {
+  transition: transform 0.3s ease;
+}
+
+.visitButton:hover .buttonArrow {
+  transform: translate(3px, -3px);
+}
+
+.visitButton svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Partnership Note */
+.partnershipNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(69, 183, 209, 0.1);
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  border-left: 4px solid #45b7d1;
+}
+
+.partnershipIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partnershipIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #45b7d1;
+}
+
+.partnershipNote p {
+  margin: 0;
+  color: #e0ffff;
+  line-height: 1.6;
+}
+
+.partnershipNote strong {
+  color: #4ecdc4;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .sponsorCard {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
+  .logoArea {
+    flex: none;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .sectionTitle {
+    font-size: 2.25rem;
+  }
+  
+  .socialMediaIcons {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .socialMediaButton {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1rem 0.75rem;
+  }
+  
+  .socialMediaLabel {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sponsorSection {
+    padding: 3rem 1.5rem;
+  }
+  
+  .sponsorCard {
+    padding: 2rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .sponsorName {
+    font-size: 1.75rem;
+  }
+  
+  .ctaSection {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .websiteInfo {
+    align-items: center;
+  }
+  
+  .socialMediaIcons {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsorSection {
+    padding: 2rem 1rem;
+  }
+  
+  .sponsorCard {
+    padding: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  
+  .sectionSubtitle {
+    font-size: 1rem;
+  }
+  
+  .sponsorName {
+    font-size: 1.5rem;
+  }
+  
+  .visitButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .sponsorTagline,
+  .missionStatement,
+  .partnershipNote,
+  .socialMediaSection {
+    padding: 1rem;
+  }
+  
+  .socialMediaButton {
+    padding: 0.75rem 0.5rem;
+  }
+}

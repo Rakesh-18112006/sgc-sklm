@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./EurekaHomePage.module.css";
 import { eventsData } from "./events.data";
 import poster from "../../../assets/erueka/mainposter.webp";
+import SponsorSection from "./SponsorSection";
 
 const EurekaHomePage: React.FC = () => {
   // Main event poster - updated with Eureka theme
@@ -90,6 +91,8 @@ const EurekaHomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <SponsorSection />
 
       {/* Event Highlights Section */}
       <section className={styles.highlightsOverviewSection} id="highlights">
