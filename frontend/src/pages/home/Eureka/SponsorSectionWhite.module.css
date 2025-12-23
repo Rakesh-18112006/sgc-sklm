@@ -1,0 +1,359 @@
+/* SponsorSectionWhite.module.css - Clean White Theme */
+
+.sponsorSection {
+  width: 100%;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  color: #333333;
+  margin: 2rem 0;
+  position: relative;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.sectionSubtitle {
+  font-size: 1rem;
+  color: #718096;
+  font-weight: 400;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Sponsor Card */
+.sponsorCard {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Logo Section */
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logoContainer {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.logoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.logoFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4299e1, #3182ce);
+  border-radius: 12px;
+}
+
+.logoText {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.sponsorInfo {
+  flex: 1;
+}
+
+.sponsorName {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.sponsorType {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #edf2f7;
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.sponsorTagline {
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+  margin: 0.5rem 0;
+}
+
+/* Actions Section */
+.actionsSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.websiteSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.websiteLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #718096;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.websiteIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #4299e1;
+}
+
+.websiteLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  color: #2b6cb0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.websiteLink:hover {
+  color: #2c5282;
+  text-decoration: underline;
+}
+
+.externalIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Social Section */
+.socialSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 150px;
+}
+
+.socialLabel {
+  font-size: 0.9rem;
+  color: #718096;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.socialButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.socialButton:hover {
+  background: #edf2f7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.socialButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Partnership Note */
+.partnershipNote {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f0fff4;
+  border: 1px solid #c6f6d5;
+  border-radius: 20px;
+  color: #276749;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.partnershipIcon {
+  width: 1rem;
+  height: 1rem;
+  color: #38a169;
+}
+
+/* CTA Button */
+.ctaButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.ctaButton:hover {
+  background: #3182ce;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(66, 153, 225, 0.3);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+.buttonIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sponsorSection {
+    padding: 2rem 1rem;
+  }
+  
+  .sponsorCard {
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .logoSection {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .logoContainer {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .logoText {
+    font-size: 2rem;
+  }
+  
+  .sponsorName {
+    font-size: 1.5rem;
+  }
+  
+  .actionsSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+  
+  .websiteSection,
+  .socialSection {
+    min-width: 100%;
+  }
+  
+  .socialIcons {
+    justify-content: flex-start;
+  }
+  
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsorCard {
+    padding: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .sponsorName {
+    font-size: 1.35rem;
+  }
+  
+  .ctaButton {
+    width: 100%;
+    justify-content: center;
+  }
+}

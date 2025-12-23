@@ -8,6 +8,7 @@ import Eureka from "./Eureka/Eureka";
 import img3 from "../../assets/main/img3.webp";
 import img1 from "../../assets/rguktBlocks/img1.webp";
 import img2 from "../../assets/rguktBlocks/img2.webp";
+import SponsorSectionWhite from "./Eureka/SponsorSectionWhite";
 const Home: React.FC = () => {
   const slides = [
     {
@@ -47,6 +48,7 @@ const Home: React.FC = () => {
         </div>
       </div> */}
       <Eureka />
+      <SponsorSectionWhite />
 
       <AboutSGC />
 
